@@ -83,17 +83,17 @@ export function EnquiryCheckout() {
           </div>
         ) : (
           <form id="enquiry-form" method="post" action="/api/enquiries" onSubmit={submit}>
-            <h2 id="details-title">Your details</h2>
+            <h2 id="details-title">Business &amp; Contact Details</h2>
             <p className="form-hint">Fields marked * are required.</p>
             <div className="form-fields">
               <label>Full name *<input name="name" autoComplete="name" maxLength={100} required placeholder="Your full name" /></label>
-              <label>Email address *<input name="email" type="email" autoComplete="email" maxLength={150} required placeholder="you@example.com" /></label>
-              <label>Phone number<input name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="Optional" /></label>
-              <label>City<input name="city" autoComplete="address-level2" maxLength={100} placeholder="Optional" /></label>
-              <label className="field-wide">Message<textarea name="message" rows={4} maxLength={1000} placeholder="Any questions about quantities, delivery or availability?" /></label>
+              <label>Email address *<input name="email" type="email" autoComplete="email" maxLength={150} required placeholder="you@company.com" /></label>
+              <label>Phone / WhatsApp<input name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="+91 98765 43210" /></label>
+              <label>City &amp; State<input name="city" autoComplete="address-level2" maxLength={100} placeholder="e.g. Pune, Maharashtra" /></label>
+              <label className="field-wide">Message &amp; Requirement<textarea name="message" rows={4} maxLength={1000} placeholder="Mention company name, target quantities (e.g. cartons/boxes), delivery timeline, or custom packaging specifications." /></label>
             </div>
-            <p className="form-hint checkout-disclosure">This is an enquiry. No payment is collected.</p>
-            <button className="button primary send-enquiry" type="submit" disabled={pending || !count}>Send enquiry <Icon name="arrow" /></button>
+            <p className="form-hint checkout-disclosure">B2B wholesale enquiry · Official GST invoice provided · No payment collected online.</p>
+            <button className="button primary send-enquiry" type="submit" disabled={pending || !count}>Submit Quotation Request <Icon name="arrow" /></button>
             <p className="form-status" role="status">{pending ? 'Sending your enquiry…' : error}</p>
           </form>
         )}
@@ -101,15 +101,15 @@ export function EnquiryCheckout() {
       <aside className="checkout-summary" aria-labelledby="summary-title">
         <div className="summary-head">
           <h2 id="summary-title">{receipt ? 'Submitted selection' : 'Your selection'}</h2>
-          {!receipt && <PanelButton className="summary-edit" panel="cart">Edit bag</PanelButton>}
+          {!receipt && <PanelButton className="summary-edit" panel="cart">Edit selection</PanelButton>}
         </div>
         <div id="checkout-items">
           {selected.map(product => (
             <DrawerRow key={product.id} product={product}><span className="summary-quantity">× {quantities[product.id]}</span></DrawerRow>
           ))}
-          {!selected.length && <p className="drawer-copy">Your bag is empty. <Link href="/catalog">Choose some flavours</Link> to start an enquiry.</p>}
+          {!selected.length && <p className="drawer-copy">No flavours selected yet. <Link href="/catalog">Choose flavours</Link> to start an enquiry.</p>}
         </div>
-        <p id="checkout-total" className="checkout-total">{count} {count === 1 ? 'jar' : 'jars'} selected</p>
+        <p id="checkout-total" className="checkout-total">{count} {count === 1 ? 'item' : 'items'} in quotation list</p>
       </aside>
     </div>
   );

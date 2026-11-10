@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState, type MouseEventHandler } from 'react';
 import { PanelButton, useShop } from './shop';
 import { Icon } from './visuals';
-import { quantityTotal } from './products';
 
 const messages = ['FOUR FLAVOURS. ONE BIG CRUNCH.', 'SNACK ON, GUILT OFF.', 'ROASTED MAKHANA', 'BUILD YOUR OWN 3-PACK', 'FIND YOUR FAVOURITE FLAVOUR'];
 
@@ -42,10 +41,9 @@ function NavLinks({ onClick }: { onClick?: MouseEventHandler<HTMLAnchorElement> 
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const { cart, wishlist } = useShop();
+  const { wishlist } = useShop();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
-  const quantity = quantityTotal(cart);
   useEffect(() => setMenuOpen(false), [pathname]);
   const isHome = pathname === '/';
 
@@ -63,9 +61,10 @@ export function SiteHeader() {
               <Icon name="heart-icon" /><span id="wishlist-count" hidden={!wishlist.length}>{wishlist.length}</span>
             </PanelButton>
             <PanelButton className="icon-button" panel="search" aria-label="Search flavours"><Icon name="search-icon" /></PanelButton>
-            <PanelButton className="icon-button cart-button" panel="cart" aria-label={'Open snack bag, ' + quantity + (quantity === 1 ? ' jar' : ' jars')}>
-              <Icon name="bag-icon" /><span id="cart-count">{quantity}</span>
-            </PanelButton>
+            <Link href="/#enquiry" className="header-enquiry-btn" aria-label="Trade & Distributorship Enquiry">
+              <Icon name="chat" />
+              <span>Trade Enquiry</span>
+            </Link>
             <button className="icon-button menu-toggle" type="button" ref={menuButton} aria-controls="mobile-nav"
               aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               onClick={() => setMenuOpen(value => !value)}><span /><span /></button>

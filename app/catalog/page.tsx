@@ -4,8 +4,8 @@ import { PanelButton } from '../shop';
 import { Icon } from '../visuals';
 
 export const metadata = {
-  title: 'Roasted Makhana Catalog | Snack Munch',
-  description: 'Explore the full Snack Munch roasted makhana catalogue. Desi AF Masala, Sigma Chad Cheese, Goated Peri Peri, and No Cap Cream N’ Onion.',
+  title: 'Roasted Makhana Catalog | Saatvik International',
+  description: 'Explore the full roasted makhana catalogue. Wholesale and bulk enquiry for Desi Masala, Cheese, Peri Peri, and Cream N’ Onion.',
 };
 
 export default function Page() {

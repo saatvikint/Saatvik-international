@@ -4,6 +4,7 @@ import { PanelButton } from './shop';
 import { Icon } from './visuals';
 import { HomeReviews } from './home-reviews';
 import { HomeFaq } from './home-faq';
+import { HomeTradeEnquiry } from './home-trade-enquiry';
 
 export default function Page() {
   return (
@@ -37,7 +38,7 @@ export default function Page() {
             <span className="eyebrow">MIX, MATCH, MUNCH</span>
             <h2 id="bundle-title">Build your<br /> own pack.</h2>
             <p>Pick any three jars. Double up on a favourite or give three different flavours a go.</p>
-            <PanelButton className="button yellow" panel="builder">Build my pack <Icon name="arrow" /></PanelButton>
+            <a className="button yellow" href="#enquiry">Request Custom Pack <Icon name="arrow" /></a>
           </div>
           <div className="bundle-art" data-reveal aria-hidden="true">
             <div className="bundle-circle"></div>
@@ -67,6 +68,9 @@ export default function Page() {
 
       {/* 2. Minimal Homepage FAQ Section */}
       <HomeFaq />
+
+      {/* 3. Trade & Distributorship Enquiry Section (Lahori Zeera Inspired) */}
+      <HomeTradeEnquiry />
     </main>
   );
 }

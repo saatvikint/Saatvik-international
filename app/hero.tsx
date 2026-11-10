@@ -83,7 +83,7 @@ export function FlavourHero() {
               <span className="sticker" data-hero-tag>{flavour.tag}</span>
               <h1 id="hero-title"><span className="hero-title-top" data-hero-title-first>{flavour.title[0]}</span><br /><span className="hero-title-bottom"><span data-hero-title-second>{flavour.title[1]}</span><svg viewBox="0 0 310 30" preserveAspectRatio="none" aria-hidden="true"><path d="M5 23C88 6 208-2 304 12M60 26c61-8 123-10 182-9"/></svg></span></h1>
               <p data-hero-description>{flavour.description}</p>
-              <a href={`#flavour-${flavour.id}`} className="button primary hero-shop" data-hero-shop>Shop this flavour <svg className="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+              <a href={`#flavour-${flavour.id}`} className="button primary hero-shop" data-hero-shop>Request quote <svg className="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
             </div>
             <div className="hero-controls" aria-label="Carousel controls" onKeyDown={useArrows}>
               <button className="hero-control hero-prev" type="button" onClick={() => select(requested.current - 1, true)} aria-label="Previous flavour"><svg className="icon" aria-hidden="true"><use href="#arrow"/></svg></button>

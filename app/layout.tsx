@@ -6,8 +6,8 @@ import { SiteHeader } from './site-header';
 import { Footer } from './footer';
 import { SvgLibrary } from './visuals';
 export const metadata: Metadata = {
-  title: 'Snack Munch | Big Snack Energy',
-  description: 'Explore four Snack Munch roasted makhana flavours, build a pack and send an enquiry.',
+  title: 'Saatvik International | Healthy Snacking Solutions',
+  description: 'Explore Saatvik International roasted makhana flavours and healthy snacking solutions. Wholesale, corporate and bulk enquiry.',
   icons: { icon: '/assets/saatvik-logo.png' },
 };
 

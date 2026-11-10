@@ -143,7 +143,23 @@ export function ShopProvider({ children }: PropsWithChildren) {
 
   function addJar(product: Product) {
     changeQuantity(product.id, 1);
-    openPanel('cart');
+    if (typeof window !== 'undefined') {
+      const enquiryEl = document.getElementById('enquiry');
+      if (enquiryEl) {
+        const select = document.getElementById('enquiry-product') as HTMLSelectElement | null;
+        if (select) {
+          for (const opt of Array.from(select.options)) {
+            if (opt.value.toLowerCase().includes(product.name.toLowerCase()) || product.name.toLowerCase().includes(opt.value.toLowerCase())) {
+              select.value = opt.value;
+              break;
+            }
+          }
+        }
+        enquiryEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = '/#enquiry';
+      }
+    }
   }
 
   function addPack(pack: Quantities) {
@@ -155,7 +171,14 @@ export function ShopProvider({ children }: PropsWithChildren) {
       }
       return bag;
     });
-    openPanel('cart');
+    if (typeof window !== 'undefined') {
+      const enquiryEl = document.getElementById('enquiry');
+      if (enquiryEl) {
+        enquiryEl.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = '/#enquiry';
+      }
+    }
   }
 
   function toggleFavourite(product: Product, { announce = true }: FavouriteOptions = {}) {
@@ -174,7 +197,7 @@ export function ShopProvider({ children }: PropsWithChildren) {
       cart: cart ?? emptyBag, wishlist: wishlist ?? emptyWishlist, openPanel, addJar, toggleFavourite, removeSubmitted,
     }}>
       {children}
-      <Drawer panel={panel} cart={cart ?? emptyBag} wishlist={wishlist ?? emptyWishlist}
+      <Drawer panel={panel === 'cart' ? null : panel} cart={cart ?? emptyBag} wishlist={wishlist ?? emptyWishlist}
         onClose={() => openPanel(null)} onAdd={addJar} onQuantityChange={changeQuantity}
         onAddPack={addPack} onToggleFavourite={toggleFavourite} />
       <div className={toast ? 'toast visible' : 'toast'} role="status" aria-live="polite">{toast}</div>

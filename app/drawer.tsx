@@ -8,10 +8,10 @@ import { Icon } from './visuals';
 
 const packSize = 3;
 const titles: Record<Exclude<Panel, null>, string> = {
-  cart: 'Your snack bag',
-  wishlist: 'Your wishlist',
-  builder: 'Build your 3-pack',
-  search: 'Find a flavour',
+  cart: 'Your Enquiry Selection',
+  wishlist: 'Your Saved Flavours',
+  builder: 'Build a Bulk Pack',
+  search: 'Find a Flavour',
 };
 
 export function DrawerRow({ product, children }: { product: Product; children: ReactNode }) {
@@ -20,7 +20,7 @@ export function DrawerRow({ product, children }: { product: Product; children: R
       <img src={`/assets/${product.id}.jpg`} width="1536" height="1024" alt="" />
       <div>
         <strong>{product.name}</strong>
-        <small>Roasted makhana · 75 g</small>
+        <small>Wholesale &amp; Bulk Supply</small>
       </div>
       {children}
     </div>
@@ -53,23 +53,23 @@ function Cart({ quantities, onQuantityChange, onClose }: {
   if (selected.length === 0) {
     return (
       <>
-        <p className="drawer-copy">Your bag is empty. Pick a flavour to get started.</p>
+        <p className="drawer-copy">No flavours selected yet. Pick a flavour to start your enquiry.</p>
         <Link href="/catalog" className="button primary" onClick={onClose}>Explore the Catalog <Icon name="arrow" /></Link>
       </>
     );
   }
   return (
     <>
-      <p className="drawer-copy">Review your selection before sending an enquiry.</p>
+      <p className="drawer-copy">Review your selection before requesting a quotation.</p>
       {selected.map(product => (
         <DrawerRow key={product.id} product={product}>
           <Stepper product={product} quantity={quantities[product.id] ?? 0} onChange={onQuantityChange} />
         </DrawerRow>
       ))}
       <div className="drawer-footer cart-footer">
-        <div className="cart-total"><span>Total jars</span><strong>{quantityTotal(quantities)}</strong></div>
-        <Link className="button primary" href="/checkout" onClick={onClose}>Checkout <Icon name="arrow" /></Link>
-        <p>Enquiry only · No payment collected</p>
+        <div className="cart-total"><span>Selected</span><strong>{quantityTotal(quantities)}</strong></div>
+        <Link className="button primary" href="/checkout" onClick={onClose}>Proceed to Quotation <Icon name="arrow" /></Link>
+        <p>B2B Wholesale Enquiry · No payment collected</p>
       </div>
     </>
   );
@@ -132,7 +132,7 @@ function PackBuilder({ onAddPack }: { onAddPack: (pack: Quantities) => void }) {
       ))}
       <div className="drawer-footer">
         <button type="button" className="button primary builder-add" disabled={count !== packSize} onClick={() => onAddPack(pack)}>
-          Add pack to bag <Icon name="arrow" />
+          Add pack to enquiry <Icon name="arrow" />
         </button>
       </div>
     </>
@@ -208,10 +208,33 @@ export function Drawer({ panel, cart, wishlist, onClose, onAdd, onQuantityChange
         <button className="icon-button drawer-close" type="button" aria-label="Close dialog" onClick={closeDrawer}>×</button>
       </div>
       <div id="drawer-content">
-        {panel === 'cart' && <Cart quantities={cart} onQuantityChange={onQuantityChange} onClose={closeDrawer} />}
-        {panel === 'wishlist' && <Wishlist wishlist={wishlist} onAdd={onAdd} onRemove={onToggleFavourite} onClose={closeDrawer} />}
-        {panel === 'builder' && <PackBuilder onAddPack={onAddPack} />}
-        {panel === 'search' && <Search onAdd={onAdd} />}
+        {panel === 'wishlist' && (
+          <Wishlist
+            wishlist={wishlist}
+            onAdd={product => {
+              onAdd(product);
+              closeDrawer();
+            }}
+            onRemove={onToggleFavourite}
+            onClose={closeDrawer}
+          />
+        )}
+        {panel === 'builder' && (
+          <PackBuilder
+            onAddPack={pack => {
+              onAddPack(pack);
+              closeDrawer();
+            }}
+          />
+        )}
+        {panel === 'search' && (
+          <Search
+            onAdd={product => {
+              onAdd(product);
+              closeDrawer();
+            }}
+          />
+        )}
       </div>
     </dialog>
   );

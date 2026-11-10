@@ -32,10 +32,10 @@ interface AddButtonProps {
 
 export function AddButton({ product, onAdd }: AddButtonProps) {
   return (
-    <Button type="button" className="button primary add-button" onClick={onAdd} aria-label={`Add ${product.name} to cart`}>
-      <Icon name="cart-icon" />
-      <span>Add to cart</span>
-      <span className="add-plus" aria-hidden="true">+</span>
+    <Button type="button" className="button primary add-button" onClick={onAdd} aria-label={`Enquire about ${product.name}`}>
+      <Icon name="chat" />
+      <span>Enquire Now</span>
+      <span className="add-plus" aria-hidden="true">→</span>
     </Button>
   );
 }

@@ -99,7 +99,7 @@ export function Lineup({ collection = false }: { collection?: boolean }) {
           <div><span className="eyebrow">THE SNACK MUNCH CATALOGUE</span><h1 id="flavour-title">Roasted Makhana Catalog</h1>
             <p className="collection-intro">Browse the full Snack Munch catalogue. Four iconic flavours, zero palm oil, big crunch.</p></div>
         ) : (
-          <div><span className="sticker lineup-sticker">Our Favourites</span><h2 id="flavour-title">Shop the Lineup</h2></div>
+          <div><span className="sticker lineup-sticker">Our Favourites</span><h2 id="flavour-title">Explore the Lineup</h2></div>
         )}
         {!collection && <Link className="lineup-collection text-link" href="/catalog">View Catalog <Icon name="arrow" /></Link>}
         <button type="button" className="saved-filter" aria-pressed={savedOnly} aria-controls="product-grid" onClick={() => setSavedOnly(value => !value)}>
