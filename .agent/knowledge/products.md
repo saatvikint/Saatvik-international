@@ -28,7 +28,7 @@ See `freeze-drying.md`.
 | Makhana | Raw makhana | Sizes 4, 5, 6 |
 | Makhana | Roasted / flavoured makhana | Customisable flavours |
 | Puffs | Millet, jowar, quinoa, chickpea | The profile adds plain and flavoured for jowar |
-| Freeze-dried fruits | Mango, strawberry, banana, pineapple, apple, "etc" | None yet |
+| Freeze-dried fruits | Black jamun, strawberry slices, banana slices, mango cubes, pineapple slices (2026-11-12) | Photos for all but strawberry; apple not in the latest list (Q24) |
 
 ## Sources
 

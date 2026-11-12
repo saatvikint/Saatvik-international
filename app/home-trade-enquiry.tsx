@@ -2,6 +2,8 @@
 
 import { useState, type FormEvent } from 'react';
 import { Icon } from './visuals';
+import { categories, products } from './products';
+import { StickerHeading } from './sticker-heading';
 
 export function HomeTradeEnquiry() {
   const [pending, setPending] = useState(false);
@@ -18,7 +20,7 @@ export function HomeTradeEnquiry() {
     const company = String(formData.get('company') || '').trim();
     const phone = String(formData.get('phone') || '').trim();
     const email = String(formData.get('email') || '').trim();
-    const product = String(formData.get('product') || 'All Flavours');
+    const product = String(formData.get('product') || 'Multiple Products (Assorted)');
     const volume = String(formData.get('volume') || 'Commercial Wholesale');
     const city = String(formData.get('city') || '').trim();
     const message = String(formData.get('message') || '').trim();
@@ -73,10 +75,8 @@ export function HomeTradeEnquiry() {
       <div className="trade-enquiry-card">
         {/* Header Block */}
         <header className="trade-enquiry-header">
-          <span className="eyebrow">TRADE &amp; DISTRIBUTORSHIP ENQUIRIES</span>
-          <h2 id="trade-enquiry-title">
-            Partner With<br />Saatvik International
-          </h2>
+          <StickerHeading id="trade-enquiry-title" size="md" kicker="Trade & distributorship enquiries"
+            rows={[[{ text: 'Partner', tone: 'red' }], [{ text: 'with', tone: 'pink', small: true }, { text: 'Us', tone: 'purple' }]]} />
           <p className="trade-enquiry-subtitle">
             Looking for bulk wholesale supply, retail distribution, private-label packaging, or corporate gifting? Connect directly with our commercial sourcing desk.
           </p>
@@ -182,16 +182,16 @@ export function HomeTradeEnquiry() {
               </div>
 
               <div className="trade-form-field">
-                <label htmlFor="enquiry-product">Product / Flavour of Interest *</label>
-                <select id="enquiry-product" name="product" className="trade-select" defaultValue="Desi AF Masala">
-                  <option value="All Flavours (Assorted Wholesale)">All Flavours (Assorted Wholesale)</option>
-                  <option value="Desi AF Masala">Desi AF Masala (Roasted Makhana)</option>
-                  <option value="Sigma Chad Cheese">Sigma Chad Cheese (Roasted Makhana)</option>
-                  <option value="Goated Peri Peri">Goated Peri Peri (Roasted Makhana)</option>
-                  <option value="No Cap Cream N’ Onion">No Cap Cream N’ Onion (Roasted Makhana)</option>
-                  <option value="Raw Bihar Makhana (Grades 4, 5, 6 Suta)">Raw Bihar Makhana (Grades 4, 5, 6 Suta)</option>
-                  <option value="Jowar & Millet Puffs">Jowar &amp; Millet Puffs (Plain / Seasoned)</option>
-                  <option value="Freeze-Dried Fruits">Freeze-Dried Fruits (100% Pure Fruit)</option>
+                <label htmlFor="enquiry-product">Product of Interest *</label>
+                <select id="enquiry-product" name="product" className="trade-select" defaultValue="Multiple Products (Assorted)">
+                  <option value="Multiple Products (Assorted)">Multiple Products (Assorted)</option>
+                  {categories.map(category => (
+                    <optgroup key={category.id} label={category.name}>
+                      {products.filter(product => product.category === category.id).map(product => (
+                        <option key={product.id} value={product.name}>{product.name}</option>
+                      ))}
+                    </optgroup>
+                  ))}
                   <option value="Private Label Packaging">Turnkey Private-Label Contract Packaging</option>
                   <option value="Corporate Gifting Hampers">Corporate Gifting Hampers</option>
                 </select>
@@ -247,10 +247,7 @@ export function HomeTradeEnquiry() {
                 >
                   <span>{pending ? 'Submitting Enquiry…' : 'Submit Sourcing Enquiry'}</span>
                   <span className="submit-circle-arrow">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
+                    <Icon name="arrow" />
                   </span>
                 </button>
 

@@ -31,6 +31,14 @@ B2B Supply, Wholesale, Private Label, Export
 - Products are for enquiry. The site is not full e-commerce. (2026-11-06)
 - The freeze-dried fruits section must explain the freeze-drying process. (product notes)
 
+## Products confirmed 2026-11-12
+
+Freeze-dried: Black Jamun, Strawberry Slices, Banana Slices, Mango Cubes, Pineapple Slices. Real photos received for all except strawberry. Puff photos received but not yet matched to products. Catalogue lives in `content/catalogue.ts`.
+
+## Pages requested 2026-11-12
+
+Home, Products (3 category pages), Inquiry / Get a quote button, Contact us with form, About us, White labelling (services), Certifications, Export query, Testimonials. See `2026-11-12-site-structure.md`.
+
 ## Not confirmed
 
 No certificate, licence (other than GST), MOQ, packaging specification, capacity, export history, client name or founding date has been supplied. See `open-questions.md`.

@@ -41,16 +41,13 @@ export function Footer() {
                   aria-label="Email address for newsletter"
                 />
                 <button type="submit" className="footer-submit-btn" aria-label="Subscribe to newsletter">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
+                  <Icon name="arrow" />
                 </button>
               </form>
             )}
 
             <p className="footer-tagline">
-              Snack on, guilt off. 100% roasted makhana made for big flavour cravings.
+              Premium healthy snacking solutions: makhana, puffs and freeze-dried fruits for businesses in India and abroad.
             </p>
           </div>
 
@@ -64,13 +61,12 @@ export function Footer() {
               <div className="footer-link-group">
                 <h3 className="footer-nav-title">ORDER</h3>
                 <ul className="footer-nav-list">
-                  <li><Link href="/catalog">Catalog (All Flavours)</Link></li>
+                  <li><Link href="/catalog">Product Catalogue</Link></li>
                   <li><Link href="/corporate">Corporate &amp; Bulk Orders</Link></li>
                   <li><Link href="/#build">Build a Pack</Link></li>
-                  <li><Link href="/#flavour-masala">Desi AF Masala</Link></li>
-                  <li><Link href="/#flavour-cheese">Sigma Chad Cheese</Link></li>
-                  <li><Link href="/#flavour-peri">Goated Peri Peri</Link></li>
-                  <li><Link href="/#flavour-onion">Cream N’ Onion</Link></li>
+                  <li><Link href="/catalog#category-makhana">Makhana</Link></li>
+                  <li><Link href="/catalog#category-puffs">Puffs</Link></li>
+                  <li><Link href="/catalog#category-freeze-dried-fruits">Freeze-Dried Fruits</Link></li>
                 </ul>
               </div>
 
@@ -82,8 +78,7 @@ export function Footer() {
                   <li><Link href="/#story">Our Story</Link></li>
                   <li><Link href="/corporate">Corporate Gifting Guide</Link></li>
                   <li><Link href="/#main">Why Makhana?</Link></li>
-                  <li><Link href="/#main">Zero Palm Oil</Link></li>
-                  <li><Link href="/#cravings">Shop by Craving</Link></li>
+                  <li><Link href="/#cravings">Browse by Category</Link></li>
                   <li><Link href="/#story">Media Room</Link></li>
                 </ul>
               </div>

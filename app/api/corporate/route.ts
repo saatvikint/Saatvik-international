@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       occasion: occasion || 'Corporate Gifting',
       customBranding: Boolean(customBranding),
       deliveryDate: deliveryDate || 'Flexible',
-      selectedFlavours: flavours || ['masala', 'cheese', 'peri', 'onion'],
+      selectedProducts: Array.isArray(flavours) ? flavours.filter(item => typeof item === 'string').slice(0, 20) : [],
       notes: message ? message.trim() : '',
     };
 

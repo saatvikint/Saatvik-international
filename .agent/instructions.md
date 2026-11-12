@@ -23,6 +23,7 @@ Saatvik International sells healthy snacks in bulk to businesses: distributors, 
 - Static by default: pages render on the server at build time, and client JavaScript is limited to small interactive parts.
 - Design for a procurement buyer on a laptop and a trader on a mid-range phone on mobile data. Both are primary users.
 - Keep every page's route to an enquiry within one click.
+- Icons: only Hugeicons via `<Icon name>` from `app/visuals.tsx`. Section headings: `StickerHeading`. See decisions 12 to 15 for the Paper-based UI rules.
 - Use the tokens in `developer/design-system.md`. Brand gold fails contrast as body text, so follow the rule there.
 - Update `AGENTS.md` commands and `developer/roadmap.md` when the state of the project changes.
 - Commit only when asked.

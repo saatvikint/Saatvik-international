@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Icon } from './visuals';
+import { StickerHeading } from './sticker-heading';
 
 const reviewsData = [
   {
@@ -293,10 +294,8 @@ export function HomeReviews() {
       {/* Header with Title and Trust Scorecard */}
       <div className="home-reviews-header">
         <div className="reviews-header-left">
-          <span className="eyebrow">VERIFIED CRUNCH LOVERS</span>
-          <h2 id="reviews-title">
-            Don’t Take Our Word.<br />Hear The Crunch.
-          </h2>
+          <StickerHeading id="reviews-title" size="md" align="start" kicker="Testimonials"
+            rows={[[{ text: 'Kind', tone: 'lime' }], [{ text: 'Words', tone: 'red' }]]} />
           <p className="reviews-subtitle">
             Over 15,000+ daily snackers, gym-goers, and office desks munching on 100% slow-roasted makhana across India.
           </p>

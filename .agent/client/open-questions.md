@@ -11,7 +11,19 @@ Move each answer into `facts.md` with its date, then delete the question here.
 | Q3 | Is +91 9370012306 on WhatsApp, and should it be public for enquiries? | Decides the WhatsApp channel |
 | Q4 | What is the registered legal name and entity type? The GST number suggests a firm or LLP, not a company | Needed for footer, privacy policy and terms. "Company" wording may need changing |
 | Q5 | Which registrations do you hold? FSSAI licence number and type, IEC, APEDA RCMC, others. Please send copies | The main trust signals for buyers. We can show none of them until they are confirmed |
-| Q6 | Can we get real photos: products, packaging, office? | There are no product images at all. This is the largest content gap |
+| Q6 | Can we get real photos of packaging, the office, and the products still missing (Q21 to Q23)? | Freeze-dried and puff photos arrived 2026-11-12; makhana and packaging are still missing |
+
+## From the 2026-11-12 update
+
+| # | Question | Why it matters |
+|---|---|---|
+| Q21 | Please send the strawberry slices photo. It was listed but not attached | Strawberry is the only freeze-dried product without a photo |
+| Q22 | Which puff is in each photo: the round discs in four colours, the curls, the cubes? Are the discs four flavours? | Puff photos are only used at category level until matched |
+| Q23 | Can you send makhana photos (raw by size, and flavoured)? | Makhana is the lead product but has no photo; it is missing from the homepage hero |
+| Q24 | Is apple still in the freeze-dried range? It was in the first notes but not in this list | Catalogue accuracy |
+| Q25 | For the Testimonials page: can we get real buyer quotes, with permission to use name and company? | The template's reviews are invented and must be replaced before launch |
+| Q26 | For the Certifications page: please send the certificates (same as Q5) | The page cannot launch empty or with placeholders |
+| Q27 | Is the pineapple photo available at a higher resolution? The one received is 500x333 | It looks soft on large screens |
 
 ## Product content
 

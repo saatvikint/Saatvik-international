@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { CorporateEnquiry } from './corporate-enquiry';
 import { CorporateFaq } from './corporate-faq';
 import { Icon } from '../visuals';
+import { ProductCollage } from '../product-collage';
 
 export const metadata = {
   title: 'Corporate Gifting & Bulk Makhana Enquiries | Snack Munch',
@@ -32,17 +33,14 @@ export default function Page() {
               Build corporate pack <Icon name="arrow" />
             </a>
             <a href="/catalog" className="text-link hero-catalog-link">
-              Explore flavours <Icon name="arrow" />
+              Explore products <Icon name="arrow" />
             </a>
           </div>
         </div>
 
         <div className="bundle-art corporate-bundle-art" aria-hidden="true">
           <div className="bundle-circle"></div>
-          <svg className="jar bundle-masala"><use href="#jar-masala"/></svg>
-          <svg className="jar bundle-cheese"><use href="#jar-cheese"/></svg>
-          <svg className="jar bundle-peri"><use href="#jar-peri"/></svg>
-          <svg className="jar bundle-onion"><use href="#jar-onion"/></svg>
+          <ProductCollage />
           <div className="corporate-hamper-badge">
             <span>CUSTOM BRANDED</span>
             <span className="badge-sub">GIFT HAMPERS</span>
@@ -54,19 +52,19 @@ export default function Page() {
       <section className="perks corporate-perks" aria-label="Saatvik International corporate benefits">
         <div className="perks-inner">
           <div>
-            <span className="perk-icon"><svg className="icon"><use href="#flame"/></svg></span>
+            <span className="perk-icon"><Icon name="flame" /></span>
             100% Roasted<br />Zero Palm Oil
           </div>
           <div>
-            <span className="perk-icon"><svg className="icon"><use href="#leaf"/></svg></span>
+            <span className="perk-icon"><Icon name="leaf" /></span>
             Custom Sleeves<br />&amp; Gift Cards
           </div>
           <div>
-            <span className="perk-icon"><svg className="icon"><use href="#crunch"/></svg></span>
+            <span className="perk-icon"><Icon name="crunch" /></span>
             15% – 35%<br />Tiered Savings
           </div>
           <div>
-            <span className="perk-icon"><svg className="icon"><use href="#sun"/></svg></span>
+            <span className="perk-icon"><Icon name="sun" /></span>
             Pan-India Drops<br />&amp; GST Invoicing
           </div>
         </div>

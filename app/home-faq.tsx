@@ -1,113 +1,116 @@
 'use client';
 
-import Link from 'next/link';
-import { useState } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import { Icon } from './visuals';
+import { StickerHeading } from './sticker-heading';
 
-const minimalFaqItems = [
+// FAQ "folder" accordion (Paper design, 2026-11-12).
+// Answers use only facts from .agent/client/. Run skills/review-claims.md before changing them.
+
+interface FaqItem {
+  id: string;
+  question: string;
+  answer: ReactNode;
+  cta?: { label: string; href: string };
+}
+
+const faqItems: FaqItem[] = [
   {
-    id: 'faq-roasted',
-    question: 'Are Snack Munch makhanas truly 100% roasted with zero palm oil?',
-    answer: 'Yes, 100%! We slow air-roast jumbo Grade-A Bihar fox nuts in small artisanal batches. We never deep-fry our makhana, and we strictly use zero palm oil, zero trans fats, and zero cholesterol.',
+    id: 'who',
+    question: 'Who do you supply?',
+    answer: (
+      <>
+        <p>We are a <strong>B2B supplier</strong>: distributors and wholesalers, supermarkets and retail chains, food brands and startups, private-label owners, corporate buyers, <strong>HORECA</strong> and institutional buyers, and importers.</p>
+        <p>We do not sell individual retail packs on this website.</p>
+      </>
+    ),
   },
   {
-    id: 'faq-freshness',
-    question: 'How long do the jars stay fresh and crunchy?',
-    answer: 'Every jar is nitrogen-flushed and hermetically induction-sealed to completely lock out humidity. As long as the seal is unbroken, the makhana stays perfectly crisp and fresh for 9 months from the date of manufacture.',
+    id: 'what',
+    question: 'What products can I enquire about?',
+    answer: (
+      <p><strong>Makhana</strong>: raw in sizes 4, 5 and 6, and roasted or flavoured. <strong>Puffs</strong>: millet, jowar, quinoa and chickpea. <strong>Freeze-dried fruits</strong>: black jamun, strawberry, banana, mango and pineapple.</p>
+    ),
+    cta: { label: 'See the range', href: '/catalog' },
   },
   {
-    id: 'faq-pack-mix',
-    question: 'Can I build a customized mix of flavours in one order?',
-    answer: 'Absolutely. You can use our "Build a Pack" builder on the homepage to mix and match any three flavours of your choice, or visit our Catalog to order individual jars in any quantity.',
+    id: 'private-label',
+    question: 'Can you supply under our own brand?',
+    answer: (
+      <p>Yes. Our <strong>private-label</strong> service covers product sourcing, manufacturing coordination and <strong>customised packaging</strong>, so you can launch snacks under your own brand.</p>
+    ),
+    cta: { label: 'Start an enquiry', href: '#enquiry' },
   },
   {
-    id: 'faq-shipping',
-    question: 'What are the delivery timelines and shipping fees across India?',
-    answer: 'Orders are dispatched within 24 hours from our facility. Metro deliveries take 2–3 business days; rest of India takes 3–5 business days with live SMS tracking. We offer free shipping on all orders above ₹499.',
+    id: 'flavours',
+    question: 'Can flavours be customised?',
+    answer: (
+      <p>Yes, flavours for roasted makhana can be <strong>customised</strong>. Tell us your flavour preferences, packaging needs and quantities, and we will work out the product with you.</p>
+    ),
   },
   {
-    id: 'faq-bulk',
-    question: 'Do you offer corporate gifting hampers and office pantry bulk packs?',
-    answer: 'Yes! We support employee gifting, festive hampers, and office pantries with 15%–35% tiered bulk savings, bespoke co-branded sleeves, and pan-India doorstep drops. Check our Corporate Gifting page for instant quotes.',
+    id: 'pricing',
+    question: 'What are your prices and minimum order?',
+    answer: (
+      <p>Prices and minimum quantities depend on the <strong>product, size, packaging and volume</strong>, so we quote for each enquiry. Add the products you need to one enquiry and we will reply with a quotation.</p>
+    ),
+    cta: { label: 'Request a quote', href: '#enquiry' },
+  },
+  {
+    id: 'export',
+    question: 'Do you work with international buyers?',
+    answer: (
+      <p>We serve businesses across India and are building relationships with <strong>international buyers and importers</strong>. Include your destination country in your enquiry and we will tell you what we can supply.</p>
+    ),
   },
 ];
 
-export function HomeFaq() {
-  const [openId, setOpenId] = useState<string | null>('faq-roasted');
+function FaqFolder({ item, open, onToggle }: { item: FaqItem; open: boolean; onToggle: () => void }) {
+  const baseId = useId();
+  const panelId = `${baseId}-panel`;
+  const buttonId = `${baseId}-button`;
+  return (
+    <div className={open ? 'faq-folder is-open' : 'faq-folder'}>
+      <h3 className="faq-folder-heading">
+        <button id={buttonId} type="button" className="faq-folder-tab" aria-expanded={open} aria-controls={panelId} onClick={onToggle}>
+          <span>{item.question}</span>
+          <span className="faq-folder-icon"><Icon name="plus" strokeWidth={2} /></span>
+        </button>
+      </h3>
+      <div id={panelId} role="region" aria-labelledby={buttonId} className="faq-folder-panel" inert={!open}>
+        <div className="faq-folder-panel-inner">
+          <div className="faq-paper">
+            {item.answer}
+            {item.cta && <a className="button primary faq-paper-cta" href={item.cta.href}>{item.cta.label} <Icon name="arrow" /></a>}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  function toggle(id: string) {
-    setOpenId((prev) => (prev === id ? null : id));
-  }
+export function HomeFaq() {
+  const [openId, setOpenId] = useState<string | null>(faqItems[0].id);
 
   return (
-    <section className="home-faq-minimal shell" id="faq" aria-labelledby="home-faq-title">
-      <div className="home-faq-container">
-        {/* Minimal Header */}
-        <header className="home-faq-header">
-          <span className="eyebrow">FREQUENTLY ASKED QUESTIONS</span>
-          <h2 id="home-faq-title">
-            Got Questions?<br />Crunch Answers.
-          </h2>
-          <p className="home-faq-subtitle">
-            Quick facts about our roasting process, zero palm oil guarantee, delivery speeds, and custom packs.
-          </p>
-        </header>
-
-        {/* Minimal Accordion List */}
-        <div className="minimal-faq-accordion" role="region" aria-label="Quick questions and answers">
-          {minimalFaqItems.map((item, idx) => {
-            const isOpen = openId === item.id;
-            return (
-              <article
-                key={item.id}
-                className={`minimal-faq-item ${isOpen ? 'is-open' : ''}`}
-              >
-                <button
-                  type="button"
-                  className="minimal-faq-trigger"
-                  onClick={() => toggle(item.id)}
-                  aria-expanded={isOpen}
-                >
-                  <span className="minimal-faq-num">0{idx + 1}</span>
-                  <span className="minimal-faq-q-text">{item.question}</span>
-                  <span className="minimal-faq-icon" aria-hidden="true">
-                    {isOpen ? '−' : '+'}
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <div className="minimal-faq-answer">
-                    <p>{item.answer}</p>
-                  </div>
-                )}
-              </article>
-            );
-          })}
+    <section className="faq-folders-section shell" id="faq" aria-labelledby="home-faq-title">
+      <header className="faq-folders-header">
+        <StickerHeading id="home-faq-title" size="md" kicker="Frequently asked questions"
+          rows={[[{ text: 'Got', tone: 'pink' }], [{ text: 'Questions?', tone: 'purple' }]]} />
+      </header>
+      <div className="faq-folders-layout">
+        <div className="faq-folders-photo">
+          <img src="/assets/products/puffs-round-assorted.webp" width={1000} height={800} alt="Four bowls of roasted puffs in different flavours" loading="lazy" decoding="async" />
         </div>
-
-        {/* Minimal Bottom Help Desk Bar */}
-        <div className="home-faq-bottom-bar">
-          <div className="bottom-bar-copy">
-            <strong>Looking for returns, ingredient lab tests, or bulk inquiries?</strong>
-            <span>Our complete knowledge base has answers to 20+ common questions.</span>
-          </div>
-
-          <div className="bottom-bar-actions">
-            <Link href="/faq" className="button yellow minimal-faq-btn">
-              Full FAQ Knowledge Base <Icon name="arrow" />
-            </Link>
-            <a
-              href="https://wa.me/919999999999?text=Hi%20Saatvik%20International,%20I%20have%20a%20question%20about%20your%20snacks!"
-              target="_blank"
-              rel="noreferrer"
-              className="text-link whatsapp-faq-link"
-            >
-              <Icon name="chat" /> Chat on WhatsApp
-            </a>
-          </div>
+        <div className="faq-folders-list">
+          {faqItems.map(item => (
+            <FaqFolder key={item.id} item={item} open={openId === item.id} onToggle={() => setOpenId(current => current === item.id ? null : item.id)} />
+          ))}
+          <p className="faq-folders-more">
+            Another question? Call <a href="tel:+919370012306">+91 93700 12306</a> or email <a href="mailto:saatvikinternational9@gmail.com">saatvikinternational9@gmail.com</a>.
+          </p>
         </div>
       </div>
     </section>
   );
 }
-

@@ -1,4 +1,6 @@
-export const faqCategories = [
+import type { IconName } from '../visuals';
+
+export const faqCategories: { id: string; label: string; iconName: IconName }[] = [
   { id: 'all', label: 'All Questions', iconName: 'sparkle' },
   { id: 'corporate', label: 'Corporate & Bulk Gifting', iconName: 'building' },
   { id: 'quality', label: 'Quality & Nutrition', iconName: 'flame' },

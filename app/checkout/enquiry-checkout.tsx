@@ -107,7 +107,7 @@ export function EnquiryCheckout() {
           {selected.map(product => (
             <DrawerRow key={product.id} product={product}><span className="summary-quantity">× {quantities[product.id]}</span></DrawerRow>
           ))}
-          {!selected.length && <p className="drawer-copy">No flavours selected yet. <Link href="/catalog">Choose flavours</Link> to start an enquiry.</p>}
+          {!selected.length && <p className="drawer-copy">No products selected yet. <Link href="/catalog">Choose products</Link> to start an enquiry.</p>}
         </div>
         <p id="checkout-total" className="checkout-total">{count} {count === 1 ? 'item' : 'items'} in quotation list</p>
       </aside>

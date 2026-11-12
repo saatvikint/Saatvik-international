@@ -6,18 +6,28 @@ import { useEffect, useRef, useState, type MouseEventHandler } from 'react';
 import { PanelButton, useShop } from './shop';
 import { Icon } from './visuals';
 
-const messages = ['FOUR FLAVOURS. ONE BIG CRUNCH.', 'SNACK ON, GUILT OFF.', 'ROASTED MAKHANA', 'BUILD YOUR OWN 3-PACK', 'FIND YOUR FAVOURITE FLAVOUR'];
+const messages = ['MAKHANA · PUFFS · FREEZE-DRIED FRUITS', 'WHOLESALE & BULK SUPPLY', 'PRIVATE LABEL SOLUTIONS', 'EXPORT ENQUIRIES WELCOME', 'PREMIUM HEALTHY SNACKING SOLUTIONS'];
 
-function Announcement({ home }: { home: boolean }) {
+const star = 'M7.787.19c.03-.253.396-.253.426 0l.252 2.121a5.969 5.969 0 0 0 5.224 5.224l2.121.252c.253.03.253.396 0 .426l-2.121.252a5.969 5.969 0 0 0-5.224 5.224l-.252 2.121c-.03.253-.396.253-.426 0l-.252-2.121A5.969 5.969 0 0 0 2.31 8.465L.19 8.213c-.253-.03-.253-.396 0-.426l2.121-.252A5.969 5.969 0 0 0 7.535 2.31L7.787.19Z';
+
+/** Marquee announcement bar (Paper design, 2026-11-12). Pausable for WCAG 2.2.2. */
+function Announcement() {
   const [paused, setPaused] = useState(false);
-  if (!home) return <div className="announcement">{messages[0]}</div>;
-
   return (
     <div className={paused ? 'announcement is-ready is-paused' : 'announcement is-ready'}>
-      <span className="announcement-static">{messages[0]}</span>
+      <span className="announcement-static">{messages.join(' · ')}</span>
       <div className="announcement-window" aria-hidden="true">
         <div className="announcement-track">
-          {[0, 1].map(copy => <div key={copy} className="announcement-group">{messages.map(message => <span key={message}>{message}</span>)}</div>)}
+          {[0, 1].map(copy => (
+            <div key={copy} className="announcement-group">
+              {messages.map(message => (
+                <span key={message} className="announcement-item">
+                  {message}
+                  <svg className="announcement-star" viewBox="0 0 16 16"><path d={star} /></svg>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
       <button className="announcement-toggle" type="button" aria-label={(paused ? 'Play' : 'Pause') + ' announcement ticker'} onClick={() => setPaused(value => !value)}>
@@ -30,7 +40,7 @@ function Announcement({ home }: { home: boolean }) {
 function NavLinks({ onClick }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) {
   return (
     <>
-      <Link href="/catalog" onClick={onClick}>Catalog</Link>
+      <Link href="/catalog" onClick={onClick}>Products</Link>
       <Link href="/corporate" onClick={onClick}>Corporate &amp; Bulk</Link>
       <Link href="/faq" onClick={onClick}>FAQ</Link>
       <Link href="/#build" onClick={onClick}>Build a Pack</Link>
@@ -49,7 +59,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <Announcement home={isHome} />
+      <Announcement />
       <header className={isHome ? 'site-header is-home' : 'site-header'}>
         <div className="shell header-inner">
           <Link className="wordmark" href="/" aria-label="Saatvik International home">
@@ -60,7 +70,7 @@ export function SiteHeader() {
             <PanelButton className="icon-button wishlist-button" panel="wishlist" aria-label={'Open wishlist' + (wishlist.length ? ', ' + wishlist.length + ' saved' : '')}>
               <Icon name="heart-icon" /><span id="wishlist-count" hidden={!wishlist.length}>{wishlist.length}</span>
             </PanelButton>
-            <PanelButton className="icon-button" panel="search" aria-label="Search flavours"><Icon name="search-icon" /></PanelButton>
+            <PanelButton className="icon-button" panel="search" aria-label="Search products"><Icon name="search-icon" /></PanelButton>
             <Link href="/#enquiry" className="header-enquiry-btn" aria-label="Trade & Distributorship Enquiry">
               <Icon name="chat" />
               <span>Trade Enquiry</span>

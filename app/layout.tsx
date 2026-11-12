@@ -4,10 +4,9 @@ import type { ReactNode } from 'react';
 import { ShopProvider } from './shop';
 import { SiteHeader } from './site-header';
 import { Footer } from './footer';
-import { SvgLibrary } from './visuals';
 export const metadata: Metadata = {
   title: 'Saatvik International | Healthy Snacking Solutions',
-  description: 'Explore Saatvik International roasted makhana flavours and healthy snacking solutions. Wholesale, corporate and bulk enquiry.',
+  description: 'Saatvik International supplies makhana, roasted puffs and freeze-dried fruits to businesses. Wholesale, private label and export enquiries.',
   icons: { icon: '/assets/saatvik-logo.png' },
 };
 
@@ -22,7 +21,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       </head>
       <body id="top">
         <a className="skip" href="#main">Skip to content</a>
-        <SvgLibrary />
         <ShopProvider>
           <SiteHeader />
           {children}

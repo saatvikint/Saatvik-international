@@ -1,6 +1,22 @@
 # Site map and content model
 
-Depends on Q7 for the final categories.
+The client's page list (2026-11-12, `client/2026-11-12-site-structure.md`) is the target. The routes below map to it.
+
+| Client item | Route |
+|---|---|
+| 1. Home | `/` |
+| 2. Products page, 3 pages | `/products/makhana`, `/products/puffs`, `/products/freeze-dried-fruits` (currently `/catalog` with category filters) |
+| 3. Inquiry button / Get a quote | Header and every product card; leads to the enquiry list and `/enquiry` |
+| 4. Contact us with form | `/contact` |
+| 5. About us | `/about` |
+| 6. White labelling (services) | `/white-labelling`. Same service the profile calls private label; use the client's term in navigation |
+| 7. Certifications | `/certifications`. Blocked on Q5 and Q26 |
+| 8. Export query | `/export`, with an export-specific enquiry form |
+| 9. Testimonials | `/testimonials`, or a home section. Real quotes only (Q25) |
+
+The template currently has `/corporate` and `/faq`, which are not on the client's list. Decide whether to keep them when building the pages above.
+
+The fuller structure below is the long-term plan.
 
 ```
 /                                   Home

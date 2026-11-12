@@ -2,25 +2,25 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
-import { AddButton, products, quantityTotal, type Product, type ProductId, type Quantities } from './products';
+import { AddButton, ProductPhoto, categoryOf, products, quantityTotal, type Product, type ProductId, type Quantities } from './products';
 import type { Panel } from './shop';
 import { Icon } from './visuals';
 
 const packSize = 3;
 const titles: Record<Exclude<Panel, null>, string> = {
   cart: 'Your Enquiry Selection',
-  wishlist: 'Your Saved Flavours',
-  builder: 'Build a Bulk Pack',
-  search: 'Find a Flavour',
+  wishlist: 'Saved Products',
+  builder: 'Build a Mixed Enquiry',
+  search: 'Find a Product',
 };
 
 export function DrawerRow({ product, children }: { product: Product; children: ReactNode }) {
   return (
     <div className="drawer-row">
-      <img src={`/assets/${product.id}.jpg`} width="1536" height="1024" alt="" />
+      <ProductPhoto product={product} />
       <div>
         <strong>{product.name}</strong>
-        <small>Wholesale &amp; Bulk Supply</small>
+        <small>{categoryOf(product).name}</small>
       </div>
       {children}
     </div>
@@ -37,9 +37,9 @@ interface StepperProps {
 function Stepper({ product, quantity, onChange, incrementDisabled = false }: StepperProps) {
   return (
     <div className="stepper">
-      <button type="button" aria-label={`Remove one ${product.name}`} disabled={quantity === 0} onClick={() => onChange(product.id, -1)}>−</button>
+      <button type="button" aria-label={`Remove one ${product.name}`} disabled={quantity === 0} onClick={() => onChange(product.id, -1)}><Icon name="minus" /></button>
       <span aria-label={`Quantity ${quantity}`}>{quantity}</span>
-      <button type="button" aria-label={`Add one ${product.name}`} disabled={incrementDisabled} onClick={() => onChange(product.id, 1)}>+</button>
+      <button type="button" aria-label={`Add one ${product.name}`} disabled={incrementDisabled} onClick={() => onChange(product.id, 1)}><Icon name="plus" /></button>
     </div>
   );
 }
@@ -53,7 +53,7 @@ function Cart({ quantities, onQuantityChange, onClose }: {
   if (selected.length === 0) {
     return (
       <>
-        <p className="drawer-copy">No flavours selected yet. Pick a flavour to start your enquiry.</p>
+        <p className="drawer-copy">No products selected yet. Pick a product to start your enquiry.</p>
         <Link href="/catalog" className="button primary" onClick={onClose}>Explore the Catalog <Icon name="arrow" /></Link>
       </>
     );
@@ -85,14 +85,14 @@ function Wishlist({ wishlist, onAdd, onRemove, onClose }: {
   if (!saved.length) {
     return (
       <>
-        <p className="drawer-copy">Your wishlist is empty. Tap a heart on any flavour to save it.</p>
+        <p className="drawer-copy">Nothing saved yet. Tap the heart on any product to save it.</p>
         <Link className="button primary" href="/catalog" onClick={onClose}>Explore the Catalog <Icon name="arrow" /></Link>
       </>
     );
   }
   return (
     <>
-      <p className="drawer-copy">Your saved flavours are right here.</p>
+      <p className="drawer-copy">Your saved products are right here.</p>
       {saved.map(product => (
         <DrawerRow key={product.id} product={product}>
           <div className="wishlist-row-actions">
@@ -124,7 +124,7 @@ function PackBuilder({ onAddPack }: { onAddPack: (pack: Quantities) => void }) {
 
   return (
     <>
-      <p className="drawer-copy" role="status">Pick any three jars. <strong>{count} of {packSize} selected.</strong></p>
+      <p className="drawer-copy" role="status">Pick any three products to enquire about together. <strong>{count} of {packSize} selected.</strong></p>
       {products.map(product => (
         <DrawerRow key={product.id} product={product}>
           <Stepper product={product} quantity={pack[product.id] || 0} onChange={changeSelection} incrementDisabled={count === packSize} />
@@ -145,19 +145,19 @@ function normalize(value: string) {
 
 function Search({ onAdd }: { onAdd: (product: Product) => void }) {
   const [query, setQuery] = useState('');
-  const results = products.filter(product => normalize(`${product.name} ${product.note}`).includes(normalize(query)));
+  const results = products.filter(product => normalize(`${product.name} ${product.note} ${categoryOf(product).name}`).includes(normalize(query)));
 
   return (
     <>
-      <label htmlFor="flavour-search" className="search-label">Search the lineup</label>
-      <input type="search" id="flavour-search" placeholder="Try cheese or peri peri" autoComplete="off" value={query} onChange={event => setQuery(event.target.value)} />
+      <label htmlFor="flavour-search" className="search-label">Search products</label>
+      <input type="search" id="flavour-search" placeholder="Try mango or makhana" autoComplete="off" value={query} onChange={event => setQuery(event.target.value)} />
       <div id="search-results" aria-live="polite">
         {results.map(product => (
           <DrawerRow key={product.id} product={product}>
             <AddButton product={product} onAdd={() => onAdd(product)} />
           </DrawerRow>
         ))}
-        {results.length === 0 && <p className="drawer-copy">No flavours found. Try cheese, masala, peri peri or onion.</p>}
+        {results.length === 0 && <p className="drawer-copy">No products found. Try makhana, puffs or mango.</p>}
       </div>
     </>
   );
@@ -205,7 +205,7 @@ export function Drawer({ panel, cart, wishlist, onClose, onAdd, onQuantityChange
     <dialog id="drawer" aria-labelledby="drawer-title" ref={ref} onClose={onClose} onClick={closeOnBackdrop}>
       <div className="drawer-header">
         <h2 id="drawer-title">{panel ? titles[panel] : ''}</h2>
-        <button className="icon-button drawer-close" type="button" aria-label="Close dialog" onClick={closeDrawer}>×</button>
+        <button className="icon-button drawer-close" type="button" aria-label="Close dialog" onClick={closeDrawer}><Icon name="close" /></button>
       </div>
       <div id="drawer-content">
         {panel === 'wishlist' && (

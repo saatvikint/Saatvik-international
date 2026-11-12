@@ -29,8 +29,8 @@ interface ShopContextValue {
 }
 
 const ShopContext = createContext<ShopContextValue | null>(null);
-const bagKey = 'snack-munch-bag';
-const wishlistKey = 'snack-munch-favourites';
+const bagKey = 'saatvik-enquiry-list';
+const wishlistKey = 'saatvik-saved-products';
 const emptyBag: Quantities = {};
 const emptyWishlist: ProductId[] = [];
 

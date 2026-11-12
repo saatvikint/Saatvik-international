@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Icon } from '../visuals';
+import { Icon, type IconName } from '../visuals';
 
 const corporateFaqData = [
   {
     category: 'orders',
     categoryLabel: 'Orders & Gifting',
-    iconName: 'building',
+    iconName: 'building' as IconName,
     items: [
       {
         id: 'corp-faq-moq',
@@ -60,7 +60,7 @@ const corporateFaqData = [
   {
     category: 'tasting',
     categoryLabel: 'Free Tasting & Quality',
-    iconName: 'gift',
+    iconName: 'gift' as IconName,
     items: [
       {
         id: 'corp-faq-sample-box',
@@ -97,7 +97,7 @@ const corporateFaqData = [
   {
     category: 'logistics',
     categoryLabel: 'Pan-India Logistics',
-    iconName: 'truck',
+    iconName: 'truck' as IconName,
     items: [
       {
         id: 'corp-faq-wfh-drops',
@@ -134,7 +134,7 @@ const corporateFaqData = [
   {
     category: 'billing',
     categoryLabel: 'GST & Payment Terms',
-    iconName: 'receipt',
+    iconName: 'receipt' as IconName,
     items: [
       {
         id: 'corp-faq-gst',

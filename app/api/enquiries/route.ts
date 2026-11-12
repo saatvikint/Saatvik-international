@@ -1,9 +1,9 @@
 import { saveEnquiry } from '../../../lib/enquiry-store';
 import type { EnquiryDetails } from '../../../lib/enquiry-store';
+import { productIds } from '../../../content/catalogue';
 
 export const runtime = 'nodejs';
 
-const productIds = new Set(['masala', 'cheese', 'peri', 'onion']);
 const fieldLimits = { name: 100, email: 150, phone: 30, city: 100, message: 1000 };
 const requestIdPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -48,12 +48,12 @@ export async function POST(request: Request) {
     return json({ error: 'Enter your name and a valid email address.' }, 400);
   }
   if (!data.items || typeof data.items !== 'object' || Array.isArray(data.items)) {
-    return json({ error: 'Add at least one flavour to your bag.' }, 400);
+    return json({ error: 'Add at least one product to your enquiry.' }, 400);
   }
 
   const items = Object.entries(data.items as Record<string, unknown>);
   if (!items.length || items.some(([id, quantity]) => !productIds.has(id) || typeof quantity !== 'number' || !Number.isSafeInteger(quantity) || quantity < 1)) {
-    return json({ error: 'Please check your bag quantities.' }, 400);
+    return json({ error: 'Please check your enquiry quantities.' }, 400);
   }
 
   try {

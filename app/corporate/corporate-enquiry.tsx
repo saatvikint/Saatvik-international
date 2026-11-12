@@ -33,7 +33,7 @@ const tiers = [
 export function CorporateEnquiry() {
   const [occasion, setOccasion] = useState(occasions[0]);
   const [selectedTier, setSelectedTier] = useState(tiers[1]);
-  const [selectedFlavours, setSelectedFlavours] = useState<ProductId[]>(['masala', 'cheese', 'peri', 'onion']);
+  const [selectedFlavours, setSelectedFlavours] = useState<ProductId[]>(() => products.map(product => product.id));
   const [customBranding, setCustomBranding] = useState(true);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
@@ -208,7 +208,7 @@ export function CorporateEnquiry() {
                     onClick={() => toggleFlavour(p.id)}
                     style={{ '--flavour-tint': p.tint } as CSSProperties}
                   >
-                    <span className="flavour-check-mark">{active ? <Icon name="check" /> : '+'}</span>
+                    <span className="flavour-check-mark"><Icon name={active ? 'check' : 'plus'} /></span>
                     <div className="flavour-card-info">
                       <strong className="flavour-card-name">{p.name}</strong>
                       <span className="flavour-card-mood">{p.mood}</span>
