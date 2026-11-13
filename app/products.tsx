@@ -11,7 +11,7 @@ export function quantityTotal(quantities: Quantities) {
   return Object.values(quantities).reduce((sum, quantity) => sum + quantity, 0);
 }
 
-/** Real product photo, or a plainly labelled placeholder until the client supplies one. */
+/** Product visual, with honest alt text when the asset is illustrative. */
 export function ProductPhoto({ product, className, eager = false }: { product: Product; className?: string; eager?: boolean }) {
   const { image } = product;
   if (!image) {
@@ -23,7 +23,7 @@ export function ProductPhoto({ product, className, eager = false }: { product: P
     );
   }
   return (
-    <img className={['product-photo', className].filter(Boolean).join(' ')} src={image.src} width={image.width} height={image.height}
+    <img className={['product-photo', image.illustrative && 'is-illustrative', className].filter(Boolean).join(' ')} src={image.src} width={image.width} height={image.height}
       alt={image.alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   );
 }

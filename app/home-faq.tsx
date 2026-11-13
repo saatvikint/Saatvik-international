@@ -3,6 +3,7 @@
 import { useId, useState, type ReactNode } from 'react';
 import { Icon } from './visuals';
 import { StickerHeading } from './sticker-heading';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
 
 // FAQ "folder" accordion (Paper design, 2026-11-12).
 // Answers use only facts from .agent/client/. Run skills/review-claims.md before changing them.
@@ -100,14 +101,15 @@ export function HomeFaq() {
       </header>
       <div className="faq-folders-layout">
         <div className="faq-folders-photo">
-          <img src="/assets/products/puffs-round-assorted.webp" width={1000} height={800} alt="Four bowls of roasted puffs in different flavours" loading="lazy" decoding="async" />
+          <img className="is-illustrative" src="/assets/faq/model-holding-makhana.webp" width={900} height={1004} alt="Illustrative visual of a model holding a bowl of flavoured makhana, with the face outside the frame" loading="lazy" decoding="async" />
+          <small className="faq-visual-note">Illustrative product visual</small>
         </div>
         <div className="faq-folders-list">
           {faqItems.map(item => (
             <FaqFolder key={item.id} item={item} open={openId === item.id} onToggle={() => setOpenId(current => current === item.id ? null : item.id)} />
           ))}
           <p className="faq-folders-more">
-            Another question? Call <a href="tel:+919370012306">+91 93700 12306</a> or email <a href="mailto:saatvikinternational9@gmail.com">saatvikinternational9@gmail.com</a>.
+            Another question? Call <a href={APP_CONFIG.telHref}>{APP_CONFIG.phone.display}</a> or email <a href={APP_CONFIG.mailtoHref()}>{APP_CONFIG.email}</a>.
           </p>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { EnquiryCheckout } from './enquiry-checkout';
 import { StickerHeading } from '../sticker-heading';
-export const metadata = { title: 'Wholesale Quotation & Enquiry | Saatvik International' };
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+export const metadata = { title: APP_CONFIG.pageTitle('Wholesale Quotation & Enquiry') };
 
 export default function Page() {
   return (

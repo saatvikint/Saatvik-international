@@ -1,6 +1,6 @@
 // Product catalogue. Data only: safe to import from server routes and client components.
-// Source of truth: .agent/client/product-notes.md and the 2026-11-12 photo set.
-// Never add prices. Leave an image out rather than using a photo of a different product.
+// Source of truth: .agent/client/product-notes.md.
+// Never add prices. Current images are labelled illustrative visuals, not client product photography.
 
 export type CategoryId = 'makhana' | 'puffs' | 'freeze-dried-fruits';
 
@@ -9,11 +9,14 @@ export interface ProductImage {
   width: number;
   height: number;
   alt: string;
+  illustrative?: boolean;
 }
 
 export interface Category {
   id: CategoryId;
   name: string;
+  /** Short label for stickers and chips. */
+  shortName: string;
   summary: string;
   /** Short lines for the category card, from the client's product list. */
   tagline: string[];
@@ -26,40 +29,48 @@ interface ProductData {
   id: string;
   name: string;
   category: CategoryId;
-  /** Short descriptor shown on chips and in the corporate selector. */
+  /** Short, product-specific descriptor (size, cut, form) shown on the card pill and chips. */
   mood: string;
   note: string;
   tint: string;
   image?: ProductImage;
 }
 
-const photo = (file: string, width: number, height: number, alt: string): ProductImage => ({
-  src: `/assets/products/${file}.webp`, width, height, alt,
+const bowl = (file: string, alt: string): ProductImage => ({
+  src: `/assets/products/bowls/${file}.png`,
+  width: 900,
+  height: 900,
+  alt: `Illustrative product visual of ${alt} in a ceramic bowl`,
+  illustrative: true,
 });
 
 export const categories: readonly Category[] = [
   {
     id: 'makhana',
     name: 'Makhana',
+    shortName: 'Makhana',
     summary: 'Raw makhana in sizes 4, 5 and 6, plus roasted makhana with flavours customised to your brief.',
     tagline: ['Raw, sizes 4 to 6', 'Roasted & flavoured'],
     tint: '#f3ecdb',
+    image: bowl('raw-makhana', 'raw makhana'),
   },
   {
     id: 'puffs',
     name: 'Puffs',
+    shortName: 'Puffs',
     summary: 'Roasted millet, jowar, quinoa and chickpea puffs for bulk supply and private label.',
     tagline: ['Millet · Jowar', 'Quinoa · Chickpea'],
     tint: '#ffe5a1',
-    image: photo('puffs-curls', 1000, 800, 'Roasted puffs on a white plate'),
+    image: bowl('jowar-puffs', 'roasted puffs'),
   },
   {
     id: 'freeze-dried-fruits',
     name: 'Freeze-Dried Fruits',
+    shortName: 'Freeze-dried',
     summary: 'Black jamun, strawberry, banana, mango and pineapple, freeze-dried to keep their shape and colour.',
     tagline: ['Jamun · Mango', 'Banana · Pineapple', '& Strawberry'],
     tint: '#fbd1c5',
-    image: photo('freeze-dried-mango-cubes', 1200, 900, 'Freeze-dried mango cubes in a glass bowl'),
+    image: bowl('freeze-dried-mango-cubes', 'freeze-dried mango cubes'),
   },
 ];
 
@@ -71,6 +82,7 @@ const catalogue = [
     mood: 'Sizes 4, 5 & 6',
     note: 'Raw fox nuts supplied in sizes 4, 5 and 6.',
     tint: '#f3ecdb',
+    image: bowl('raw-makhana', 'raw makhana'),
   },
   {
     id: 'flavoured-makhana',
@@ -79,82 +91,88 @@ const catalogue = [
     mood: 'Custom flavours',
     note: 'Roasted makhana with flavours customised to your brief.',
     tint: '#ffe5a1',
+    image: bowl('flavoured-makhana', 'roasted and flavoured makhana'),
   },
   {
     id: 'jowar-puffs',
     name: 'Jowar Puffs',
     category: 'puffs',
-    mood: 'Roasted puffs',
+    mood: 'Roasted',
     note: 'Roasted jowar (sorghum) puffs for bulk and private label.',
     tint: '#ffe5a1',
+    image: bowl('jowar-puffs', 'roasted jowar puffs'),
   },
   {
     id: 'millet-puffs',
     name: 'Millet Roasted Puffs',
     category: 'puffs',
-    mood: 'Roasted puffs',
+    mood: 'Roasted',
     note: 'Roasted millet puffs for bulk and private label.',
     tint: '#f6dcb4',
+    image: bowl('millet-puffs', 'roasted millet puffs'),
   },
   {
     id: 'quinoa-puffs',
     name: 'Quinoa Puffs',
     category: 'puffs',
-    mood: 'Roasted puffs',
+    mood: 'Roasted',
     note: 'Roasted quinoa puffs for bulk and private label.',
     tint: '#eef0cf',
+    image: bowl('quinoa-puffs', 'roasted quinoa puffs'),
   },
   {
     id: 'chickpea-puffs',
     name: 'Chickpea Puffs',
     category: 'puffs',
-    mood: 'Roasted puffs',
+    mood: 'Roasted',
     note: 'Roasted chickpea puffs for bulk and private label.',
     tint: '#ffd9a8',
+    image: bowl('chickpea-puffs', 'roasted chickpea puffs'),
   },
   {
     id: 'freeze-dried-black-jamun',
     name: 'Freeze-Dried Black Jamun',
     category: 'freeze-dried-fruits',
-    mood: 'Freeze-dried',
+    mood: 'Pieces',
     note: 'Black jamun pieces, freeze-dried.',
     tint: '#ead2e6',
-    image: photo('freeze-dried-black-jamun', 1200, 900, 'Freeze-dried black jamun pieces in a glass bowl beside a ruler'),
+    image: bowl('freeze-dried-black-jamun', 'freeze-dried black jamun pieces'),
   },
   {
     id: 'freeze-dried-strawberry-slices',
     name: 'Freeze-Dried Strawberry Slices',
     category: 'freeze-dried-fruits',
-    mood: 'Freeze-dried',
+    mood: 'Slices',
     note: 'Strawberry slices, freeze-dried.',
     tint: '#fbd1c5',
+    image: bowl('freeze-dried-strawberry-slices', 'freeze-dried strawberry slices'),
   },
   {
     id: 'freeze-dried-banana-slices',
     name: 'Freeze-Dried Banana Slices',
     category: 'freeze-dried-fruits',
-    mood: 'Freeze-dried',
+    mood: 'Slices',
     note: 'Banana slices, freeze-dried.',
     tint: '#f7efcf',
-    image: photo('freeze-dried-banana-slices', 1200, 1058, 'Freeze-dried banana slices in a glass bowl'),
+    image: bowl('freeze-dried-banana-slices', 'freeze-dried banana slices'),
   },
   {
     id: 'freeze-dried-mango-cubes',
     name: 'Freeze-Dried Mango Cubes',
     category: 'freeze-dried-fruits',
-    mood: 'Freeze-dried',
+    mood: 'Cubes',
     note: 'Mango cubes, freeze-dried.',
     tint: '#ffe0a6',
-    image: photo('freeze-dried-mango-cubes', 1200, 900, 'Freeze-dried mango cubes in a glass bowl'),
+    image: bowl('freeze-dried-mango-cubes', 'freeze-dried mango cubes'),
   },
   {
     id: 'freeze-dried-pineapple-slices',
     name: 'Freeze-Dried Pineapple Slices',
     category: 'freeze-dried-fruits',
-    mood: 'Freeze-dried',
+    mood: 'Slices',
     note: 'Pineapple slices, freeze-dried.',
     tint: '#f6f0c4',
-    image: photo('freeze-dried-pineapple-slices', 500, 333, 'Freeze-dried pineapple slices in a glass bowl'),
+    image: bowl('freeze-dried-pineapple-slices', 'freeze-dried pineapple slices'),
   },
 ] as const satisfies readonly ProductData[];
 

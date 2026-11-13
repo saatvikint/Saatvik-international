@@ -12,7 +12,8 @@ Discovery is finished and the Next.js foundation is in progress. See [.agent/dev
 
 1. [.agent/instructions.md](.agent/instructions.md): always-on rules. Read every session.
 2. [.agent/README.md](.agent/README.md): map of everything else, and where new information goes.
-3. Only the files your task needs. Skills in [.agent/skills/](.agent/skills/) are procedures for repeated tasks.
+3. [DESIGN.md](DESIGN.md) before any UI work: tokens, components, layout rules.
+4. Only the files your task needs. Skills in [.agent/skills/](.agent/skills/) are procedures for repeated tasks.
 
 ## Commands
 

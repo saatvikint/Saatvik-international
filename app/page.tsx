@@ -7,6 +7,9 @@ import { HomeFaq } from './home-faq';
 import { HomeTradeEnquiry } from './home-trade-enquiry';
 import { StickerHeading } from './sticker-heading';
 import { HomeStats } from './home-stats';
+import { WhySaatvik } from './why-saatvik';
+import { PuffsFlow } from './puffs-flow';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
 
 export default function Page() {
   return (
@@ -30,6 +33,7 @@ export default function Page() {
         </div>
       </section>
       <HomeStats />
+      <PuffsFlow />
       <Lineup />
       <section className="shell bundle-shell" id="build" aria-labelledby="bundle-title">
         <div className="bundle">
@@ -45,21 +49,37 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="story shell" id="story" aria-labelledby="story-title">
-        <div className="story-image" data-reveal>
-          <img src="/assets/products/freeze-dried-mango-cubes.webp" width="1200" height="900" alt="Freeze-dried mango cubes in a glass bowl" loading="lazy" />
-          <span className="sticker">Premium Healthy Snacking Solutions</span>
+      {/* About (Paper design, 2026-11-13). Copy from .agent/client/company-profile.md only. */}
+      <section className="about-section shell" id="story" aria-labelledby="story-title">
+        <div className="about-copy">
+          <StickerHeading id="story-title" size="md" align="start" rays={false}
+            rows={[[{ text: 'About', tone: 'pink' }], [{ text: APP_CONFIG.shortName, tone: 'purple' }]]} />
+          <p className="about-lead">Bridging the gap between quality snack manufacturers and the businesses that sell them.</p>
+          <div className="about-body">
+            <p><strong>{APP_CONFIG.name}</strong> is a {APP_CONFIG.address.city}-based trading and wholesale company specialising in premium-quality healthy snacks: raw and flavoured makhana (fox nuts), roasted puffs and freeze-dried fruits.</p>
+            <p>We offer end-to-end B2B sourcing, bulk supply and private-label solutions for distributors, retail chains, food brands, HORECA and importers, built on product quality, transparency, reliability and long-term business relationships.</p>
+          </div>
+          <a className="text-link about-link" href="#products">See the range <Icon name="arrow" /></a>
         </div>
-        <div className="story-copy">
-          <StickerHeading id="story-title" size="md" align="start" kicker="Reliable sourcing & supply"
-            rows={[[{ text: 'Quality', tone: 'purple' }], [{ text: 'Snacks', tone: 'lime' }]]} />
-          <p>Saatvik International is a trading and wholesale company for healthy snacks: makhana (fox nuts), roasted puffs and freeze-dried fruits.</p>
-          <p>We connect quality snack manufacturers with distributors, retailers, food brands and importers, with bulk supply and private-label solutions.</p>
-          <a className="text-link" href="#products">See the range <Icon name="arrow" /></a>
+        <div className="about-photo about-collage" role="img" aria-label="Illustrative collage of Saatvik snack categories in colourful geometric shapes">
+          <span className="about-collage-cell photo-makhana" aria-hidden="true">
+            <img src="/assets/about/creative-makhana.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+          </span>
+          <span className="about-collage-cell shape-lime" aria-hidden="true" />
+          <span className="about-collage-cell shape-blue" aria-hidden="true" />
+          <span className="about-collage-cell shape-purple" aria-hidden="true" />
+          <span className="about-collage-cell photo-mango" aria-hidden="true">
+            <img src="/assets/about/creative-mango.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+          </span>
+          <span className="about-collage-cell photo-jamun" aria-hidden="true">
+            <img src="/assets/about/creative-black-jamun.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+          </span>
+          <span className="about-collage-cell shape-orange" aria-hidden="true" />
         </div>
       </section>
 
       {/* 1. Customer Reviews Section */}
+      <WhySaatvik />
       <HomeReviews />
 
       {/* 2. Minimal Homepage FAQ Section */}

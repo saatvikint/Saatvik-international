@@ -9,7 +9,6 @@ import { Icon } from './visuals';
 const packSize = 3;
 const titles: Record<Exclude<Panel, null>, string> = {
   cart: 'Your Enquiry Selection',
-  wishlist: 'Saved Products',
   builder: 'Build a Mixed Enquiry',
   search: 'Find a Product',
 };
@@ -75,40 +74,6 @@ function Cart({ quantities, onQuantityChange, onClose }: {
   );
 }
 
-function Wishlist({ wishlist, onAdd, onRemove, onClose }: {
-  wishlist: ProductId[];
-  onAdd: (product: Product) => void;
-  onRemove: (product: Product, options?: { announce?: boolean }) => void;
-  onClose: () => void;
-}) {
-  const saved = products.filter(product => wishlist.includes(product.id));
-  if (!saved.length) {
-    return (
-      <>
-        <p className="drawer-copy">Nothing saved yet. Tap the heart on any product to save it.</p>
-        <Link className="button primary" href="/catalog" onClick={onClose}>Explore the Catalog <Icon name="arrow" /></Link>
-      </>
-    );
-  }
-  return (
-    <>
-      <p className="drawer-copy">Your saved products are right here.</p>
-      {saved.map(product => (
-        <DrawerRow key={product.id} product={product}>
-          <div className="wishlist-row-actions">
-            <AddButton product={product} onAdd={() => onAdd(product)} />
-            <button type="button" className="wishlist-remove" aria-label={`Remove ${product.name} from wishlist`}
-              onClick={event => {
-                const drawer = event.currentTarget.closest('dialog');
-                onRemove(product, { announce: false });
-                drawer?.querySelector<HTMLButtonElement>('.drawer-close')?.focus();
-              }}>Remove</button>
-          </div>
-        </DrawerRow>
-      ))}
-    </>
-  );
-}
 
 function PackBuilder({ onAddPack }: { onAddPack: (pack: Quantities) => void }) {
   const [pack, setPack] = useState<Quantities>({});
@@ -166,15 +131,13 @@ function Search({ onAdd }: { onAdd: (product: Product) => void }) {
 interface DrawerProps {
   panel: Panel;
   cart: Quantities;
-  wishlist: ProductId[];
   onClose: () => void;
   onAdd: (product: Product) => void;
   onQuantityChange: (id: ProductId, delta: number) => void;
   onAddPack: (pack: Quantities) => void;
-  onToggleFavourite: (product: Product, options?: { announce?: boolean }) => void;
 }
 
-export function Drawer({ panel, cart, wishlist, onClose, onAdd, onQuantityChange, onAddPack, onToggleFavourite }: DrawerProps) {
+export function Drawer({ panel, cart, onClose, onAdd, onQuantityChange, onAddPack }: DrawerProps) {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -208,17 +171,6 @@ export function Drawer({ panel, cart, wishlist, onClose, onAdd, onQuantityChange
         <button className="icon-button drawer-close" type="button" aria-label="Close dialog" onClick={closeDrawer}><Icon name="close" /></button>
       </div>
       <div id="drawer-content">
-        {panel === 'wishlist' && (
-          <Wishlist
-            wishlist={wishlist}
-            onAdd={product => {
-              onAdd(product);
-              closeDrawer();
-            }}
-            onRemove={onToggleFavourite}
-            onClose={closeDrawer}
-          />
-        )}
         {panel === 'builder' && (
           <PackBuilder
             onAddPack={pack => {

@@ -1,5 +1,7 @@
 # Design system
 
+> **Superseded (2026-11-13).** The implemented design system is documented in [DESIGN.md](../../DESIGN.md) at the repo root. This file records the earlier logo-led green/gold proposal that was not adopted; keep it for history only.
+
 ## Direction
 
 Premium, natural and trustworthy, based on the logo and card. Think specialty food trader, not health-app bright or supermarket busy. Calm cream surfaces, deep green weight, restrained gold, fine botanical line art, generous whitespace.

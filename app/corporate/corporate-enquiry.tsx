@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useState, type CSSProperties, type FormEvent } from 'react';
 import { Icon } from '../visuals';
 import { products, type ProductId } from '../products';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 
 interface CorporateReceipt {
   id: string;
@@ -134,7 +136,7 @@ export function CorporateEnquiry() {
             Explore the Catalog <Icon name="arrow" />
           </Link>
           <a
-            href="https://wa.me/919999999999?text=Hi%20Saatvik%20International,%20I%20just%20submitted%20a%20corporate%20bulk%20enquiry!"
+            href={SOCIAL_CONFIG.whatsappHref(`Hi ${APP_CONFIG.name}, I just submitted a corporate bulk enquiry.`)}
             target="_blank"
             rel="noreferrer"
             className="button yellow"
@@ -351,8 +353,8 @@ export function CorporateEnquiry() {
 
           <div className="direct-b2b-contact">
             <span className="contact-head">Need an immediate quote?</span>
-            <a href="mailto:corporate@saatvikinternational.com" className="text-link">
-              corporate@saatvikinternational.com <Icon name="arrow" />
+            <a href={APP_CONFIG.mailtoHref('Corporate enquiry')} className="text-link">
+              {APP_CONFIG.email} <Icon name="arrow" />
             </a>
           </div>
         </div>

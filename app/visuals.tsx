@@ -1,5 +1,6 @@
 import { HugeiconsIcon } from '@hugeicons/react';
 import {
+  ArrowDown01Icon,
   ArrowRight02Icon,
   BubbleChatIcon,
   Building03Icon,
@@ -32,6 +33,7 @@ import {
 // Every icon on the site comes from Hugeicons (free set). Add new ones here, never as inline SVG.
 const icons = {
   arrow: ArrowRight02Icon,
+  'chevron-down': ArrowDown01Icon,
   'pause-icon': PauseIcon,
   'play-icon': PlayIcon,
   'search-icon': Search01Icon,

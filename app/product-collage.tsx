@@ -8,7 +8,7 @@ export function ProductCollage() {
   return (
     <div className="photo-collage">
       {photos.map(product => product.image && (
-        <img key={product.id} src={product.image.src} width={product.image.width} height={product.image.height} alt="" loading="lazy" decoding="async" />
+        <img key={product.id} className={product.image.illustrative ? 'is-illustrative' : undefined} src={product.image.src} width={product.image.width} height={product.image.height} alt="" loading="lazy" decoding="async" />
       ))}
     </div>
   );

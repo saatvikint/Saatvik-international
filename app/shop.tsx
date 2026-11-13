@@ -4,7 +4,6 @@ import {
   createContext,
   useContext,
   useEffect,
-  useRef,
   useState,
   type ButtonHTMLAttributes,
   type PropsWithChildren,
@@ -13,26 +12,20 @@ import { usePathname } from 'next/navigation';
 import { Drawer } from './drawer';
 import { products, type Product, type ProductId, type Quantities } from './products';
 
-export type Panel = 'cart' | 'wishlist' | 'builder' | 'search' | null;
-
-interface FavouriteOptions {
-  announce?: boolean;
-}
+export type Panel = 'cart' | 'builder' | 'search' | null;
 
 interface ShopContextValue {
   cart: Quantities;
-  wishlist: ProductId[];
   openPanel: (panel: Panel) => void;
   addJar: (product: Product) => void;
-  toggleFavourite: (product: Product, options?: FavouriteOptions) => void;
   removeSubmitted: (items: Quantities) => void;
 }
 
 const ShopContext = createContext<ShopContextValue | null>(null);
 const bagKey = 'saatvik-enquiry-list';
-const wishlistKey = 'saatvik-saved-products';
+/** Retired "saved products" list; cleared from browsers on load. */
+const retiredWishlistKey = 'saatvik-saved-products';
 const emptyBag: Quantities = {};
-const emptyWishlist: ProductId[] = [];
 
 function readBrowserValue<T>(key: string, fallback: T): T {
   try {
@@ -75,28 +68,18 @@ export function PanelButton({ panel, children, ...props }: PanelButtonProps) {
 
 export function ShopProvider({ children }: PropsWithChildren) {
   const [cart, setCart] = useState<Quantities | null>(null);
-  const [wishlist, setWishlist] = useState<ProductId[] | null>(null);
   const [panel, openPanel] = useState<Panel>(null);
-  const [toast, setToast] = useState('');
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
     setCart(current => current ?? readBag());
-    const saved = readBrowserValue(wishlistKey, emptyWishlist);
-    setWishlist(current => current ?? products.filter(({ id }) => Array.isArray(saved) && saved.includes(id)).map(({ id }) => id));
-    return () => {
-      if (toastTimer.current) clearTimeout(toastTimer.current);
-    };
+    try { localStorage.removeItem(retiredWishlistKey); } catch { /* storage unavailable */ }
   }, []);
 
   useEffect(() => {
     if (cart) writeBrowserValue(bagKey, cart);
   }, [cart]);
 
-  useEffect(() => {
-    if (wishlist) writeBrowserValue(wishlistKey, wishlist);
-  }, [wishlist]);
 
   useEffect(() => {
     openPanel(null);
@@ -181,26 +164,15 @@ export function ShopProvider({ children }: PropsWithChildren) {
     }
   }
 
-  function toggleFavourite(product: Product, { announce = true }: FavouriteOptions = {}) {
-    const isSaved = wishlist?.includes(product.id);
-    setWishlist(current => isSaved
-      ? (current ?? emptyWishlist).filter(id => id !== product.id)
-      : [...new Set([...(current ?? emptyWishlist), product.id])]);
-    if (!announce) return;
-    setToast(product.name + (isSaved ? ' removed from wishlist' : ' saved to wishlist'));
-    if (toastTimer.current) clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(''), 2300);
-  }
 
   return (
     <ShopContext.Provider value={{
-      cart: cart ?? emptyBag, wishlist: wishlist ?? emptyWishlist, openPanel, addJar, toggleFavourite, removeSubmitted,
+      cart: cart ?? emptyBag, openPanel, addJar, removeSubmitted,
     }}>
       {children}
-      <Drawer panel={panel === 'cart' ? null : panel} cart={cart ?? emptyBag} wishlist={wishlist ?? emptyWishlist}
+      <Drawer panel={panel === 'cart' ? null : panel} cart={cart ?? emptyBag}
         onClose={() => openPanel(null)} onAdd={addJar} onQuantityChange={changeQuantity}
-        onAddPack={addPack} onToggleFavourite={toggleFavourite} />
-      <div className={toast ? 'toast visible' : 'toast'} role="status" aria-live="polite">{toast}</div>
+        onAddPack={addPack} />
     </ShopContext.Provider>
   );
 }

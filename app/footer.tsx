@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useState, type FormEvent } from 'react';
 import { Icon } from './visuals';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 
 export function Footer() {
   const [email, setEmail] = useState('');
@@ -83,28 +85,31 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* Follow */}
-              <div className="footer-link-group">
-                <h3 className="footer-nav-title">FOLLOW</h3>
-                <ul className="footer-nav-list">
-                  <li><a href="https://instagram.com" target="_blank" rel="noreferrer">Instagram</a></li>
-                  <li><a href="https://tiktok.com" target="_blank" rel="noreferrer">TikTok</a></li>
-                  <li><a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a></li>
-                  <li><a href="https://linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a></li>
-                  <li><a href="https://twitter.com" target="_blank" rel="noreferrer">X (Twitter)</a></li>
-                </ul>
-              </div>
+              {/* Follow (only confirmed profiles), otherwise direct contact */}
+              {SOCIAL_CONFIG.hasActiveProfiles ? (
+                <div className="footer-link-group">
+                  <h3 className="footer-nav-title">FOLLOW</h3>
+                  <ul className="footer-nav-list">
+                    {SOCIAL_CONFIG.active.map(profile => (
+                      <li key={profile.platform}><a href={profile.url ?? undefined} target="_blank" rel="noreferrer">{profile.label}</a></li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <div className="footer-link-group">
+                  <h3 className="footer-nav-title">CONTACT</h3>
+                  <ul className="footer-nav-list">
+                    <li><a href={APP_CONFIG.telHref}>{APP_CONFIG.phone.display}</a></li>
+                    <li><a href={APP_CONFIG.mailtoHref()}>Email us</a></li>
+                    {SOCIAL_CONFIG.whatsappEnabled && <li><a href={SOCIAL_CONFIG.whatsappHref()} target="_blank" rel="noreferrer">WhatsApp</a></li>}
+                    <li>{APP_CONFIG.address.city}, {APP_CONFIG.address.region}</li>
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Bottom Row inside Right Col */}
             <div className="footer-right-footer-row">
-              <div className="footer-certified" aria-label="Certified Saatvik Quality">
-                <span className="certified-top">Certified</span>
-                <span className="certified-circle">
-                  <span className="certified-letter">B</span>
-                </span>
-                <span className="certified-bottom">Corporation</span>
-              </div>
 
               <div className="footer-legal-nav">
                 <Link href="/catalog">Catalog</Link>
@@ -115,7 +120,7 @@ export function Footer() {
               </div>
 
               <div className="footer-copy-text">
-                © 2026 Saatvik International
+                {APP_CONFIG.copyright()} · GSTIN {APP_CONFIG.gstin}
               </div>
             </div>
           </div>
@@ -136,7 +141,7 @@ export function Footer() {
               textLength="1160"
               lengthAdjust="spacingAndGlyphs"
             >
-              SNACK MUNCH
+              {APP_CONFIG.shortName.toUpperCase()}
             </text>
           </svg>
         </div>

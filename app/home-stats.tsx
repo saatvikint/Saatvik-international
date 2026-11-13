@@ -1,4 +1,5 @@
 import { categories, products } from '@/content/catalogue';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
 
 // "What you get" stats band (Paper design, 2026-11-12).
 // Every figure must be verifiable from .agent/client/. Counts are derived from the catalogue
@@ -17,7 +18,7 @@ interface Stat {
 const stats: Stat[] = [
   { badge: String(categories.length), tone: 'blue', label: 'Product categories: makhana, puffs & freeze-dried fruits' },
   { badge: String(products.length), tone: 'orange', label: 'Products you can mix in a single enquiry' },
-  { badge: 'GST', tone: 'pink', wide: true, label: 'GST-registered business, based in Pune', note: 'GSTIN 27AFCFS6285E1ZR' },
+  { badge: 'GST', tone: 'pink', wide: true, label: `GST-registered business, based in ${APP_CONFIG.address.city}`, note: `GSTIN ${APP_CONFIG.gstin}` },
   { badge: 'B2B', tone: 'purple', wide: true, label: 'Wholesale, private label & export supply' },
 ];
 

@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useId, useMemo, useState } from 'react';
 import { allFaqs, faqCategories, type FaqItemData } from './faq-data';
 import { Icon } from '../visuals';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 
 function FaqItem({ item, isOpen, onToggle }: { item: FaqItemData; isOpen: boolean; onToggle: () => void }) {
   const contentId = useId();
@@ -205,7 +207,7 @@ export function FaqClient() {
 
         <div className="support-channels-grid">
           <a
-            href="https://wa.me/919999999999?text=Hi%20Saatvik%20International,%20I%20have%20a%20question%20about%20your%20snacks!"
+            href={SOCIAL_CONFIG.whatsappHref(`Hi ${APP_CONFIG.name}, I have a question about your products.`)}
             target="_blank"
             rel="noreferrer"
             className="support-channel-card"
@@ -214,19 +216,19 @@ export function FaqClient() {
               <Icon name="chat" />
             </div>
             <strong>WhatsApp Hotline</strong>
-            <span>Instant responses for urgent queries</span>
+            <span>Chat with our team</span>
             <span className="channel-cta-text">Chat with us →</span>
           </a>
 
           <a
-            href="mailto:corporate@saatvikinternational.com"
+            href={APP_CONFIG.mailtoHref('Question')}
             className="support-channel-card"
           >
             <div className="channel-icon-wrap" style={{ background: '#fce7eb', color: '#7c172e' }}>
               <Icon name="mail" />
             </div>
             <strong>Email Support</strong>
-            <span>corporate@saatvikinternational.com</span>
+            <span>{APP_CONFIG.email}</span>
             <span className="channel-cta-text">Send an email →</span>
           </a>
 

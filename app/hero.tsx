@@ -102,8 +102,9 @@ export function FlavourHero() {
               <div className="hero-shadow"></div>
             </div>
             <div className="hero-product">
-              <img key={slide.id} className="hero-jar hero-photo" src={slide.image.src} width={slide.image.width} height={slide.image.height} alt="" fetchPriority={current === 0 ? 'high' : 'auto'} decoding="async" />
+              <img key={slide.id} className={`hero-jar hero-photo${slide.image.illustrative ? ' is-illustrative' : ''}`} src={slide.image.src} width={slide.image.width} height={slide.image.height} alt="" fetchPriority={current === 0 ? 'high' : 'auto'} decoding="async" />
             </div>
+            {slide.image.illustrative && <small className="hero-visual-note">Illustrative product visual</small>}
             <svg className="hero-rays" viewBox="0 0 85 75" aria-hidden="true"><path d="M12 39 6 10m24 33 21-35M43 56l33-11"/></svg>
                         <div className="hero-seal" aria-hidden="true"><span>{slide.seal[0]}</span><span className="seal-divider"></span><span>{slide.seal[1]}</span></div>
           </div>

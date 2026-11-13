@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Icon, type IconName } from '../visuals';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 
 const corporateFaqData = [
   {
@@ -276,7 +278,7 @@ export function CorporateFaq() {
 
           <div className="concierge-contact-list">
             <a
-              href="https://wa.me/919999999999?text=Hi%20Saatvik%20International,%20I%20need%20a%20corporate%20bulk%20enquiry%20quote!"
+              href={SOCIAL_CONFIG.whatsappHref(`Hi ${APP_CONFIG.name}, I need a corporate bulk enquiry quote.`)}
               target="_blank"
               rel="noreferrer"
               className="concierge-btn whatsapp"
@@ -287,13 +289,13 @@ export function CorporateFaq() {
             </a>
 
             <a
-              href="mailto:corporate@saatvikinternational.com"
+              href={APP_CONFIG.mailtoHref('Corporate enquiry')}
               className="concierge-contact-item"
             >
               <div className="contact-icon" aria-hidden="true"><Icon name="mail" /></div>
               <div className="contact-text">
-                <strong>corporate@saatvikinternational.com</strong>
-                <span className="contact-sub">Instant response within 2 hours</span>
+                <strong>{APP_CONFIG.email}</strong>
+                <span className="contact-sub">Email our team</span>
               </div>
             </a>
 

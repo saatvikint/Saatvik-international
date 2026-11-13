@@ -4,6 +4,8 @@ import { useState, type FormEvent } from 'react';
 import { Icon } from './visuals';
 import { categories, products } from './products';
 import { StickerHeading } from './sticker-heading';
+import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 
 export function HomeTradeEnquiry() {
   const [pending, setPending] = useState(false);
@@ -86,23 +88,23 @@ export function HomeTradeEnquiry() {
         <div className="trade-desk-strip">
           <div className="trade-desk-item">
             <span className="desk-label">DIRECT SOURCING &amp; WHATSAPP</span>
-            <a href="https://wa.me/919370012306?text=Hi%20Saatvik%20International%2C%20I%20would%20like%20to%20inquire%20about%20bulk%20wholesale%20supply." target="_blank" rel="noreferrer" className="desk-val desk-link">
-              <Icon name="chat" /> +91 9370012306
+            <a href={SOCIAL_CONFIG.whatsappHref()} target="_blank" rel="noreferrer" className="desk-val desk-link">
+              <Icon name="chat" /> {APP_CONFIG.phone.display}
             </a>
           </div>
           <div className="trade-desk-item">
             <span className="desk-label">PROCUREMENT EMAIL</span>
-            <a href="mailto:saatvikinternational9@gmail.com" className="desk-val desk-link">
-              <Icon name="mail" /> saatvikinternational9@gmail.com
+            <a href={APP_CONFIG.mailtoHref('Trade enquiry')} className="desk-val desk-link">
+              <Icon name="mail" /> {APP_CONFIG.email}
             </a>
           </div>
           <div className="trade-desk-item">
             <span className="desk-label">COMMERCIAL HEADQUARTERS</span>
-            <span className="desk-val">Office no-104, The Grid Hub, Pune-411046</span>
+            <span className="desk-val">{APP_CONFIG.address.line1}, {APP_CONFIG.address.city}-{APP_CONFIG.address.postalCode}</span>
           </div>
           <div className="trade-desk-item">
             <span className="desk-label">GST REGISTRATION</span>
-            <span className="desk-val desk-gst">27AFCFS6285E1ZR (100% ITC)</span>
+            <span className="desk-val desk-gst">{APP_CONFIG.gstin}</span>
           </div>
         </div>
 
@@ -112,10 +114,10 @@ export function HomeTradeEnquiry() {
             <div className="trade-success-icon"><Icon name="check" /></div>
             <h3>Enquiry Registered Successfully!</h3>
             <p>Your B2B reference code is: <strong>{receiptId}</strong></p>
-            <p>Our Pune commercial team will review your requirements and reach out within 24 business hours.</p>
+            <p>Our team in Pune will review your requirements and get back to you.</p>
             <div className="trade-success-actions">
               <a
-                href={`https://wa.me/919370012306?text=Hello%20Saatvik%20International%2C%20I%20have%20submitted%20trade%20enquiry%20ref%20${receiptId}.`}
+                href={SOCIAL_CONFIG.whatsappHref(`Hello ${APP_CONFIG.name}, I have submitted trade enquiry ref ${receiptId}.`)}
                 target="_blank"
                 rel="noreferrer"
                 className="button yellow"
@@ -252,7 +254,7 @@ export function HomeTradeEnquiry() {
                 </button>
 
                 <a
-                  href="https://wa.me/919370012306?text=Hi%20Saatvik%20International%2C%20I%20would%20like%20to%20inquire%20about%20bulk%20wholesale%20supply."
+                  href={SOCIAL_CONFIG.whatsappHref()}
                   target="_blank"
                   rel="noreferrer"
                   className="button primary trade-whatsapp-pill"
