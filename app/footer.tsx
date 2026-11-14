@@ -128,22 +128,15 @@ export function Footer() {
 
         {/* Big Giant Brand Banner */}
         <div className="footer-brand-stage" aria-hidden="true">
-          <svg
-            className="footer-brand-svg"
-            viewBox="0 0 1200 135"
-            preserveAspectRatio="xMidYMid meet"
-          >
-            <text
-              x="50%"
-              y="110"
-              textAnchor="middle"
-              className="footer-brand-text"
-              textLength="1160"
-              lengthAdjust="spacingAndGlyphs"
-            >
-              {APP_CONFIG.shortName.toUpperCase()}
-            </text>
-          </svg>
+          <img
+            className="footer-brand-art"
+            src="/assets/footer-saatvik-3d-green.webp"
+            width={1800}
+            height={352}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </footer>

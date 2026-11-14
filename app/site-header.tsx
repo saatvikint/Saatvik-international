@@ -10,8 +10,6 @@ import { APP_CONFIG } from '@/config/APP_CONFIG';
 
 const messages = ['MAKHANA · PUFFS · FREEZE-DRIED FRUITS', 'WHOLESALE & BULK SUPPLY', 'PRIVATE LABEL SOLUTIONS', 'EXPORT ENQUIRIES WELCOME', 'PREMIUM HEALTHY SNACKING SOLUTIONS'];
 
-const star = 'M7.787.19c.03-.253.396-.253.426 0l.252 2.121a5.969 5.969 0 0 0 5.224 5.224l2.121.252c.253.03.253.396 0 .426l-2.121.252a5.969 5.969 0 0 0-5.224 5.224l-.252 2.121c-.03.253-.396.253-.426 0l-.252-2.121A5.969 5.969 0 0 0 2.31 8.465L.19 8.213c-.253-.03-.253-.396 0-.426l2.121-.252A5.969 5.969 0 0 0 7.535 2.31L7.787.19Z';
-
 /** Marquee announcement bar (Paper design, 2026-11-12). Pausable for WCAG 2.2.2. */
 function Announcement() {
   const [paused, setPaused] = useState(false);
@@ -25,7 +23,7 @@ function Announcement() {
               {messages.map(message => (
                 <span key={message} className="announcement-item">
                   {message}
-                  <svg className="announcement-star" viewBox="0 0 16 16"><path d={star} /></svg>
+                  <span className="announcement-leaf" aria-hidden="true" />
                 </span>
               ))}
             </div>

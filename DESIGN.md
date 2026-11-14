@@ -25,7 +25,7 @@ colors:
   lime: "#d2e796"            # also the button hover fill
   blue: "#3330af"            # text on lime, sky, pink-light
   sky: "#b8defa"             # announcement bar
-  red: "#ea392e"             # sticker block, announcement star
+  red: "#ea392e"             # sticker block and accent
   yellow: "#f7dd54"          # text on red/orange; sticker block
   orange: "#d94508"          # category tile (darkened from Paper #fb580d for contrast)
   folder-yellow: "#f5c904"   # FAQ folders only
@@ -87,7 +87,7 @@ components:
   button-yellow:    { bg: "{colors.cta-yellow}", text: "{colors.ink}", border: "2px {colors.ink}", radius: "{rounded.pill}", shadow: "0 4px 0 {colors.ink}" }
   button-hover:     { bg: "{colors.lime}", text: "{colors.purple}", border: "{colors.purple}", shadow: "0 0 0 {colors.purple}", transform: "translateY(4px)" }
   sticker-word:     { padding: "0.16em 0.24em 0.1em", radius: "{rounded.sticker}", rotate: "-4deg / 3deg / -1.5deg / 2deg / -3deg / 1deg" }
-  announcement-bar: { bg: "{colors.sky}", text: "{colors.purple}", separator: "4-point star {colors.red}", height: "{spacing.announcement-h}" }
+  announcement-bar: { bg: "{colors.sky}", text: "{colors.purple}", separator: "leaf {colors.logo-green}", height: "{spacing.announcement-h}" }
   category-tile:    { height: "490px", padding: "24px", radius: "{rounded.tile}", themes: "purple/pink, lime/blue, orange/yellow" }
   stat-card:        { bg: "{colors.lime}", radius: "{rounded.stat}", min-height: "228px", badge: "80px square or 50% wide" }
   faq-folder:       { bar-bg: "{colors.folder-yellow}", border: "1.6px {colors.ink-black}", answer-bg: "{colors.white}", answer-shadow: "6.4px 6.4px 0 #00000026", answer-rotate: "-1deg" }
@@ -122,7 +122,7 @@ The brand logo (green `#1a3b28` + gold `#a5862f` with a leaf) is used as an imag
 - **Purple** (`{colors.purple}`: #4f227c): the primary display colour. Sticker blocks, about copy, kicker text, button hover text.
 - **Lime** (`{colors.lime}`: #d2e796): the signature accent. Button hover fill, stat cards, "Puffs" tile, sticker blocks.
 - **Pink** (`{colors.pink}`: #ffaaf1): sticker blocks and text on purple.
-- **Red** (`{colors.red}`: #ea392e): sticker blocks and the announcement star. Never body text.
+- **Red** (`{colors.red}`: #ea392e): sticker blocks and decorative accents. Never body text.
 - **Yellow** (`{colors.yellow}`: #f7dd54): text on red/orange tiles and sticker blocks.
 - **Orange** (`{colors.orange}`: #d94508): "Freeze-Dried Fruits" tile and stat badge.
 - **Sky** (`{colors.sky}`: #b8defa) and **Pink-light** (`{colors.pink-light}`: #fbd3ff): announcement bar and stat badges.
@@ -212,7 +212,11 @@ If the display font fails to load, the fallback is Arial Bold. Keep `font-displa
 - Common grids: category tiles 3 columns; stats 4 columns; products 4 columns; about 450px + fluid; FAQ 490px photo + 650px list.
 
 ### Whitespace Philosophy
-Modelled on feastie.ca, but tighter: one even rhythm (`--section-gap`) between all sections, one idea per section, headings with room around them. Remove clutter (eyebrows, floating stickers) rather than add it. Change spacing through the tokens, not per-section padding.
+Modelled on feastie.ca, but tighter: one even rhythm (`--section-gap`) between all sections, one idea per section, headings with room around them. Remove interface clutter (eyebrows and floating stickers) rather than add it. On desktop screens at least 1024px wide, a very dense field of small single-piece product cutouts is anchored at irregular positions down the full page along both outer edges, with an extra pair of varied single pieces clustered loosely around each major section heading: raw and flavoured makhana, varied puff forms, and individual freeze-dried fruits. They scroll with the page rather than sticking to the viewport, and must read as naturally scattered, never as aligned rows or matching pairs. Change spacing through the tokens, not per-section padding.
+
+The About collage keeps its colourful geometric grid but uses realistic lifestyle photography in the three image cells: people sharing makhana, adding freeze-dried mango to breakfast, and preparing a bowl with freeze-dried black jamun. Products must be clearly visible in real settings rather than isolated on coloured backgrounds.
+
+The oversized footer `SAATVIK` wordmark uses the approved reference-matched artwork: bold Saatvik-logo green (`#1A3B28`) custom lettering with connected white extrusion faces and green outlines on a transparent background. Keep the complete word visible and scale it proportionally.
 
 ## Elevation
 - **Hard shadow (interactive):** `0 4px 0 {colors.ink}` on buttons; `0 6px 0 {colors.ink}` on product cards; `0 3px 0` on small pills.
@@ -230,7 +234,7 @@ Modelled on feastie.ca, but tighter: one even rhythm (`--section-gap`) between a
 - Icons inside buttons: Hugeicons via `<Icon name>`, 16 to 19px.
 
 ### Announcement Bar
-40px sky bar, purple 16px display text, red 4-point star separators, scrolling marquee with a pause button (WCAG 2.2.2). Static text when reduced motion is on. Messages live in `app/site-header.tsx`.
+40px sky bar, purple 16px display text, small logo-green leaf separators, scrolling marquee with a pause button (WCAG 2.2.2). Static text when reduced motion is on. Messages live in `app/site-header.tsx`.
 
 ### Top Navigation
 86px header (68px at ≤760px), logo image left, links centre, icon buttons and the yellow "Trade Enquiry" pill right. Transparent and overlapping the hero on the home page. Below 420px the enquiry pill shows its icon only.
@@ -289,6 +293,7 @@ Full-bleed yellow card with rounded top corners; content aligned to the containe
 | ≤640px | Sticker rays hidden; one-column category grid; product buttons full width |
 | ≤520px | Stat cards become horizontal rows (badge left) |
 | ≤420px | Header enquiry pill shows icon only |
+| ≥1024px | Decorative product cutouts drift gently along both outer edges; hidden on tablet and mobile layouts |
 
 ### Touch Targets
 Interactive elements are at least 44×44px (buttons 48px min-height, icon buttons 42px+, FAQ bars ~60px).

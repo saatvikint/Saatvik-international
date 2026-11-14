@@ -102,7 +102,6 @@ export function HomeFaq() {
       <div className="faq-folders-layout">
         <div className="faq-folders-photo">
           <img className="is-illustrative" src="/assets/faq/model-holding-makhana.webp" width={900} height={1004} alt="Illustrative visual of a model holding a bowl of flavoured makhana, with the face outside the frame" loading="lazy" decoding="async" />
-          <small className="faq-visual-note">Illustrative product visual</small>
         </div>
         <div className="faq-folders-list">
           {faqItems.map(item => (

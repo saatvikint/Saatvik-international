@@ -9,11 +9,13 @@ import { StickerHeading } from './sticker-heading';
 import { HomeStats } from './home-stats';
 import { WhySaatvik } from './why-saatvik';
 import { PuffsFlow } from './puffs-flow';
+import { FloatingSnackDecor } from './floating-snack-decor';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 
 export default function Page() {
   return (
     <main id="main">
+      <FloatingSnackDecor />
       <FlavourHero />
       <section className="perks" aria-label="What Saatvik International offers">
         <div className="shell perks-inner">
@@ -61,18 +63,18 @@ export default function Page() {
           </div>
           <a className="text-link about-link" href="#products">See the range <Icon name="arrow" /></a>
         </div>
-        <div className="about-photo about-collage" role="img" aria-label="Illustrative collage of Saatvik snack categories in colourful geometric shapes">
+        <div className="about-photo about-collage" role="img" aria-label="Lifestyle collage showing people enjoying makhana and using freeze-dried mango and black jamun in everyday meals">
           <span className="about-collage-cell photo-makhana" aria-hidden="true">
-            <img src="/assets/about/creative-makhana.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+            <img src="/assets/about/lifestyle-makhana.webp" width={900} height={900} alt="" loading="lazy" decoding="async" />
           </span>
           <span className="about-collage-cell shape-lime" aria-hidden="true" />
           <span className="about-collage-cell shape-blue" aria-hidden="true" />
           <span className="about-collage-cell shape-purple" aria-hidden="true" />
           <span className="about-collage-cell photo-mango" aria-hidden="true">
-            <img src="/assets/about/creative-mango.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+            <img src="/assets/about/lifestyle-mango.webp" width={900} height={900} alt="" loading="lazy" decoding="async" />
           </span>
           <span className="about-collage-cell photo-jamun" aria-hidden="true">
-            <img src="/assets/about/creative-black-jamun.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+            <img src="/assets/about/lifestyle-black-jamun.webp" width={900} height={900} alt="" loading="lazy" decoding="async" />
           </span>
           <span className="about-collage-cell shape-orange" aria-hidden="true" />
         </div>
