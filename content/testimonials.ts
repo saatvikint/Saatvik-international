@@ -40,13 +40,13 @@ export const testimonials: readonly Testimonial[] = [
   },
   {
     id: 'neha-brand',
-    quote: 'Launching our own flavoured makhana felt daunting. They helped us shortlist flavours and packaging and kept us updated through the whole private-label run.',
+    quote: 'We sent our product list and expected quantities, and the team kept the sourcing conversation clear from the first enquiry onward.',
     name: 'Neha Kulkarni',
     role: 'Founder',
     company: 'D2C snack brand',
     city: 'Pune',
     avatar: '/assets/testimonials/neha-brand.webp',
-    topic: 'Private label',
+    topic: 'Product sourcing',
     status: 'draft',
   },
   {
@@ -73,10 +73,10 @@ export const testimonials: readonly Testimonial[] = [
   },
   {
     id: 'karan-corporate',
-    quote: 'We sourced roasted makhana for festive hampers. They understood our timelines and packaging needs, and the delivered lot matched the samples.',
+    quote: 'We enquired about roasted makhana for a corporate requirement. The team understood the quantities and kept communication straightforward.',
     name: 'Karan Malhotra',
     role: 'Director',
-    company: 'Corporate gifting company',
+    company: 'Corporate procurement company',
     city: 'New Delhi',
     avatar: '/assets/testimonials/karan-corporate.webp',
     topic: 'Corporate',
@@ -95,7 +95,7 @@ export const testimonials: readonly Testimonial[] = [
   },
   {
     id: 'ananya-brand',
-    quote: 'Freeze-dried black jamun was hard to find. Saatvik sourced it for our trail mix and worked with us on a custom pack size.',
+    quote: 'Freeze-dried black jamun was hard to find. Saatvik reviewed the product requirement and quantity for our trail-mix business.',
     name: 'Ananya Rao',
     role: 'Co-founder',
     company: 'Nutrition brand',

@@ -99,7 +99,7 @@ export function PuffsFlow() {
         <div className="puffs-flow-copy">
           <StickerHeading id="puffs-flow-title" align="start" kicker="Millet · Jowar · Quinoa · Chickpea"
             rows={[[{ text: 'Puffs', tone: 'lime' }, { text: 'in', tone: 'pink', small: true }], [{ text: 'Motion', tone: 'red' }]]} />
-          <p>Roasted millet, jowar, quinoa and chickpea puffs for bulk supply and private label.</p>
+          <p>Roasted millet, jowar, quinoa and chickpea puffs for wholesale, private-labelling and export enquiries.</p>
           <Link className="button primary" href="/catalog#category-puffs">Explore puffs <Icon name="arrow" /></Link>
         </div>
       </div>

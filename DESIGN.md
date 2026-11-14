@@ -287,18 +287,20 @@ Full-bleed yellow card with rounded top corners; content aligned to the containe
 | Breakpoint | Key changes |
 |---|---|
 | ≤1050px | Hero art shrinks; product grid gap 11px |
+| ≤1024px | Desktop nav and mega-menu hide; the menu button opens the mobile menu (categories first). Footer becomes one column, its grids use `minmax(0,1fr)` so long text wraps instead of overflowing |
 | ≤1000px | Category tiles and stats go to fewer columns (tiles 1, stats 2) |
 | ≤900px | About and FAQ stack to one column; FAQ photo becomes 16:10 |
-| ≤760px | Header 68px, nav collapses to menu; hero stacks copy above art |
+| ≤760px | Header 68px; hero stacks copy above art; touch targets at least 44px (header buttons, text links, breadcrumbs) |
 | ≤640px | Sticker rays hidden; one-column category grid; product buttons full width |
 | ≤520px | Stat cards become horizontal rows (badge left) |
 | ≤420px | Header enquiry pill shows icon only |
 | ≥1024px | Decorative product cutouts drift gently along both outer edges; hidden on tablet and mobile layouts |
 
 ### Touch Targets
-Interactive elements are at least 44×44px (buttons 48px min-height, icon buttons 42px+, FAQ bars ~60px).
+On touch screens and below 760px, links and buttons are at least 44px tall (footer links 36px; checkboxes 24px). Small uppercase labels never go below 12px. Interactive elements are at least 44×44px (buttons 48px min-height, icon buttons 42px+, FAQ bars ~60px).
 
 ### Collapsing Strategy
+Grid columns that hold text use `minmax(0, 1fr)`, never a bare `1fr`, so a long word or a `nowrap` line cannot push a column wider than the phone. Verified 2026-11-14 at 320, 360, 390, 768 and 1024px on every page: no horizontal scroll, no clipped content.
 Stack columns rather than shrink text: two-column layouts become one column with the image after the copy (about) or above the list (FAQ). Keep display sizes fluid with `clamp()`; never let a sticker word wrap.
 
 ## Known Gaps

@@ -50,7 +50,7 @@ export function HomeTradeEnquiry() {
           city: city || 'Not specified',
           quantity: volume,
           occasion: `Trade Enquiry - ${product}`,
-          customBranding: true,
+          customBranding: false,
           message: `[B2B TRADE ENQUIRY for ${product}] Company: ${company || 'N/A'}. Volume: ${volume}. City: ${city}. Notes: ${message}`,
           flavours: [product],
         }),
@@ -80,7 +80,7 @@ export function HomeTradeEnquiry() {
           <StickerHeading id="trade-enquiry-title" size="md" kicker="Trade & distributorship enquiries"
             rows={[[{ text: 'Partner', tone: 'red' }], [{ text: 'with', tone: 'pink', small: true }, { text: 'Us', tone: 'purple' }]]} />
           <p className="trade-enquiry-subtitle">
-            Looking for bulk wholesale supply, retail distribution, private-label packaging, or corporate gifting? Connect directly with our commercial sourcing desk.
+            Looking for wholesale supply, retail distribution, private-labelling, corporate supply or export sourcing? Connect directly with our commercial desk.
           </p>
         </header>
 
@@ -194,8 +194,8 @@ export function HomeTradeEnquiry() {
                       ))}
                     </optgroup>
                   ))}
-                  <option value="Private Label Packaging">Turnkey Private-Label Contract Packaging</option>
-                  <option value="Corporate Gifting Hampers">Corporate Gifting Hampers</option>
+                  <option value="Private Labelling Enquiry">Private Labelling Enquiry</option>
+                  <option value="Corporate Supply">Corporate Supply</option>
                 </select>
               </div>
 
@@ -206,8 +206,8 @@ export function HomeTradeEnquiry() {
                   <option value="Trial Wholesale Lot (50 - 200 Cartons)">Trial Wholesale Lot (50 - 200 Cartons)</option>
                   <option value="Commercial Wholesale (500+ Cartons / Tonne Lots)">Commercial Wholesale (500+ Cartons / Tonne Lots)</option>
                   <option value="Full Truck Load (FTL) / Container Load">Full Truck Load (FTL) / Container Load</option>
-                  <option value="Corporate Gifting (100 - 1000+ Hampers)">Corporate Gifting (100 - 1000+ Hampers)</option>
-                  <option value="Private Label Sourcing Run">Private Label Sourcing Run</option>
+                  <option value="Corporate Supply Requirement">Corporate Supply Requirement</option>
+                  <option value="Private Labelling Enquiry">Private Labelling Enquiry</option>
                 </select>
               </div>
 
@@ -227,7 +227,7 @@ export function HomeTradeEnquiry() {
                   id="enquiry-message"
                   name="message"
                   rows={3}
-                  placeholder="Mention any custom seasoning, packaging preferences (bulk sacks vs PET jars), required delivery schedule, or sample requests."
+                  placeholder="Mention the products, estimated quantity, destination, required delivery schedule, or document checklist."
                 />
               </div>
             </div>

@@ -8,7 +8,7 @@ import { PanelButton, useShop } from './shop';
 import { Icon } from './visuals';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 
-const messages = ['MAKHANA · PUFFS · FREEZE-DRIED FRUITS', 'WHOLESALE & BULK SUPPLY', 'PRIVATE LABEL SOLUTIONS', 'EXPORT ENQUIRIES WELCOME', 'PREMIUM HEALTHY SNACKING SOLUTIONS'];
+const messages = ['MAKHANA · PUFFS · FREEZE-DRIED FRUITS', 'WHOLESALE & BULK SUPPLY', 'PRIVATE LABEL SOLUTIONS', 'EXPORT ENQUIRIES WELCOME', 'LEADING SUPPLIER OF HEALTHY SNACKS IN INDIA'];
 
 /** Marquee announcement bar (Paper design, 2026-11-12). Pausable for WCAG 2.2.2. */
 function Announcement() {
@@ -81,10 +81,11 @@ function ProductsMenu({ open, onNavigate }: { open: boolean; onNavigate: () => v
 function NavLinks({ onClick }: { onClick?: MouseEventHandler<HTMLAnchorElement> }) {
   return (
     <>
+      <Link href="/services" onClick={onClick}>Services</Link>
       <Link href="/corporate" onClick={onClick}>Corporate &amp; Bulk</Link>
       <Link href="/faq" onClick={onClick}>FAQ</Link>
-      <Link href="/#build" onClick={onClick}>Build a Pack</Link>
-      <Link href="/#story" onClick={onClick}>Our Story</Link>
+      <Link href="/our-story" onClick={onClick}>Our Story</Link>
+      <Link href="/contact" onClick={onClick}>Contact</Link>
     </>
   );
 }
@@ -148,9 +149,9 @@ export function SiteHeader() {
           </nav>
           <div className="header-actions">
             <PanelButton className="icon-button" panel="search" aria-label="Search products"><Icon name="search-icon" /></PanelButton>
-            <Link href="/#enquiry" className="header-enquiry-btn" aria-label="Trade & Distributorship Enquiry">
+            <Link href="/export-query" className="header-enquiry-btn" aria-label="Trade & Distributorship Enquiry">
               <Icon name="chat" />
-              <span>Trade Enquiry</span>
+              <span>Get a Quote</span>
             </Link>
             <button className="icon-button menu-toggle" type="button" ref={menuButton} aria-controls="mobile-nav"
               aria-expanded={menuOpen} aria-label={menuOpen ? 'Close menu' : 'Open menu'}
@@ -169,6 +170,10 @@ export function SiteHeader() {
           ))}
           <Link className="mobile-nav-category" href="/catalog" onClick={() => setMenuOpen(false)}>All products</Link>
           <NavLinks onClick={() => setMenuOpen(false)} />
+          <p className="mobile-nav-label">Company</p>
+          <Link href="/certifications" onClick={() => setMenuOpen(false)}>Certifications</Link>
+          <Link href="/testimonials" onClick={() => setMenuOpen(false)}>Testimonials</Link>
+          <Link href="/export-query" onClick={() => setMenuOpen(false)}>Export Query</Link>
         </nav>
         <div onPointerEnter={hoverOpen}>
           <ProductsMenu open={productsOpen} onNavigate={() => setProductsOpen(false)} />

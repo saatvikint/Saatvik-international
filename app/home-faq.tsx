@@ -21,7 +21,7 @@ const faqItems: FaqItem[] = [
     question: 'Who do you supply?',
     answer: (
       <>
-        <p>We are a <strong>B2B supplier</strong>: distributors and wholesalers, supermarkets and retail chains, food brands and startups, private-label owners, corporate buyers, <strong>HORECA</strong> and institutional buyers, and importers.</p>
+        <p>We are a <strong>B2B supplier</strong>: distributors and wholesalers, supermarkets and retail chains, food brands, corporate buyers, <strong>HORECA</strong> and institutional buyers, and importers.</p>
         <p>We do not sell individual retail packs on this website.</p>
       </>
     ),
@@ -36,24 +36,24 @@ const faqItems: FaqItem[] = [
   },
   {
     id: 'private-label',
-    question: 'Can you supply under our own brand?',
+    question: 'Do you accept private-labelling enquiries?',
     answer: (
-      <p>Yes. Our <strong>private-label</strong> service covers product sourcing, manufacturing coordination and <strong>customised packaging</strong>, so you can launch snacks under your own brand.</p>
+      <p>Yes. Private labelling is one of our business services. Share your company, product and quantity requirements, and we will confirm the available scope for that enquiry.</p>
     ),
     cta: { label: 'Start an enquiry', href: '#enquiry' },
   },
   {
-    id: 'flavours',
-    question: 'Can flavours be customised?',
+    id: 'quote',
+    question: 'How do I request a quotation?',
     answer: (
-      <p>Yes, flavours for roasted makhana can be <strong>customised</strong>. Tell us your flavour preferences, packaging needs and quantities, and we will work out the product with you.</p>
+      <p>Use the <strong>Get a Quote</strong> button and include the products, estimated quantity, company details and destination. We will review the requirement and reply with the applicable information.</p>
     ),
   },
   {
     id: 'pricing',
     question: 'What are your prices and minimum order?',
     answer: (
-      <p>Prices and minimum quantities depend on the <strong>product, size, packaging and volume</strong>, so we quote for each enquiry. Add the products you need to one enquiry and we will reply with a quotation.</p>
+      <p>Prices and minimum quantities depend on the <strong>product and volume</strong>, so we quote for each enquiry. Add the products you need to one enquiry and we will reply with a quotation.</p>
     ),
     cta: { label: 'Request a quote', href: '#enquiry' },
   },

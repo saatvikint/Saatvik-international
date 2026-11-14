@@ -90,7 +90,7 @@ export function EnquiryCheckout() {
               <label>Email address *<input name="email" type="email" autoComplete="email" maxLength={150} required placeholder="you@company.com" /></label>
               <label>Phone / WhatsApp<input name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="+91 98765 43210" /></label>
               <label>City &amp; State<input name="city" autoComplete="address-level2" maxLength={100} placeholder="e.g. Pune, Maharashtra" /></label>
-              <label className="field-wide">Message &amp; Requirement<textarea name="message" rows={4} maxLength={1000} placeholder="Mention company name, target quantities (e.g. cartons/boxes), delivery timeline, or custom packaging specifications." /></label>
+              <label className="field-wide">Message &amp; Requirement<textarea name="message" rows={4} maxLength={1000} placeholder="Mention company name, products, target quantities, destination and expected delivery timeline." /></label>
             </div>
             <p className="form-hint checkout-disclosure">B2B wholesale enquiry · Official GST invoice provided · No payment collected online.</p>
             <button className="button primary send-enquiry" type="submit" disabled={pending || !count}>Submit Quotation Request <Icon name="arrow" /></button>

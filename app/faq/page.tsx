@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { FaqClient } from './faq-client';
 
 export const metadata = {
-  title: 'Frequently Asked Questions (FAQ) | Saatvik International / Snack Munch',
-  description: 'Everything you need to know about our 100% roasted makhana, flavours, corporate bulk discounts, free tasting kits, GST invoices, and pan-India doorstep drops.',
+  title: 'Frequently Asked Questions (FAQ) | Saatvik International',
+  description: 'Answers about Saatvik International products, B2B supply, quotations, GST registration and export enquiries.',
 };
 
 export default function Page() {
@@ -23,7 +23,7 @@ export default function Page() {
             Frequently Asked<br />Questions.
           </h1>
           <p className="faq-hero-subtitle">
-            Got questions about our 100% roasted makhana, zero palm oil promise, bulk corporate hampers, free sample tasting kits, or pan-India doorstep delivery? We’ve got big crunchy answers.
+            Find answers about our product range, B2B supply, quotations, GST registration, private-labelling enquiries and export queries.
           </p>
         </div>
 

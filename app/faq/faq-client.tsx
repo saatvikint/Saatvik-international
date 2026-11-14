@@ -48,7 +48,7 @@ function FaqItem({ item, isOpen, onToggle }: { item: FaqItemData; isOpen: boolea
 export function FaqClient() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [openItems, setOpenItems] = useState(() => new Set<string>(['moq-bulk', 'free-tasting-box']));
+  const [openItems, setOpenItems] = useState(() => new Set<string>(['who-we-supply', 'product-range']));
 
   function toggleItem(id: string) {
     setOpenItems(prev => {
@@ -95,7 +95,7 @@ export function FaqClient() {
             type="search"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            placeholder="Search questions (e.g. MOQ, free tasting box, GST invoice, shelf life)..."
+            placeholder="Search questions (e.g. products, MOQ, GST, export)..."
             className="faq-search-input"
             aria-label="Search frequently asked questions"
           />
@@ -176,20 +176,20 @@ export function FaqClient() {
         </div>
       )}
 
-      {/* Corporate Dedicated Spotlight Box */}
+      {/* B2B enquiry spotlight */}
       <section className="faq-corporate-spotlight" aria-labelledby="corporate-spotlight-title">
         <div className="spotlight-content">
-          <span className="sticker spotlight-sticker">Need Custom Hamper Pricing?</span>
-          <h2 id="corporate-spotlight-title">Planning Team Gifting or Diwali Hampers?</h2>
+          <span className="sticker spotlight-sticker">Need a B2B quotation?</span>
+          <h2 id="corporate-spotlight-title">Tell us what your business needs.</h2>
           <p>
-            Get custom company logo sleeves, free 4-jar tasting box dispatch within 48 hours, tiered bulk savings from 15% to 35% off, and direct GST input credit invoices.
+            Share your product list, estimated quantity, company details and delivery destination in one enquiry.
           </p>
           <div className="spotlight-actions">
-            <Link href="/corporate" className="button yellow">
-              Build Corporate Pack <Icon name="arrow" />
+            <Link href="/export-query" className="button yellow">
+              Get a Quote <Icon name="arrow" />
             </Link>
             <Link href="/catalog" className="button primary">
-              Explore All 4 Flavours
+              Explore Products
             </Link>
           </div>
         </div>
@@ -201,7 +201,7 @@ export function FaqClient() {
           <span className="eyebrow">STILL HAVE QUESTIONS?</span>
           <h2 id="faq-support-title">We’re Here for You &amp; Your Team</h2>
           <p>
-            Can’t find what you are looking for? Speak directly with our founders or corporate gifting leads. Average response time under 2 hours.
+            Can’t find what you are looking for? Contact our team with your product or supply question.
           </p>
         </div>
 
@@ -233,14 +233,14 @@ export function FaqClient() {
           </a>
 
           <a
-            href="tel:+919876543210"
+            href={APP_CONFIG.telHref}
             className="support-channel-card"
           >
             <div className="channel-icon-wrap" style={{ background: '#fff5d6', color: '#854d0e' }}>
               <Icon name="phone" />
             </div>
             <strong>Call Direct</strong>
-            <span>+91 98765 43210 (Mon–Sat, 9AM–8PM)</span>
+            <span>{APP_CONFIG.phone.display}</span>
             <span className="channel-cta-text">Call now →</span>
           </a>
         </div>

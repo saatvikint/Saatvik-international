@@ -49,7 +49,7 @@ export function Footer() {
             )}
 
             <p className="footer-tagline">
-              Premium healthy snacking solutions: makhana, puffs and freeze-dried fruits for businesses in India and abroad.
+              Leading Supplier of Healthy Snacks in India: makhana, puffs and freeze-dried fruits for business buyers.
             </p>
           </div>
 
@@ -65,6 +65,7 @@ export function Footer() {
                 <ul className="footer-nav-list">
                   <li><Link href="/catalog">Product Catalogue</Link></li>
                   <li><Link href="/corporate">Corporate &amp; Bulk Orders</Link></li>
+                  <li><Link href="/services">Services</Link></li>
                   <li><Link href="/#build">Build a Pack</Link></li>
                   <li><Link href="/catalog#category-makhana">Makhana</Link></li>
                   <li><Link href="/catalog#category-puffs">Puffs</Link></li>
@@ -77,11 +78,13 @@ export function Footer() {
                 <h3 className="footer-nav-title">READ</h3>
                 <ul className="footer-nav-list">
                   <li><Link href="/faq">FAQ &amp; Help Center</Link></li>
-                  <li><Link href="/#story">Our Story</Link></li>
-                  <li><Link href="/corporate">Corporate Gifting Guide</Link></li>
+                  <li><Link href="/our-story">Our Story</Link></li>
+                  <li><Link href="/services">Private Label Services</Link></li>
+                  <li><Link href="/certifications">Certifications</Link></li>
+                  <li><Link href="/testimonials">Testimonials</Link></li>
+                  <li><Link href="/corporate">Corporate &amp; Bulk Supply</Link></li>
                   <li><Link href="/#main">Why Makhana?</Link></li>
                   <li><Link href="/#cravings">Browse by Category</Link></li>
-                  <li><Link href="/#story">Media Room</Link></li>
                 </ul>
               </div>
 
@@ -101,6 +104,8 @@ export function Footer() {
                   <ul className="footer-nav-list">
                     <li><a href={APP_CONFIG.telHref}>{APP_CONFIG.phone.display}</a></li>
                     <li><a href={APP_CONFIG.mailtoHref()}>Email us</a></li>
+                    <li><Link href="/contact">Contact page</Link></li>
+                    <li><Link href="/export-query">Export query</Link></li>
                     {SOCIAL_CONFIG.whatsappEnabled && <li><a href={SOCIAL_CONFIG.whatsappHref()} target="_blank" rel="noreferrer">WhatsApp</a></li>}
                     <li>{APP_CONFIG.address.city}, {APP_CONFIG.address.region}</li>
                   </ul>
@@ -114,9 +119,11 @@ export function Footer() {
               <div className="footer-legal-nav">
                 <Link href="/catalog">Catalog</Link>
                 <Link href="/corporate">Corporate Orders</Link>
+                <Link href="/services">Services</Link>
                 <Link href="/faq">FAQ</Link>
+                <Link href="/certifications">Certifications</Link>
                 <Link href="/#privacy">Privacy</Link>
-                <Link href="/checkout">Contact</Link>
+                <Link href="/contact">Contact</Link>
               </div>
 
               <div className="footer-copy-text">

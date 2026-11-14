@@ -133,7 +133,7 @@ export function Lineup({ collection = false }: { collection?: boolean }) {
         </header>
       ) : (
         <header className="section-heading is-centered">
-          <StickerHeading id="products-title" kicker="Wholesale · Private label · Export"
+          <StickerHeading id="products-title" kicker="Wholesale · Corporate · Export"
             rows={[[{ text: 'Explore', tone: 'purple' }, { text: 'the', tone: 'pink', small: true }], [{ text: 'Range', tone: 'lime' }]]} />
           <div className="section-heading-actions">
             <Link className="lineup-collection text-link" href="/catalog">View all products <Icon name="arrow" /></Link>

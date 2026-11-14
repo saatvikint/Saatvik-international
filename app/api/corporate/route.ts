@@ -51,7 +51,7 @@ export async function POST(request: Request) {
       type: 'corporate_enquiry',
       company: company.trim(),
       quantity: quantity || '100-250',
-      occasion: occasion || 'Corporate Gifting',
+      occasion: occasion || 'B2B Supply Enquiry',
       customBranding: Boolean(customBranding),
       deliveryDate: deliveryDate || 'Flexible',
       selectedProducts: Array.isArray(flavours) ? flavours.filter(item => typeof item === 'string').slice(0, 20) : [],

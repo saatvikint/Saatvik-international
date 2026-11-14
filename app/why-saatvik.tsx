@@ -19,12 +19,12 @@ const reasons: Reason[] = [
   {
     icon: 'package',
     title: 'Private label',
-    body: 'From product sourcing and manufacturing coordination to customised packaging, so you can launch under your own brand.',
+    body: 'Private-labelling enquiries are reviewed against the products, quantities and business requirements shared with us.',
   },
   {
     icon: 'sparkle',
-    title: 'Bulk & custom orders',
-    body: 'Competitive B2B pricing, with flavours, packaging and quantities shaped around what your business needs.',
+    title: 'Bulk supply',
+    body: 'B2B quotations for distributors, retailers, food businesses, corporate buyers, HORECA and importers.',
   },
 ];
 

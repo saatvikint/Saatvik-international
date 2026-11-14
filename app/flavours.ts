@@ -24,6 +24,17 @@ const bowl = (file: string, alt: string): ProductImage => ({
 
 export const featuredSlides: readonly HeroSlide[] = [
   {
+    id: 'flavoured-makhana',
+    theme: 'leaf',
+    label: 'Roasted & Flavoured Makhana',
+    tag: 'MAKHANA',
+    title: ['Roasted', 'Makhana.'],
+    description: 'Roasted and flavoured makhana for wholesale, private label and export enquiries.',
+    href: '/catalog#product-flavoured-makhana',
+    seal: ['ROASTED', 'MAKHANA'],
+    image: bowl('flavoured-makhana', 'roasted and flavoured makhana'),
+  },
+  {
     id: 'freeze-dried-black-jamun',
     theme: 'plum',
     label: 'Freeze-Dried Black Jamun',
@@ -40,7 +51,7 @@ export const featuredSlides: readonly HeroSlide[] = [
     label: 'Freeze-Dried Mango Cubes',
     tag: 'FREEZE-DRIED FRUITS',
     title: ['Mango', 'Cubes.'],
-    description: 'Freeze-dried mango cubes, supplied in bulk and for your own brand.',
+    description: 'Freeze-dried mango cubes for wholesale, private-label and export enquiries.',
     href: '/catalog#product-freeze-dried-mango-cubes',
     seal: ['FREEZE', 'DRIED'],
     image: bowl('freeze-dried-mango-cubes', 'freeze-dried mango cubes'),
@@ -55,16 +66,5 @@ export const featuredSlides: readonly HeroSlide[] = [
     href: '/catalog#category-puffs',
     seal: ['ROASTED', 'PUFFS'],
     image: bowl('jowar-puffs', 'roasted puffs'),
-  },
-  {
-    id: 'freeze-dried-banana-slices',
-    theme: 'leaf',
-    label: 'Freeze-Dried Banana Slices',
-    tag: 'FREEZE-DRIED FRUITS',
-    title: ['Banana', 'Slices.'],
-    description: 'Freeze-dried banana slices for wholesale, private label and export enquiries.',
-    href: '/catalog#product-freeze-dried-banana-slices',
-    seal: ['FREEZE', 'DRIED'],
-    image: bowl('freeze-dried-banana-slices', 'freeze-dried banana slices'),
   },
 ];
