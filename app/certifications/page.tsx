@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
+import { certifications } from '@/content/certifications';
 import { Icon } from '../visuals';
 import { StickerHeading } from '../sticker-heading';
 
@@ -14,14 +15,25 @@ export default function CertificationsPage() {
     <main id="main" className="content-page certifications-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Certifications</span></nav>
       <header className="content-page-header">
-        <StickerHeading id="certifications-title" kicker="Verified business information" rows={[[{ text: 'Business', tone: 'pink' }], [{ text: 'Documents', tone: 'purple' }]]} />
-        <p>Procurement documentation varies by product, destination and order type. We publish only information that has been confirmed by the business.</p>
+        <StickerHeading as="h1" id="certifications-title" kicker="Registrations held by Saatvik" rows={[[{ text: 'Our', tone: 'pink' }], [{ text: 'Certificates', tone: 'purple' }]]} />
+        <p>Business and food registrations confirmed by Saatvik International. Official marks are shown in their original form.</p>
       </header>
 
-      <section className="registration-card" aria-labelledby="registration-title">
-        <div className="registration-seal"><Icon name="check" /></div>
-        <div><p className="eyebrow">CONFIRMED REGISTRATION</p><h2 id="registration-title">Goods and Services Tax (GST)</h2><p>GSTIN <strong>{APP_CONFIG.gstin}</strong></p></div>
-        <span className="registration-status">Confirmed</span>
+      <section className="certification-grid" id="certificates-grid" aria-label="Saatvik International certifications and registrations">
+        {certifications.map(certificate => (
+          <article className={`certification-card certification-${certificate.id}`} key={certificate.id}>
+            <div className="certification-logo-wrap">
+              <img src={certificate.logo} alt={certificate.logoAlt} width={420} height={180} loading="eager" decoding="async" />
+            </div>
+            <div className="certification-card-copy">
+              <p className="certification-short-name">{certificate.shortName}</p>
+              <h2>{certificate.name}</h2>
+              <p>{certificate.authority}</p>
+              {certificate.id === 'gst' && <strong className="certification-number">GSTIN {APP_CONFIG.gstin}</strong>}
+              <a className="certification-authority-link" href={certificate.officialUrl} target="_blank" rel="noreferrer">Official authority <Icon name="arrow" /></a>
+            </div>
+          </article>
+        ))}
       </section>
 
       <section className="document-process" aria-labelledby="document-process-title">
@@ -34,7 +46,7 @@ export default function CertificationsPage() {
         <div className="content-actions"><Link className="button yellow" href="/export-query">Request documents <Icon name="arrow" /></Link><Link className="button primary" href="/contact">Contact us</Link></div>
       </section>
 
-      <aside className="certification-note"><Icon name="receipt" /><p>FSSAI, IEC, APEDA and other certificate details are not displayed until copies are supplied and verified. This prevents unconfirmed claims from appearing on the website.</p></aside>
+      <aside className="certification-note"><Icon name="receipt" /><p>These registrations were confirmed by the client. The GSTIN is published above; other registration numbers and certificate copies will be added after the documents are supplied for verification.</p></aside>
     </main>
   );
 }

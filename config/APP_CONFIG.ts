@@ -28,11 +28,11 @@ class AppConfig {
   // Brand
   readonly name = 'Saatvik International';
   readonly shortName = 'Saatvik';
-  readonly tagline = 'Leading Supplier of Healthy Snacks in India';
+  readonly tagline = 'Your Trusted Supplier of Healthy Snacks';
   readonly description =
-    'Saatvik International is a leading supplier of healthy snacks in India, handling wholesale, private-labelling, corporate supply and export enquiries.';
+    'Saatvik International is a trusted supplier of healthy snacks (makhana, puffs and freeze-dried fruits) for wholesale, private-label, corporate supply and export buyers.';
   readonly locale = 'en-IN';
-  readonly themeColor = '#fff6e8';
+  readonly themeColor = '#f8eddb';
   readonly logo = { src: '/assets/saatvik-logo.png', width: 2048, height: 522 } as const;
 
   // Site

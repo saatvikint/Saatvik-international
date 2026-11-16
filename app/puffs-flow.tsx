@@ -6,7 +6,7 @@ import { StickerHeading } from './sticker-heading';
 import { Icon } from './visuals';
 import type { PuffsScene } from './puffs-flow-scene';
 
-// Scroll-driven 3D section: puffs float, then collect into a bowl as the page scrolls.
+// Scroll-driven 3D section ("Snacks in Motion"): makhana and puffs float, then collect into a bowl as the page scrolls.
 // - three.js is loaded only when the section is near the viewport (dynamic import).
 // - Rendering runs only while the section is on screen, and only moves when you scroll.
 // - prefers-reduced-motion: a still arrangement, no scroll-linked motion, shorter section.
@@ -94,13 +94,13 @@ export function PuffsFlow() {
       <div className="puffs-flow-sticky">
         <div ref={stage} className="puffs-flow-stage" aria-hidden="true" />
         {mode === 'fallback' && (
-          <img className="puffs-flow-fallback is-illustrative" src="/assets/products/bowls/jowar-puffs.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
+          <img className="puffs-flow-fallback is-illustrative" src="/assets/products/bowls/flavoured-makhana.png" width={900} height={900} alt="" loading="lazy" decoding="async" />
         )}
         <div className="puffs-flow-copy">
-          <StickerHeading id="puffs-flow-title" align="start" kicker="Millet · Jowar · Quinoa · Chickpea"
-            rows={[[{ text: 'Puffs', tone: 'lime' }, { text: 'in', tone: 'pink', small: true }], [{ text: 'Motion', tone: 'red' }]]} />
-          <p>Roasted millet, jowar, quinoa and chickpea puffs for wholesale, private-labelling and export enquiries.</p>
-          <Link className="button primary" href="/catalog#category-puffs">Explore puffs <Icon name="arrow" /></Link>
+          <StickerHeading id="puffs-flow-title" align="start" kicker="Makhana · Puffs · Freeze-dried fruits"
+            rows={[[{ text: 'Snacks', tone: 'lime' }, { text: 'in', tone: 'pink', small: true }], [{ text: 'Motion', tone: 'red' }]]} />
+          <p>Raw and flavoured makhana alongside roasted millet, jowar, quinoa and chickpea puffs, for wholesale, private-labelling and export enquiries.</p>
+          <Link className="button primary" href="/catalog">Explore the range <Icon name="arrow" /></Link>
         </div>
       </div>
     </section>

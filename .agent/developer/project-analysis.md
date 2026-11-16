@@ -4,7 +4,7 @@ Date: 2026-11-06. Based on the company profile, product notes, business card and
 
 ## What the business needs
 
-Saatvik is a young trader in a crowded market. Buyers can find many makhana suppliers, so the site has one job: **make a business buyer confident enough to send a specific enquiry.** The product itself is largely a commodity. The differentiators are trust, range (three categories from one supplier) and private-label support.
+Saatvik is a young supplier in a crowded market. Buyers can find many makhana suppliers, so the site has one job: **make a business buyer confident enough to send a specific enquiry.** The product itself is largely a commodity. The differentiators are trust, range (three categories from one supplier) and private-label support.
 
 Success measure: qualified enquiries per month, meaning enquiries that name a product, a quantity and a business.
 

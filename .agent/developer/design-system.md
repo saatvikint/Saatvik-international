@@ -4,7 +4,7 @@
 
 ## Direction
 
-Premium, natural and trustworthy, based on the logo and card. Think specialty food trader, not health-app bright or supermarket busy. Calm cream surfaces, deep green weight, restrained gold, fine botanical line art, generous whitespace.
+Premium, natural and trustworthy, based on the logo and card. Think specialty food supplier, not health-app bright or supermarket busy. Calm cream surfaces, deep green weight, restrained gold, fine botanical line art, generous whitespace.
 
 ## Colour
 

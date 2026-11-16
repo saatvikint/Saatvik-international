@@ -16,7 +16,7 @@ export default function ContactPage() {
     <main id="main" className="content-page contact-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Contact Us</span></nav>
       <header className="content-page-header">
-        <StickerHeading id="contact-title" kicker="Talk to our sourcing desk" rows={[[{ text: 'Contact', tone: 'lime' }], [{ text: 'Us', tone: 'red' }]]} />
+        <StickerHeading as="h1" id="contact-title" kicker="Talk to our sourcing desk" rows={[[{ text: 'Contact', tone: 'lime' }], [{ text: 'Us', tone: 'red' }]]} />
         <p>Tell us what your business needs. We handle product sourcing, wholesale supply, private-labelling, corporate supply and export enquiries.</p>
       </header>
 

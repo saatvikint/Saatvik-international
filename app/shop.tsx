@@ -18,6 +18,8 @@ interface ShopContextValue {
   cart: Quantities;
   openPanel: (panel: Panel) => void;
   addJar: (product: Product) => void;
+  /** Add one to the enquiry list without leaving the current page (the list drawer is disabled). */
+  addToList: (product: Product) => void;
   removeSubmitted: (items: Quantities) => void;
 }
 
@@ -145,6 +147,10 @@ export function ShopProvider({ children }: PropsWithChildren) {
     }
   }
 
+  function addToList(product: Product) {
+    changeQuantity(product.id, 1);
+  }
+
   function addPack(pack: Quantities) {
     setCart(current => {
       const bag = { ...(current ?? readBag()) };
@@ -167,7 +173,7 @@ export function ShopProvider({ children }: PropsWithChildren) {
 
   return (
     <ShopContext.Provider value={{
-      cart: cart ?? emptyBag, openPanel, addJar, removeSubmitted,
+      cart: cart ?? emptyBag, openPanel, addJar, addToList, removeSubmitted,
     }}>
       {children}
       <Drawer panel={panel === 'cart' ? null : panel} cart={cart ?? emptyBag}

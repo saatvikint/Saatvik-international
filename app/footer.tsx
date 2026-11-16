@@ -49,7 +49,7 @@ export function Footer() {
             )}
 
             <p className="footer-tagline">
-              Leading Supplier of Healthy Snacks in India: makhana, puffs and freeze-dried fruits for business buyers.
+              {APP_CONFIG.tagline}: makhana, puffs and freeze-dried fruits for business buyers.
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export function Footer() {
                 <h3 className="footer-nav-title">READ</h3>
                 <ul className="footer-nav-list">
                   <li><Link href="/faq">FAQ &amp; Help Center</Link></li>
-                  <li><Link href="/our-story">Our Story</Link></li>
+                  <li><Link href="/our-story">About Us</Link></li>
                   <li><Link href="/services">Private Label Services</Link></li>
                   <li><Link href="/certifications">Certifications</Link></li>
                   <li><Link href="/testimonials">Testimonials</Link></li>

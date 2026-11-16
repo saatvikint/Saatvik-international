@@ -10,6 +10,7 @@ import { HomeAbout } from './home-about';
 import { WhySaatvik } from './why-saatvik';
 import { PuffsFlow } from './puffs-flow';
 import { FloatingSnackDecor } from './floating-snack-decor';
+import { HomeExportsAndCertifications, HomePackingOptions } from './home-trade-sections';
 
 export default function Page() {
   return (
@@ -50,12 +51,14 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* 1. Customer Reviews Section */}
+      {/* Why Choose Us (replaced "Better for business", client feedback 2026-11-16) */}
       <WhySaatvik />
-      <HomeReviews />
+      <HomePackingOptions />
+      <HomeExportsAndCertifications />
 
-      {/* 2. Minimal Homepage FAQ Section */}
+      {/* FAQ, then testimonials (client feedback 2026-11-16: testimonials after FAQ) */}
       <HomeFaq />
+      <HomeReviews />
 
       {/* 3. Trade & Distributorship Enquiry Section (Lahori Zeera Inspired) */}
       <HomeTradeEnquiry />

@@ -6,7 +6,7 @@ For each factual statement in the copy:
 
 1. Find its source in `client/`. If there is none, remove it or mark it `TODO(client)`.
 2. Check it against the table in `knowledge/content-and-claims.md`.
-3. Check the description of the business: trader and supplier, not manufacturer, unless the client confirms otherwise.
+3. Check the description of the business: "supplier" (never "trader"), not manufacturer, unless the client confirms otherwise.
 4. Check export wording against Q14.
 5. Search for health and superlative words: cure, boost, immunity, weight loss, diabetes, best, No. 1, leading, world-class.
 6. Check that all numbers have a source.

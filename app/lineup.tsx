@@ -15,6 +15,13 @@ function isCategoryId(value: string): value is CategoryId {
 
 // Category cards (Paper design, 2026-11-12): solid colour card, big title, tagline,
 // and a tilted arch-shaped photo breaking out of the bottom-right corner.
+// Category tiles get their own palette (client feedback 2026-11-16: more colour variety on the page).
+const tileTheme: Record<CategoryId, string> = {
+  makhana: 'tile-pink',
+  puffs: 'tile-teal',
+  'freeze-dried-fruits': 'tile-blue',
+};
+
 const cardTheme: Record<CategoryId, string> = {
   makhana: 'theme-purple',
   puffs: 'theme-lime',
@@ -39,7 +46,7 @@ export function CategoryGrid() {
       {categories.map(category => {
         const [first, ...rest] = category.name.split(' ');
         return (
-          <Link key={category.id} className={`category-tile ${cardTheme[category.id]}`} href={`/catalog#category-${category.id}`}>
+          <Link key={category.id} className={`category-tile ${tileTheme[category.id]}`} href={`/catalog#category-${category.id}`}>
             <span className="category-tile-copy">
               <span className="category-tile-title">{first}{rest.length > 0 && <><br />{rest.join(' ')}</>}</span>
               <span className="category-tile-tagline">
@@ -57,7 +64,7 @@ export function CategoryGrid() {
 
 // Product card (2026-11-13): coloured image area with an option pill and a category sticker,
 // white name strip below, and stacked actions over the image (on hover/focus; always on touch).
-function ProductCard({ product, hidden }: { product: Product; hidden: boolean }) {
+export function ProductCard({ product, hidden = false }: { product: Product; hidden?: boolean }) {
   const { addJar } = useShop();
   const category = categoryOf(product);
   return (
@@ -71,10 +78,13 @@ function ProductCard({ product, hidden }: { product: Product; hidden: boolean })
           <button type="button" className="product-action is-primary" onClick={() => addJar(product)} aria-label={`Add ${product.name} to enquiry`}>
             <Icon name="chat" /><span className="label-long">Add to enquiry</span><span className="label-short" aria-hidden="true">Enquire</span>
           </button>
+          <Link className="product-action" href={`/products/${product.id}`} aria-label={`View ${product.name}`}>
+            <Icon name="arrow" /><span className="label-long">View product</span><span className="label-short" aria-hidden="true">View</span>
+          </Link>
         </div>
       </div>
       <div className="product-tile-copy">
-        <h3 id={`product-${product.id}-name`} className="product-tile-name">{product.name}</h3>
+        <h3 id={`product-${product.id}-name`} className="product-tile-name"><Link href={`/products/${product.id}`}>{product.name}</Link></h3>
         <p className="product-tile-note">{product.note}</p>
       </div>
     </article>

@@ -6,7 +6,7 @@ import { StickerHeading } from '../sticker-heading';
 
 export const metadata: Metadata = {
   title: APP_CONFIG.pageTitle('B2B Snack Services'),
-  description: 'Private-labelling enquiries, corporate requirements and bulk healthy-snack supply from Saatvik International.',
+  description: 'Private labelling, corporate requirements, bulk supply and packing options for healthy snacks from Saatvik International.',
 };
 
 const services = [
@@ -37,6 +37,16 @@ const services = [
     text: 'We provide makhana, roasted puffs and freeze-dried fruits for distributors, wholesalers, retailers, food brands, HORECA and importers.',
     points: ['Multi-product sourcing', 'Domestic and export enquiries', 'B2B quotation based on requirement'],
   },
+  {
+    // Formats and promises from the client, 2026-11-16. Pack sizes are not confirmed yet (Q32): keep them "per enquiry".
+    id: 'packing-options',
+    number: '04',
+    tone: 'tone-blue',
+    eyebrow: 'PACKED THE WAY YOU NEED',
+    title: 'Packing options',
+    text: 'All packing is food grade and nitrogen flushed, for better shelf life across product categories. Pack sizes are confirmed for each enquiry.',
+    points: ['Pouches', 'Stand-up pouches', 'Pillow pouches', 'Jars', 'Bulk aluminium pouches'],
+  },
 ] as const;
 
 export default function ServicesPage() {
@@ -44,7 +54,7 @@ export default function ServicesPage() {
     <main id="main" className="content-page services-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Services</span></nav>
       <header className="content-page-header">
-        <StickerHeading id="services-title" kicker="Flexible solutions for businesses" rows={[[{ text: 'Our', tone: 'lime' }], [{ text: 'Services', tone: 'red' }]]} />
+        <StickerHeading as="h1" id="services-title" kicker="Flexible solutions for businesses" rows={[[{ text: 'Our', tone: 'lime' }], [{ text: 'Services', tone: 'red' }]]} />
         <p>Send one product or a multi-product requirement, and our team will review the appropriate B2B supply route.</p>
       </header>
 

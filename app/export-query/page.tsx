@@ -15,7 +15,7 @@ export default function ExportQueryPage() {
       <div className="shell">
         <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Export Query</span></nav>
         <header className="content-page-header compact">
-          <StickerHeading id="export-query-title" kicker="International sourcing enquiries" rows={[[{ text: 'Export', tone: 'lime' }], [{ text: 'Query', tone: 'red' }]]} />
+          <StickerHeading as="h1" id="export-query-title" kicker="International sourcing enquiries" rows={[[{ text: 'Export', tone: 'lime' }], [{ text: 'Query', tone: 'red' }]]} />
           <p>Share the products, quantities, destination market and documentation your procurement process requires. We will review the details and confirm the next steps.</p>
         </header>
       </div>

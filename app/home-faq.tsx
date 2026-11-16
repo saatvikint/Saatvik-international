@@ -1,6 +1,7 @@
 'use client';
 
-import { useId, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { faqVideo } from '@/content/company-media';
 import { Icon } from './visuals';
 import { StickerHeading } from './sticker-heading';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
@@ -30,7 +31,7 @@ const faqItems: FaqItem[] = [
     id: 'what',
     question: 'What products can I enquire about?',
     answer: (
-      <p><strong>Makhana</strong>: raw in sizes 4, 5 and 6, and roasted or flavoured. <strong>Puffs</strong>: millet, jowar, quinoa and chickpea. <strong>Freeze-dried fruits</strong>: black jamun, strawberry, banana, mango and pineapple.</p>
+      <p><strong>Makhana</strong>: raw in 4, 5, 6 and 7 sutta grades, and flavoured makhana in eight flavours. <strong>Puffs</strong>: millet, jowar, quinoa and chickpea. <strong>Freeze-dried fruits</strong>: black jamun, strawberry, banana, mango and pineapple.</p>
     ),
     cta: { label: 'See the range', href: '/catalog' },
   },
@@ -90,6 +91,43 @@ function FaqFolder({ item, open, onToggle }: { item: FaqItem; open: boolean; onT
   );
 }
 
+/**
+ * Fun looping video next to the FAQ (client feedback 2026-11-16). Muted, with a pause button
+ * (WCAG 2.2.2); under reduced motion it stays paused on its poster. Until the client supplies
+ * the video (content/company-media.ts), the existing illustrative photo is shown.
+ */
+function FaqMedia() {
+  const video = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const el = video.current;
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    el.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+  }, []);
+
+  if (!faqVideo) {
+    return <img className="is-illustrative" src="/assets/faq/model-holding-makhana.webp" width={900} height={1004} alt="Illustrative visual of a model holding a bowl of flavoured makhana, with the face outside the frame" loading="lazy" decoding="async" />;
+  }
+
+  function toggle() {
+    const el = video.current;
+    if (!el) return;
+    if (el.paused) el.play().then(() => setPlaying(true)).catch(() => undefined);
+    else { el.pause(); setPlaying(false); }
+  }
+
+  return (
+    <div className="faq-video">
+      <video ref={video} src={faqVideo.src} poster={faqVideo.poster} muted loop playsInline preload="metadata" aria-label={faqVideo.title} />
+      <button type="button" className="faq-video-toggle" onClick={toggle} aria-label={playing ? 'Pause video' : 'Play video'}>
+        <Icon name={playing ? 'pause-icon' : 'play-icon'} />
+      </button>
+    </div>
+  );
+}
+
 export function HomeFaq() {
   const [openId, setOpenId] = useState<string | null>(faqItems[0].id);
 
@@ -101,7 +139,7 @@ export function HomeFaq() {
       </header>
       <div className="faq-folders-layout">
         <div className="faq-folders-photo">
-          <img className="is-illustrative" src="/assets/faq/model-holding-makhana.webp" width={900} height={1004} alt="Illustrative visual of a model holding a bowl of flavoured makhana, with the face outside the frame" loading="lazy" decoding="async" />
+          <FaqMedia />
         </div>
         <div className="faq-folders-list">
           {faqItems.map(item => (

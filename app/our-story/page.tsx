@@ -4,50 +4,112 @@ import { APP_CONFIG } from '@/config/APP_CONFIG';
 import { Icon } from '../visuals';
 import { StickerHeading } from '../sticker-heading';
 import { CompactAboutArt } from '../compact-about-art';
+import { founder, manufacturingVideos, showDraftSlots } from '@/content/company-media';
+
+// About Us / Our Story. Copy supplied verbatim by the client on 2026-11-16 (.agent/client/2026-11-16-our-story.md).
 
 export const metadata: Metadata = {
-  title: APP_CONFIG.pageTitle('Our Story'),
-  description: 'Meet Saatvik International, a Pune-based B2B sourcing and wholesale partner for makhana, puffs and freeze-dried fruits.',
+  title: APP_CONFIG.pageTitle('About Us'),
+  description: 'Saatvik International: over 4 years in healthy snacking, supplying makhana, roasted snacks, millet-based puffs and freeze-dried fruits to domestic and international buyers.',
 };
+
+const values = [
+  { title: 'Integrity', text: 'Building every business relationship on honesty, transparency and mutual trust.', tone: 'tone-lime' },
+  { title: 'Quality Commitment', text: 'Maintaining high standards across sourcing, products and supply.', tone: 'tone-pink' },
+  { title: 'Reliability', text: 'Delivering consistency, accountability and dependable business solutions.', tone: 'tone-blue' },
+  { title: 'Customer Focus', text: 'Understanding buyer requirements and providing flexible, value-driven solutions.', tone: 'tone-yellow' },
+  { title: 'Long-Term Partnerships', text: 'Creating lasting relationships through collaboration, respect and shared growth.', tone: 'tone-teal' },
+] as const;
 
 export default function OurStoryPage() {
   return (
     <main id="main" className="content-page story-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb">
-        <Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Our Story</span>
+        <Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">About Us</span>
       </nav>
 
       <section className="content-hero story-hero" aria-labelledby="story-page-title">
         <div className="about-copy">
-          <StickerHeading id="story-page-title" size="md" align="start" rays={false}
-            kicker={APP_CONFIG.tagline}
-            rows={[[{ text: 'Our', tone: 'pink' }], [{ text: 'Story', tone: 'purple' }]]} />
-          <p className="about-lead">Bridging the gap between quality snack manufacturers and the businesses that sell them.</p>
+          <StickerHeading as="h1" id="story-page-title" size="md" align="start" rays={false}
+            kicker="Our story"
+            rows={[[{ text: 'About', tone: 'pink' }], [{ text: 'Us', tone: 'purple' }]]} />
+          <p className="about-lead">Built on Trust. Driven by Quality.</p>
           <div className="about-body">
-            <p><strong>{APP_CONFIG.name}</strong> is a {APP_CONFIG.address.city}-based trading and wholesale company specialising in premium-quality healthy snacks: raw and flavoured makhana, roasted puffs and freeze-dried fruits.</p>
-            <p>We provide end-to-end B2B sourcing, bulk supply and private-label solutions for distributors, retail chains, food brands, HORECA and importers.</p>
+            <p><strong>{APP_CONFIG.name}</strong> was founded with a vision to connect quality food products with markets across the globe. With over 4 years of experience in the healthy snacking industry, we bring together a growing portfolio of makhana, roasted snacks, millet-based puffs and freeze-dried fruits.</p>
+            <p>We focus on reliable sourcing, consistent quality and strong business partnerships, offering flexible solutions to meet diverse domestic and international requirements.</p>
           </div>
           <Link className="button yellow content-hero-cta" href="/catalog">Explore our products <Icon name="arrow" /></Link>
         </div>
         <CompactAboutArt className="story-about-art" />
       </section>
 
+      {founder && (
+        <section className="founder-card" aria-labelledby="founder-title">
+          <div className="founder-photo" aria-hidden={!founder.photo}>
+            {founder.photo
+              ? <img src={founder.photo.src} width={founder.photo.width} height={founder.photo.height} alt={founder.name} loading="lazy" decoding="async" />
+              : <span>{founder.name.split(' ').map(part => part[0]).join('')}</span>}
+          </div>
+          <div>
+            <p className="eyebrow">MEET THE FOUNDER</p>
+            <h2 id="founder-title">{founder.name}</h2>
+            <p className="founder-role">{founder.role}</p>
+            {founder.message && <p className="founder-message">“{founder.message}”</p>}
+          </div>
+        </section>
+      )}
+
+      <section className="vision-mission-grid" aria-label="Mission and vision">
+        <article className="statement-card is-mission"><p className="eyebrow">OUR MISSION</p><h2>Dependable supply, lasting relationships.</h2><p>To deliver quality food products through dependable supply, transparent business practices and efficient supply solutions, while building lasting relationships with our customers and partners.</p></article>
+        <article className="statement-card is-vision"><p className="eyebrow">OUR VISION</p><h2>A trusted name, worldwide.</h2><p>To establish Saatvik International as a trusted name in the global food and healthy snacking industry by creating meaningful connections between quality and reliability in markets worldwide.</p></article>
+      </section>
+
       <section className="story-values" aria-labelledby="story-values-title">
         <header className="content-section-heading">
-          <p className="eyebrow">HOW WE WORK</p>
-          <h2 id="story-values-title">Built for long-term business relationships.</h2>
+          <p className="eyebrow">OUR CORE VALUES</p>
+          <h2 id="story-values-title">What every partnership stands on.</h2>
         </header>
-        <div className="content-card-grid three-up">
-          <article className="content-card tone-lime"><span className="content-card-number">01</span><h3>Reliable sourcing</h3><p>We connect manufacturers and businesses with a focus on quality, competitive B2B pricing and consistent supply.</p></article>
-          <article className="content-card tone-pink"><span className="content-card-number">02</span><h3>Flexible supply</h3><p>We review wholesale, corporate, private-labelling and export enquiries against the products and quantities required.</p></article>
-          <article className="content-card tone-blue"><span className="content-card-number">03</span><h3>Responsive partnership</h3><p>Transparency, dependable communication and customer satisfaction guide how we build every relationship.</p></article>
+        <div className="content-card-grid values-grid">
+          {values.map((value, index) => (
+            <article key={value.title} className={`content-card ${value.tone}`}>
+              <span className="content-card-number">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{value.title}</h3>
+              <p>{value.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="vision-mission-grid" aria-label="Vision and mission">
-        <article className="statement-card is-vision"><p className="eyebrow">OUR VISION</p><h2>A trusted name in healthy snacking.</h2><p>To deliver quality products, create strong business partnerships and expand our presence across domestic and international markets.</p></article>
-        <article className="statement-card is-mission"><p className="eyebrow">OUR MISSION</p><h2>Make quality snacks accessible to businesses.</h2><p>Through reliable sourcing, competitive pricing, innovative products and dependable supply solutions.</p></article>
-      </section>
+      {(manufacturingVideos.length > 0 || showDraftSlots) && (
+        <section className="story-videos" aria-labelledby="story-videos-title">
+          <header className="content-section-heading">
+            <p className="eyebrow">FROM SOURCE TO PACK</p>
+            <h2 id="story-videos-title">How our snacks are made.</h2>
+          </header>
+          <div className="story-video-grid">
+            {manufacturingVideos.length > 0 ? manufacturingVideos.map(video => (
+              <figure key={video.id} className="story-video">
+                {video.embed
+                  ? <iframe src={video.src} title={video.title} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen />
+                  : <video src={video.src} poster={video.poster} controls playsInline preload="metadata" />}
+                <figcaption>{video.title}</figcaption>
+              </figure>
+            )) : ['Makhana processing', 'Puff making', 'Packing line'].map(title => (
+              <figure key={title} className="story-video is-draft-slot">
+                <div className="story-video-placeholder"><Icon name="play-circle" /><span>Video awaiting client</span></div>
+                <figcaption>{title}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {founder && (
+        <aside className="founder-signoff" aria-label="Signed">
+          <p className="founder-signoff-name">{founder.name}</p>
+          <p>{founder.role}, {APP_CONFIG.name}</p>
+        </aside>
+      )}
     </main>
   );
 }

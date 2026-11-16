@@ -10,7 +10,7 @@ Move each answer into `facts.md` with its date, then delete the question here.
 | Q2 | Who receives enquiries, and how quickly can they reply? Should email go to the Gmail address or a new `sales@` address? | Sets the routing and the reply time we promise |
 | Q3 | Is +91 9370012306 on WhatsApp, and should it be public for enquiries? | Decides the WhatsApp channel |
 | Q4 | What is the registered legal name and entity type? The GST number suggests a firm or LLP, not a company | Needed for footer, privacy policy and terms. "Company" wording may need changing |
-| Q5 | Which registrations do you hold? FSSAI licence number and type, IEC, APEDA RCMC, others. Please send copies | The main trust signals for buyers. We can show none of them until they are confirmed |
+| Q5 | Please send the certificate copies and numbers/types for the confirmed MSME, IEC, APEDA, FSSAI and Startup India registrations | The registration types are confirmed, but numbers and certificate-level details cannot be published until verified |
 | Q6 | Can we get real photos of packaging, the office, and the products still missing (Q21 to Q23)? | Freeze-dried and puff photos arrived 2026-11-12; makhana and packaging are still missing |
 
 ## From the 2026-11-12 update
@@ -22,15 +22,24 @@ Move each answer into `facts.md` with its date, then delete the question here.
 | Q23 | Can you send makhana photos (raw by size, and flavoured)? | Makhana is the lead product but has no photo; it is missing from the homepage hero |
 | Q24 | Is apple still in the freeze-dried range? It was in the first notes but not in this list | Catalogue accuracy |
 | Q25 | For the Testimonials page: can we get real buyer quotes, with permission to use name and company? | The template's reviews are invented and must be replaced before launch |
-| Q26 | For the Certifications page: please send the certificates (same as Q5) | The page cannot launch empty or with placeholders |
+| Q26 | For the Certifications page: please send the certificate copies (same as Q5) | The page lists the confirmed registrations, but numbers and downloadable copies remain pending |
 | Q27 | Is the pineapple photo available at a higher resolution? The one received is 500x333 | It looks soft on large screens |
+
+## From the 2026-11-16 feedback
+
+| # | Question | Why it matters |
+|---|---|---|
+| Q29 | Manufacturing / processing videos for About Us (MP4 or YouTube links), and may they be shown publicly? | The video section is built but empty |
+| Q30 | The "creative and fun" video for the home FAQ: will the client supply it, or should we produce one? | Slot is built; the photo shows until a video exists |
+| Q31 | New roasted makhana image: please send the photo to use (or approve a new generated visual) | Client asked to change it; we have no replacement makhana photo |
+| Q32 | Packing: formats confirmed 2026-11-16. Which pack sizes (e.g. 100 g, 250 g, 1 kg, 5 kg) can we list per format? | Section says sizes are confirmed per enquiry |
+| Q33 | "Same format as Nutromode website": please share the exact link. nutromode.com / .in do not resolve | Testimonials keep the current slider until we can see the reference |
 
 ## Product content
 
 | # | Question | Why it matters |
 |---|---|---|
 | Q7 | Your profile lists "Healthy Snacks" as a category, but your product notes list Makhana, Puffs and Freeze-Dried Fruits. Are those three the full menu? Is "Healthy Snacks" only the overall description? | Sets the main navigation |
-| Q8 | Makhana sizes "4, 5, 6": do these mean suta grades? Other suppliers often advertise 5, 6 and 7. Do you have 7? What is "Premium Grade" exactly? | Export buyers ask by grade |
 | Q9 | Which flavours can we list as examples? Is there a minimum order for a custom flavour? | "All flavours" is hard to sell without examples |
 | Q10 | "Millet puffs" and "jowar puffs" are listed separately, but jowar is a millet. Which millet is the first one (ragi, bajra, mixed)? Are all puffs available plain and flavoured? | Avoids a confusing catalogue |
 | Q11 | Which fruits are regularly available, beyond the five named? Whole, sliced or powder? | "Etc" cannot go in a product list |

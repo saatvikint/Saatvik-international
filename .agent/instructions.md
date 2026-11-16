@@ -8,7 +8,7 @@ Saatvik International sells healthy snacks in bulk to businesses: distributors, 
 
 1. **Enquiry only.** Do not add prices, checkout, payments, stock levels, customer accounts or order tracking. The `Product` type has no price field, on purpose.
 2. **Never invent business facts.** This covers certifications, licence numbers, MOQs, capacity, years in business, client names, countries served, shipment counts, testimonials and lab results. If it is not in `client/`, it does not ship. Use a visible `TODO(client)` in drafts and add the item to `client/open-questions.md`.
-3. **Describe the business accurately.** Saatvik is a trading, wholesale and sourcing company. Do not call it a manufacturer, farmer or processor. The client's wording is "manufacturing coordination". Do not imply established export volumes: the profile says it "aims to" serve international buyers.
+3. **Describe the business accurately.** Saatvik is a **supplier**: wholesale, sourcing and export. On the site always say "supplier", never "trader" or "trading company" (client, 2026-11-16). Do not call it a manufacturer, farmer or processor. The client's wording is "manufacturing coordination". Do not imply established export volumes: the profile says it "aims to" serve international buyers.
 4. **Follow the claims rules.** Any health, nutrition, organic, gluten-free, GI-tag or quality claim must pass `knowledge/content-and-claims.md`.
 5. **Do not edit verbatim client files.** `client/company-profile.md` and `client/product-notes.md` keep the client's text, typos included. Correct spelling in website copy, not there.
 6. **Never lose an enquiry.** A lead is stored durably before any email is attempted. See `developer/enquiry-flow.md`.

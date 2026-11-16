@@ -16,7 +16,7 @@ export const allFaqs = [
   { id: 'private-label', category: 'supply', categoryLabel: 'Private Labelling', question: 'Do you accept private-labelling enquiries?', answer: 'Yes. Private labelling is one of the business services offered. Share your company, product and quantity requirements, and the available scope will be confirmed for that enquiry.' },
   { id: 'gst-registration', category: 'orders', categoryLabel: 'Business Details', question: 'Is Saatvik International GST registered?', answer: 'Yes. Saatvik International is GST registered under GSTIN 27AFCFS6285E1ZR.', badge: 'Confirmed' },
   { id: 'export-enquiry', category: 'export', categoryLabel: 'Export', question: 'Can international buyers send an enquiry?', answer: 'Yes. International buyers and importers can use the Export Query page. Include the destination country, products, quantities and procurement-document requirements for review.' },
-  { id: 'certificates', category: 'export', categoryLabel: 'Documents', question: 'Which certificates and documents are available?', answer: 'GST registration is currently the only document confirmed for publication. Send your document checklist with the enquiry, and the team will confirm what is applicable and available.' },
+  { id: 'certificates', category: 'export', categoryLabel: 'Documents', question: 'Which certificates and documents are available?', answer: 'The client has confirmed GST, MSME, IEC, APEDA, FSSAI and Startup India registrations. The GSTIN is published on the website; registration numbers and copies for the other documents are shared after verification for the relevant enquiry.' },
 ];
 
 export type FaqItemData = typeof allFaqs[number];

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { Icon } from './visuals';
 import { categories, products } from './products';
 import { StickerHeading } from './sticker-heading';
@@ -11,6 +11,18 @@ export function HomeTradeEnquiry() {
   const [pending, setPending] = useState(false);
   const [receiptId, setReceiptId] = useState<string | null>(null);
   const [error, setError] = useState('');
+
+  // Pre-fill from a product page: /export-query?product=<id>&details=<grade · packing · type>
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const product = products.find(item => item.id === params.get('product'));
+    if (!product) return;
+    const select = document.getElementById('enquiry-product') as HTMLSelectElement | null;
+    if (select) select.value = product.name;
+    const message = document.getElementById('enquiry-message') as HTMLTextAreaElement | null;
+    const details = params.get('details')?.slice(0, 200);
+    if (message && !message.value && details) message.value = `${product.name}: ${details}. `;
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

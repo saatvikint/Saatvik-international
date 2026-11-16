@@ -2,7 +2,7 @@
 version: 1.0
 name: Saatvik-International-design-system
 description: >
-  A bright, sticker-pop B2B storefront for a healthy-snack trader. Cream canvas, deep
+  A bright, sticker-pop B2B storefront for a healthy-snack supplier. Cream canvas, deep
   purple ink, and a small set of saturated "festival" fills (lime, pink, red, yellow, sky)
   used as solid blocks, never gradients. Headings are words on tilted colour stickers,
   surfaces have hard offset shadows, and every page leaves generous white space.
@@ -11,8 +11,8 @@ description: >
 
 colors:
   # Canvas & surfaces
-  canvas: "#fff6e8"          # page background (--cream)
-  surface: "#fffaf2"         # cards, inputs (--paper)
+  canvas: "#f8eddb"          # page background (--cream), light beige (client, 2026-11-16)
+  surface: "#fdf6ea"         # cards and panels that used to be white (--surface); --paper is #fcf4e6
   white: "#ffffff"
   # Ink
   ink: "#461025"             # body text, borders, hard shadows (--ink)
@@ -28,6 +28,7 @@ colors:
   red: "#ea392e"             # sticker block and accent
   yellow: "#f7dd54"          # text on red/orange; sticker block
   orange: "#d94508"          # category tile (darkened from Paper #fb580d for contrast)
+  teal: "#176b5f"            # category tile (Puffs); yellow text on it is 4.67:1
   folder-yellow: "#f5c904"   # FAQ folders only
   # Legacy template accents (still used by older sections)
   cta-yellow: "#ffd747"      # header "Trade Enquiry" pill, yellow buttons
@@ -103,7 +104,7 @@ components:
 
 ## Overview
 
-Saatvik International is a **B2B enquiry website** (no prices, no checkout) for a Pune-based trader of makhana, roasted puffs and freeze-dried fruits. The design has to do two jobs: look premium and trustworthy to procurement buyers, and feel fresh and memorable next to the many plain supplier sites in this category.
+Saatvik International is a **B2B enquiry website** (no prices, no checkout) for a Pune-based supplier of makhana, roasted puffs and freeze-dried fruits. The design has to do two jobs: look premium and trustworthy to procurement buyers, and feel fresh and memorable next to the many plain supplier sites in this category.
 
 The visual language is **"festival sticker pop"**, taken from the team's Paper designs:
 
@@ -129,8 +130,8 @@ The brand logo (green `#1a3b28` + gold `#a5862f` with a leaf) is used as an imag
 - **Blue** (`{colors.blue}`: #3330af): text on lime, sky and pink-light.
 
 ### Surface
-- **Canvas** (`{colors.canvas}`: #fff6e8): page background.
-- **Surface** (`{colors.surface}`: #fffaf2): cards, inputs, drawer.
+- **Canvas** (`{colors.canvas}`: #f8eddb): page background, light beige.
+- **Surface** (`{colors.surface}`: #fdf6ea): cards, inputs, drawer. Never pure white (client, 2026-11-16).
 
 ### Hairlines & Borders
 - **Ink border:** 2px `{colors.ink}` on buttons, product cards, pills, the perks strip.
@@ -157,6 +158,8 @@ No dedicated success/error palette yet. Form status messages use ink text. Add s
 | blue on sky | 6.81 | all text |
 | pink on purple / purple on pink | 6.63 | all text |
 | ink-black on folder-yellow | 11.81 | all text |
+| yellow on teal | 4.67 | all text (category tile) |
+| sky on blue | 6.81 | all text (category tile) |
 | yellow on orange | 3.21 | **large display text only (24px+ bold)** |
 | yellow on red | 3.01 | **large display text only (24px+ bold)** |
 
@@ -243,7 +246,7 @@ The oversized footer `SAATVIK` wordmark uses the approved reference-matched artw
 Words on rounded colour blocks (`tone-lime | purple | red | pink | yellow`), rotated by the pattern −4°, 3°, −1.5°, 2°, −3°, 1°. Connector words ("the", "&") use `small`. An optional uppercase kicker sits underneath. Rays (hand-drawn strokes) appear on centred headings only. All sizes render at the shared `section-heading` size; `size` no longer changes the font size.
 
 ### Category Tiles
-490px tall, radius 16/16/80/16. Big uppercase title top-left, tagline bottom-left, and a photo in a tilted arch (radius 800/800/16/16, rotate −12°) breaking out of the bottom-right. Themes: Makhana purple/pink, Puffs lime/blue, Freeze-Dried Fruits orange/yellow. Hover: lift 6px, arch straightens.
+490px tall, radius 16/16/80/16. Big uppercase title top-left, tagline bottom-left, and a photo in a tilted arch (radius 800/800/16/16, rotate −12°) breaking out of the bottom-right. Themes (client feedback 2026-11-16: use colours not repeated elsewhere on the page): Makhana pink tile, purple text, purple arch; Puffs teal tile, yellow text, yellow arch; Freeze-Dried Fruits deep blue tile, sky text, pink arch. Each tile's arch has its own colour. Hover: lift 6px, arch straightens.
 
 ### Stats Band
 Sits on the canvas with no band behind it: a centred uppercase title in blue at the shared heading size, then four lime cards (radius 16/72/16/16), each with a coloured badge (number or short word) and a label. **Only verifiable facts**; counts derive from the catalogue.
@@ -282,12 +285,21 @@ Pill or rounded inputs on surface, 2px ink border, labels above, required marked
 ### Footer
 Full-bleed yellow card with rounded top corners; content aligned to the container. Link columns, a contact column (phone, email, WhatsApp, city) until real social profiles exist (`config/SOCIAL_CONFIG.ts`), copyright with GSTIN, and a giant "SAATVIK" wordmark.
 
+### Why Choose Us (2026-11-16)
+Centred sticker heading, a row of pill badges ("No palm oil" in teal with yellow text, the rest white), then four tinted cards (yellow, lime, pink, sky) with radius 24/64/24/24, 3px ink border, 7px ink shadow, alternating ±1° tilt. 4 columns, then 2 at ≤1100px, then 1 at ≤560px.
+
+### Packing Options (2026-11-16)
+Four arch-topped cards (radius 999/999/24/24) in dark tones (purple, teal, deep blue) plus sky, with cream text (ink on sky) and a round icon badge. They are kept dark on purpose, so they don't repeat the pastel Why Choose Us cards directly above.
+
+### Exports + Certifications pair (2026-11-16)
+Two 32px-radius panels side by side, stacked at ≤860px. Exports: deep blue panel with cream text, sky kicker and yellow ticks. Certifications: white panel with a dashed cream GSTIN box. Each has a round icon badge in the top-right corner.
+
 ## Responsive Behavior
 
 | Breakpoint | Key changes |
 |---|---|
 | ≤1050px | Hero art shrinks; product grid gap 11px |
-| ≤1024px | Desktop nav and mega-menu hide; the menu button opens the mobile menu (categories first). Footer becomes one column, its grids use `minmax(0,1fr)` so long text wraps instead of overflowing |
+| ≤1180px | Desktop nav (Products ▾ · Services · Corporate & Bulk · Company ▾ · FAQ · Contact) and the mega-menu hide; the menu button opens the mobile menu (categories first). Footer becomes one column, its grids use `minmax(0,1fr)` so long text wraps instead of overflowing |
 | ≤1000px | Category tiles and stats go to fewer columns (tiles 1, stats 2) |
 | ≤900px | About and FAQ stack to one column; FAQ photo becomes 16:10 |
 | ≤760px | Header 68px; hero stacks copy above art; touch targets at least 44px (header buttons, text links, breadcrumbs) |

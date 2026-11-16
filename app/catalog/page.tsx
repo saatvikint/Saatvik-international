@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Lineup } from '../lineup';
+import { MakhanaGrades } from '../makhana-grades';
 import { PanelButton } from '../shop';
 import { Icon } from '../visuals';
 import { StickerHeading } from '../sticker-heading';
@@ -21,6 +22,7 @@ export default function Page() {
         </nav>
       </div>
       <Lineup collection />
+      <MakhanaGrades />
       <div className="shell collection-cta">
         <div>
           <StickerHeading size="md" align="start" rays={false} kicker="One enquiry, many products"

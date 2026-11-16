@@ -1,11 +1,11 @@
-// 3D "puffs collect in a bowl" scene (three.js). Loaded on demand by app/puffs-flow.tsx; never imported on the server.
+// 3D "snacks collect in a bowl" scene (three.js). Loaded on demand by app/puffs-flow.tsx; never imported on the server.
 //
 // Scroll story: puffs float around the heading, then arc one by one into a ceramic bowl,
 // filling it from the bottom up into a heaped pile.
 //
-// Puffs are procedural: bent capsules (curls), rounded cubes, flattened discs and balls, with
-// noise-displaced surfaces and a speckle texture, tinted with flavour colours taken from the
-// client's puff photos. One InstancedMesh per shape keeps it to four draw calls.
+// Snacks are procedural: lumpy makhana (fox nuts) with brown husk patches, plus puffs (bent
+// capsules, rounded cubes, flattened discs and balls) with noise-displaced surfaces and a speckle
+// texture, tinted with flavour colours from the client's photos. One InstancedMesh per shape.
 // Motion is driven only by scroll progress (eased); nothing animates on its own.
 import * as THREE from 'three';
 
@@ -101,6 +101,17 @@ function discGeometry(): THREE.BufferGeometry {
   return bumpify(g, 0.03, 6);
 }
 
+/**
+ * Makhana (popped fox nut): a lumpy, slightly squashed sphere with an uneven, knobbly surface.
+ * Low-frequency noise gives the irregular silhouette; the high-frequency pass the puffed texture.
+ */
+function makhanaGeometry(): THREE.BufferGeometry {
+  const g = new THREE.SphereGeometry(0.44, 40, 28);
+  g.scale(1.04, 0.9, 0.98);
+  bumpify(g, 0.055, 1.9);
+  return bumpify(g, 0.018, 8);
+}
+
 /** Ball puff. */
 function ballGeometry(): THREE.BufferGeometry {
   return bumpify(new THREE.SphereGeometry(0.34, 28, 18), 0.05, 5);
@@ -134,6 +145,37 @@ function speckleTexture(): THREE.CanvasTexture {
   }, true);
 }
 
+/** Makhana skin: off-white base with irregular brown husk patches and darker flecks. */
+function makhanaTexture(): THREE.CanvasTexture {
+  return canvasTexture(512, (ctx, random) => {
+    ctx.fillStyle = '#fffaf0';
+    ctx.fillRect(0, 0, 512, 512);
+    const blotch = (count: number, size: [number, number], colour: () => string) => {
+      for (let i = 0; i < count; i++) {
+        const cx = random() * 512, cy = random() * 512;
+        const r = size[0] + random() * (size[1] - size[0]);
+        ctx.fillStyle = colour();
+        ctx.beginPath();
+        // Irregular blob: a wobbly polygon, drawn wrapped so the texture tiles.
+        const points = 9;
+        for (let k = 0; k <= points; k++) {
+          const a = (k / points) * Math.PI * 2;
+          const rr = r * (0.55 + random() * 0.6);
+          const x = cx + Math.cos(a) * rr, y = cy + Math.sin(a) * rr * (0.6 + random() * 0.5);
+          if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.fill();
+      }
+    };
+    // Soft beige shading, a few husk patches, many small dark flecks (as on real popped makhana).
+    blotch(30, [20, 50], () => `rgba(236, 222, 196, ${0.35 + random() * 0.3})`);
+    blotch(12, [10, 24], () => `rgba(${92 + random() * 24}, ${62 + random() * 16}, ${40 + random() * 12}, ${0.7 + random() * 0.25})`);
+    blotch(70, [3, 8], () => `rgba(${58 + random() * 30}, ${38 + random() * 16}, ${26 + random() * 10}, ${0.75 + random() * 0.25})`);
+    blotch(50, [6, 18], () => `rgba(255, 253, 248, ${0.5 + random() * 0.4})`);
+  }, true);
+}
+
 /** Fine grain for the bump map, so surfaces read as crisp and airy. */
 function grainTexture(): THREE.CanvasTexture {
   return canvasTexture(256, (ctx, random) => {
@@ -148,6 +190,12 @@ function grainTexture(): THREE.CanvasTexture {
 }
 
 // ---------- flavours (from the client's puff photos) ----------
+const MAKHANA = {
+  plain: '#ffffff',
+  roasted: '#f6e7c8',
+  peri: '#f3c28c',
+};
+
 const FLAVOURS = {
   plain: '#f2deb0',
   golden: '#e9b45a',
@@ -163,13 +211,17 @@ interface ShapeSpec {
   share: number;
   colours: string[];
   scale: [number, number];
+  /** Which surface to use: makhana skin or puff speckle. */
+  skin: 'makhana' | 'puff';
 }
 
+// Makhana leads the mix (client feedback 2026-11-16: the 3D pieces should look like makhana too).
 const SHAPES: ShapeSpec[] = [
-  { geometry: curlGeometry, lies: 'side', share: 0.4, colours: [FLAVOURS.golden, FLAVOURS.cheese, FLAVOURS.masala], scale: [0.9, 1.25] },
-  { geometry: discGeometry, lies: 'flat', share: 0.25, colours: [FLAVOURS.plain, FLAVOURS.cheese, FLAVOURS.masala, FLAVOURS.herb], scale: [0.9, 1.2] },
-  { geometry: cubeGeometry, lies: 'side', share: 0.2, colours: [FLAVOURS.golden, FLAVOURS.masala], scale: [0.85, 1.15] },
-  { geometry: ballGeometry, lies: 'flat', share: 0.15, colours: [FLAVOURS.plain, FLAVOURS.golden], scale: [0.85, 1.2] },
+  { geometry: makhanaGeometry, lies: 'flat', share: 0.42, colours: [MAKHANA.plain, MAKHANA.plain, MAKHANA.roasted, MAKHANA.peri], scale: [0.85, 1.15], skin: 'makhana' },
+  { geometry: curlGeometry, lies: 'side', share: 0.22, colours: [FLAVOURS.golden, FLAVOURS.cheese, FLAVOURS.masala], scale: [0.9, 1.25], skin: 'puff' },
+  { geometry: discGeometry, lies: 'flat', share: 0.14, colours: [FLAVOURS.plain, FLAVOURS.cheese, FLAVOURS.masala, FLAVOURS.herb], scale: [0.9, 1.2], skin: 'puff' },
+  { geometry: cubeGeometry, lies: 'side', share: 0.12, colours: [FLAVOURS.golden, FLAVOURS.masala], scale: [0.85, 1.15], skin: 'puff' },
+  { geometry: ballGeometry, lies: 'flat', share: 0.1, colours: [FLAVOURS.plain, FLAVOURS.golden], scale: [0.85, 1.2], skin: 'puff' },
 ];
 
 interface Particle {
@@ -292,6 +344,8 @@ export function createPuffsScene(container: HTMLElement, options: Options): Puff
   const speckle = speckleTexture();
   const grain = grainTexture();
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff, map: speckle, bumpMap: grain, bumpScale: 0.6, roughness: 0.82, metalness: 0 });
+  const makhanaSkin = makhanaTexture();
+  const makhanaMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, map: makhanaSkin, bumpMap: grain, bumpScale: 0.9, roughness: 0.9, metalness: 0 });
 
   const total = options.compact ? 34 : 56;
   const random = seeded(1311);
@@ -305,7 +359,7 @@ export function createPuffsScene(container: HTMLElement, options: Options): Puff
     const count = Math.max(1, Math.round(total * shape.share));
     const geometry = shape.geometry();
     geometries.push(geometry);
-    const mesh = new THREE.InstancedMesh(geometry, material, count);
+    const mesh = new THREE.InstancedMesh(geometry, shape.skin === 'makhana' ? makhanaMaterial : material, count);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     mesh.frustumCulled = false; // instances move every frame and span the whole view
     for (let i = 0; i < count; i++) {
@@ -481,8 +535,8 @@ export function createPuffsScene(container: HTMLElement, options: Options): Puff
         mesh.dispose();
       }
       for (const geometry of [...geometries, bowlGeometry, rimGeometry, shadowGeometry]) geometry.dispose();
-      for (const texture of [speckle, grain, shadow]) texture.dispose();
-      for (const mat of [material, bowlMaterial, rimMaterial, shadowMaterial]) mat.dispose();
+      for (const texture of [speckle, grain, shadow, makhanaSkin]) texture.dispose();
+      for (const mat of [material, makhanaMaterial, bowlMaterial, rimMaterial, shadowMaterial]) mat.dispose();
       renderer.dispose();
       renderer.domElement.remove();
     },

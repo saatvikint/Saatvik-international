@@ -1,6 +1,6 @@
 # Saatvik International: agent entry point
 
-B2B website for Saatvik International, a Pune-based healthy-snack trader, wholesaler and exporter (makhana, puffs, freeze-dried fruits). Built by MaximiseTeck.
+B2B website for Saatvik International, a Pune-based healthy-snack supplier, wholesaler and exporter (makhana, puffs, freeze-dried fruits). Built by MaximiseTeck.
 
 **This is an enquiry website, not an e-commerce store.** No prices, cart checkout, payments or customer accounts. Every product page exists to produce a qualified enquiry.
 
