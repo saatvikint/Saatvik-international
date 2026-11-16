@@ -57,6 +57,7 @@ The client confirmed that Saatvik International holds: GST, MSME / Udyam, IEC, A
 - **Wording:** always call Saatvik a *supplier*, never a *trader* or *trading company*.
 - **Look:** light beige instead of white across the site; more makhana and puff elements; sticky header.
 - **Raw makhana grades:** 4 sutta (standard/economy, 12.7–15.8 mm), 5 sutta (premium retail, 15.8–19 mm), 6 sutta (jumbo/premium, 19–22.2 mm), with a comparison table. Verbatim: [2026-11-16-makhana-grades.md](2026-11-16-makhana-grades.md). Answers Q8.
+- **Manufacturing videos** (2026-11-16): two clips of makhana roasting, used on About Us (`public/assets/videos/`). Answers Q29.
 
 ## Not confirmed
 

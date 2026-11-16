@@ -4916,3 +4916,10 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
 @media(max-width:560px){.grades-grid{grid-template-columns:minmax(0,1fr)}}
 @media(min-width:1001px){.pdp-related .product-grid > .product-tile:nth-child(n+4){display:none}}
 @media(max-width:560px){#main .trust-panel h2{font-size:clamp(28px,8.4vw,40px);padding-right:62px}}
+/* Manufacturing videos: portrait clips from the client (2026-11-16) */
+.story-video-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),340px));justify-content:center}
+.story-video video{aspect-ratio:9/16;background:#461025}
+@media(max-width:760px){.story-video video{aspect-ratio:9/16}.story-video-grid{grid-template-columns:minmax(0,340px)}}
+.story-videos .content-section-heading{margin-inline:auto;align-items:center;text-align:center}
+/* About Us: space between Mission/Vision cards and Core Values (was touching) */
+.story-page .vision-mission-grid{margin-bottom:clamp(64px,8vw,112px)}

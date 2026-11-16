@@ -24,8 +24,11 @@ export interface SiteVideo {
 /** Confirmed by the client on 2026-11-16 (Our Story copy). */
 export const founder: Founder | null = { name: 'Sahil Jain', role: 'Founder' };
 
-/** TODO(client): manufacturing / processing videos for the About Us page (Q29). */
-export const manufacturingVideos: SiteVideo[] = [];
+/** Manufacturing videos supplied by the client on 2026-11-16 (originals: IMG_4966, IMG_4967), re-encoded for web. */
+export const manufacturingVideos: SiteVideo[] = [
+  { id: 'roasting-trays', title: 'Makhana on roasting trays', src: '/assets/videos/makhana-roasting-trays.mp4', poster: '/assets/videos/makhana-roasting-trays.jpg' },
+  { id: 'roasting-cabinet', title: 'Makhana in the roasting cabinet', src: '/assets/videos/makhana-roasting-cabinet.mp4', poster: '/assets/videos/makhana-roasting-cabinet.jpg' },
+];
 
 /** TODO(client): a short, fun looping video for the home FAQ (Q30). Muted, no sound needed. */
 export const faqVideo: SiteVideo | null = null;

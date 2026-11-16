@@ -29,9 +29,7 @@ Move each answer into `facts.md` with its date, then delete the question here.
 
 | # | Question | Why it matters |
 |---|---|---|
-| Q29 | Manufacturing / processing videos for About Us (MP4 or YouTube links), and may they be shown publicly? | The video section is built but empty |
 | Q30 | The "creative and fun" video for the home FAQ: will the client supply it, or should we produce one? | Slot is built; the photo shows until a video exists |
-| Q31 | New roasted makhana image: please send the photo to use (or approve a new generated visual) | Client asked to change it; we have no replacement makhana photo |
 | Q32 | Packing: formats confirmed 2026-11-16. Which pack sizes (e.g. 100 g, 250 g, 1 kg, 5 kg) can we list per format? | Section says sizes are confirmed per enquiry |
 | Q33 | "Same format as Nutromode website": please share the exact link. nutromode.com / .in do not resolve | Testimonials keep the current slider until we can see the reference |
 

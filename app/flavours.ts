@@ -32,7 +32,13 @@ export const featuredSlides: readonly HeroSlide[] = [
     description: 'Roasted and flavoured makhana for wholesale, private label and export enquiries.',
     href: '/products/flavoured-makhana',
     seal: ['ROASTED', 'MAKHANA'],
-    image: bowl('flavoured-makhana', 'roasted and flavoured makhana'),
+    image: {
+      src: '/assets/products/hero/roasted-makhana-v2.png',
+      width: 1254,
+      height: 1254,
+      alt: 'Illustrative visual of seasoned roasted makhana arranged in a creative floating product composition',
+      illustrative: true,
+    },
   },
   {
     id: 'freeze-dried-black-jamun',
