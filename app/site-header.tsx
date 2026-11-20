@@ -55,6 +55,7 @@ function ProductsMenu({ open, onNavigate }: { open: boolean; onNavigate: () => v
               <li key={category.id}><Link href={`/catalog#category-${category.id}`} onClick={onNavigate}>{category.name}</Link></li>
             ))}
             <li><Link href="/catalog" onClick={onNavigate}>All products</Link></li>
+            <li><Link href="/product-catalogue" onClick={onNavigate}>Catalogue (PDF)</Link></li>
           </ul>
         </div>
         <div className="mega-menu-featured">
@@ -218,6 +219,7 @@ export function SiteHeader() {
             <Link key={category.id} className="mobile-nav-category" href={`/catalog#category-${category.id}`} onClick={() => setMenuOpen(false)}>{category.name}</Link>
           ))}
           <Link className="mobile-nav-category" href="/catalog" onClick={() => setMenuOpen(false)}>All products</Link>
+          <Link className="mobile-nav-category" href="/product-catalogue" onClick={() => setMenuOpen(false)}>Catalogue (PDF)</Link>
           <p className="mobile-nav-label">Services</p>
           {serviceLinks.map(link => (
             <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</Link>

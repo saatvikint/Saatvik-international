@@ -118,6 +118,7 @@ export function Footer() {
 
               <div className="footer-legal-nav">
                 <Link href="/catalog">Catalog</Link>
+                <Link href="/product-catalogue">Catalogue PDF</Link>
                 <Link href="/corporate">Corporate Orders</Link>
                 <Link href="/services">Services</Link>
                 <Link href="/faq">FAQ</Link>

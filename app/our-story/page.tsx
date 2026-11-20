@@ -107,13 +107,6 @@ export default function OurStoryPage() {
           )}
         </section>
       )}
-
-      {founder && (
-        <aside className="founder-signoff" aria-label="Signed">
-          <p className="founder-signoff-name">{founder.name}</p>
-          <p>{founder.role}, {APP_CONFIG.name}</p>
-        </aside>
-      )}
     </main>
   );
 }

@@ -23,5 +23,6 @@ Use npm: pnpm is not installed on the current dev machine.
 - `npm run build`: create the production build.
 - `npm run start`: serve the production build.
 - `npm run typecheck`: run strict TypeScript checks without emitting files.
+- `npm run catalogue:pdf`: with `npm run dev` running, rebuild the downloadable product catalogue PDF from `/product-catalogue`. Run it after any product, flavour, packing or contact change.
 
 Lint and automated test commands are not configured yet.

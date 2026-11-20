@@ -93,10 +93,10 @@ export const corporateSegments: Segment[] = [
     image: { src: '/assets/services/corporate-pantry.jpg', alt: 'Office pantry stocked with healthy snacks', label: 'Office pantry / cafeteria' },
   },
   {
-    id: 'horeca', icon: 'hotel', title: 'Hotels, restaurants & cafÃ©s (HORECA)',
-    text: 'Bulk packs for hotel chains, restaurants, cafÃ©s, caterers and institutional kitchens: in-room snacks, bar bites, buffets and menu ingredients.',
+    id: 'horeca', icon: 'hotel', title: 'Hotels, restaurants & cafés (HORECA)',
+    text: 'Bulk packs for hotel chains, restaurants, cafés, caterers and institutional kitchens: in-room snacks, bar bites, buffets and menu ingredients.',
     points: ['Bulk aluminium pouches for kitchens', 'Flavoured makhana and puffs for bar and room service', 'Freeze-dried fruit for desserts, cereals and beverages'],
-    image: { src: '/assets/services/horeca-hotel.jpg', alt: 'Hotel or restaurant serving snacks', label: 'Hotel / restaurant / cafÃ©' },
+    image: { src: '/assets/services/horeca-hotel.jpg', alt: 'Hotel or restaurant serving snacks', label: 'Hotel / restaurant / café' },
   },
   {
     id: 'gifting', icon: 'gift', title: 'Corporate gifting',

@@ -80,6 +80,7 @@ Verbatim: [2026-11-20-site-feedback.md](2026-11-20-site-feedback.md).
 - **Private-label mock-up** packs show a generic "Your Brand Name" label, not the Saatvik logo (changed later on 2026-11-20).
 - **Product quote requests** ("Request a quote for this product") go to Contact Us, pre-filled with the product and choices.
 - **Service and packaging images:** the 10 AI-generated images in `content/services.ts` run without an "Illustrative image" tag. This is a deliberate exception to rule 8, made by Zahid (MaximiseTeck) on 2026-11-20. Replace them with real photos when the client sends them (Q36).
+- **Product catalogue** (`/product-catalogue` and its PDF): no per-image "Illustrative visual" or "Product photo" tags, Zahid's decision on 2026-11-20. A single "Product visuals are illustrative" line stays on the cover and the last page.
 - **Testimonials:** accepted as is (production shows "Buyer stories are being prepared" until real quotes arrive, Q25).
 
 ## Not confirmed

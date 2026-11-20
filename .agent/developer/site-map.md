@@ -16,6 +16,8 @@ The client's page list (2026-11-12, `client/2026-11-12-site-structure.md`) is th
 
 The template currently has `/corporate` and `/faq`, which are not on the client's list. Decide whether to keep them when building the pages above.
 
+**Product catalogue** (`/product-catalogue`, added 2026-11-20 at the client's request): every product's grades, flavours and packing as 15 A4 sheets, with a downloadable PDF at `public/downloads/saatvik-international-product-catalogue.pdf`. Linked from the Products menu, the All Products page and the footer. The sheets are built from the same `content/` files as the product pages. **Regenerate the PDF after any product, flavour, packing or contact change:** run `npm run dev`, then `npm run catalogue:pdf` (`scripts/catalogue-pdf.mjs`, headless Chrome or Edge). The script also writes the small image copies in `public/assets/catalogue/` that keep the PDF about 2 MB; commit both. Update `EDITION` in `app/product-catalogue/page.tsx` when the content changes.
+
 The fuller structure below is the long-term plan.
 
 ```

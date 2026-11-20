@@ -15,7 +15,7 @@ Alternatives and ideas beyond the v1 plan. Nothing here is committed scope.
 ## Conversion ideas
 
 - **Request a sample** as a separate, lower-commitment call to action
-- **Downloadable catalogue PDF**, offered directly or after a short form, because traders forward these on WhatsApp
+- **Downloadable catalogue PDF**, offered directly or after a short form, because traders forward these on WhatsApp. Built 2026-11-20 as `/product-catalogue`, offered directly with no form (see `developer/site-map.md`)
 - **Private-label brief form** covering product, flavour, pack size, target market and quantity
 - **Spec sheet downloads** per product, once Q13 is answered
 - **Grade guide** comparing makhana sizes with real photos, which is useful to buyers and for SEO

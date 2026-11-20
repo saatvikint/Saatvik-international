@@ -28,9 +28,12 @@ export default function Page() {
           <StickerHeading size="md" align="start" rays={false} kicker="One enquiry, many products"
             rows={[[{ text: 'Mix', tone: 'lime' }, { text: '&', tone: 'purple', small: true }], [{ text: 'Match', tone: 'pink' }]]} />
         </div>
-        <PanelButton className="button primary" panel="builder">
-          Build a mixed enquiry <Icon name="arrow" />
-        </PanelButton>
+        <div className="content-actions">
+          <PanelButton className="button primary" panel="builder">
+            Build a mixed enquiry <Icon name="arrow" />
+          </PanelButton>
+          <Link className="button yellow" href="/product-catalogue"><Icon name="download" /> Download catalogue</Link>
+        </div>
       </div>
     </main>
   );

@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "catalogue:pdf": "node scripts/catalogue-pdf.mjs"
   },
   "engines": {
     "node": ">=22.13.0"

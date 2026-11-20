@@ -52,6 +52,9 @@ import {
   PaintBrush01Icon,
   VolumeHighIcon,
   VolumeMute02Icon,
+  Download04Icon,
+  PrinterIcon,
+  Book02Icon,
 } from '@hugeicons/core-free-icons';
 
 // Every icon on the site comes from Hugeicons (free set). Add new ones here, never as inline SVG.
@@ -108,6 +111,9 @@ const icons = {
   brush: PaintBrush01Icon,
   'volume-on': VolumeHighIcon,
   'volume-off': VolumeMute02Icon,
+  download: Download04Icon,
+  printer: PrinterIcon,
+  book: Book02Icon,
 } as const;
 
 export type IconName = keyof typeof icons;

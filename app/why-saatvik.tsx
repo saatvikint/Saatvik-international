@@ -12,7 +12,8 @@ interface Reason {
   tone: 'yellow' | 'pink' | 'lime' | 'sky';
 }
 
-const reasons: Reason[] = [
+/** Also used by the downloadable product catalogue (app/product-catalogue). */
+export const reasons: Reason[] = [
   {
     icon: 'scale',
     title: 'Low MOQ',
