@@ -185,7 +185,7 @@ export function FaqClient() {
             Share your product list, estimated quantity, company details and delivery destination in one enquiry.
           </p>
           <div className="spotlight-actions">
-            <Link href="/export-query" className="button yellow">
+            <Link href="/contact" className="button yellow">
               Get a Quote <Icon name="arrow" />
             </Link>
             <Link href="/catalog" className="button primary">

@@ -99,7 +99,7 @@ export function PuffsFlow() {
         <div className="puffs-flow-copy">
           <StickerHeading id="puffs-flow-title" align="start" kicker="Makhana · Puffs · Freeze-dried fruits"
             rows={[[{ text: 'Snacks', tone: 'lime' }, { text: 'in', tone: 'pink', small: true }], [{ text: 'Motion', tone: 'red' }]]} />
-          <p>Raw and flavoured makhana alongside roasted millet, jowar, quinoa and chickpea puffs, for wholesale, private-labelling and export enquiries.</p>
+          <p>Raw and flavoured makhana alongside millet-based jowar, chickpea and quinoa puffs, for wholesale, private-labelling and export enquiries.</p>
           <Link className="button primary" href="/catalog">Explore the range <Icon name="arrow" /></Link>
         </div>
       </div>

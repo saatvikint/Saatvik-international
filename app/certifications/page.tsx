@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 import { certifications } from '@/content/certifications';
 import { Icon } from '../visuals';
-import { StickerHeading } from '../sticker-heading';
+import { PageHero } from '../page-hero';
 
 export const metadata: Metadata = {
   title: APP_CONFIG.pageTitle('Certifications & Business Documents'),
@@ -14,10 +14,11 @@ export default function CertificationsPage() {
   return (
     <main id="main" className="content-page certifications-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Certifications</span></nav>
-      <header className="content-page-header">
-        <StickerHeading as="h1" id="certifications-title" kicker="Registrations held by Saatvik" rows={[[{ text: 'Our', tone: 'pink' }], [{ text: 'Certificates', tone: 'purple' }]]} />
-        <p>Business and food registrations confirmed by Saatvik International. Official marks are shown in their original form.</p>
-      </header>
+      <PageHero id="certifications-title" tone="blue" kicker="Registrations held by Saatvik"
+        rows={[[{ text: 'Our', tone: 'pink' }], [{ text: 'Certificates', tone: 'purple' }]]}
+        intro={<p>Business and food registrations confirmed by Saatvik International. Official marks are shown in their original form.</p>}
+        actions={<><a className="button primary" href="#certificates-grid">View registrations <Icon name="arrow" /></a><Link className="button yellow" href="/contact">Request documents</Link></>}
+        facts={[{ icon: 'certificate', label: 'GST · MSME · IEC' }, { icon: 'quality-check', label: 'APEDA · FSSAI' }, { icon: 'sparkle', label: 'Startup India' }]} />
 
       <section className="certification-grid" id="certificates-grid" aria-label="Saatvik International certifications and registrations">
         {certifications.map(certificate => (
@@ -43,7 +44,7 @@ export default function CertificationsPage() {
           <article className="content-card tone-blue"><span className="content-card-number">02</span><h3>We verify applicability</h3><p>Requirements can differ by order, product and destination market.</p></article>
           <article className="content-card tone-lime"><span className="content-card-number">03</span><h3>Receive confirmation</h3><p>We respond with confirmed information for your specific enquiry.</p></article>
         </div>
-        <div className="content-actions"><Link className="button yellow" href="/export-query">Request documents <Icon name="arrow" /></Link><Link className="button primary" href="/contact">Contact us</Link></div>
+        <div className="content-actions"><Link className="button yellow" href="/contact">Request documents <Icon name="arrow" /></Link><Link className="button primary" href="/export-query">Export query</Link></div>
       </section>
 
       <aside className="certification-note"><Icon name="receipt" /><p>These registrations were confirmed by the client. The GSTIN is published above; other registration numbers and certificate copies will be added after the documents are supplied for verification.</p></aside>

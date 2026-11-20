@@ -20,7 +20,7 @@ export function HomeAbout() {
         </div>
         <div className="home-about-actions">
           <Link className="button yellow" href="/our-story">More about us <Icon name="arrow" /></Link>
-          <Link className="text-link" href="/export-query">Get a quote <Icon name="arrow" /></Link>
+          <Link className="text-link" href="/contact">Get a quote <Icon name="arrow" /></Link>
         </div>
       </div>
 

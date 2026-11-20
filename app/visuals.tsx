@@ -46,6 +46,12 @@ import {
   BoxesIcon,
   PackageCheckIcon,
   Clock01Icon,
+  Image01Icon,
+  Hotel01Icon,
+  Store01Icon,
+  PaintBrush01Icon,
+  VolumeHighIcon,
+  VolumeMute02Icon,
 } from '@hugeicons/core-free-icons';
 
 // Every icon on the site comes from Hugeicons (free set). Add new ones here, never as inline SVG.
@@ -96,6 +102,12 @@ const icons = {
   'bulk-pack': BoxesIcon,
   'package-check': PackageCheckIcon,
   clock: Clock01Icon,
+  image: Image01Icon,
+  hotel: Hotel01Icon,
+  store: Store01Icon,
+  brush: PaintBrush01Icon,
+  'volume-on': VolumeHighIcon,
+  'volume-off': VolumeMute02Icon,
 } as const;
 
 export type IconName = keyof typeof icons;

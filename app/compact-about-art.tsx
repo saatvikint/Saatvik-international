@@ -7,9 +7,9 @@ export function CompactAboutArt({ className = '' }: CompactAboutArtProps) {
     <div className={`compact-about-art ${className}`.trim()} aria-hidden="true">
       <span className="compact-about-photo">
         <img
-          src="/assets/about/lifestyle-makhana.webp"
-          width={900}
-          height={900}
+          src="/assets/about/lifestyle-makhana-tea.webp"
+          width={720}
+          height={1080}
           alt=""
           loading="lazy"
           decoding="async"

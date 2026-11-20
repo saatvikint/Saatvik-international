@@ -13,8 +13,8 @@ Background only. Nothing here is a claim about Saatvik's products until the clie
 
 ## Puffs
 
-- Puffed grain and legume snacks. Client list: millet, jowar, quinoa, chickpea.
-- Jowar is sorghum and is itself a millet, so "millet" and "jowar" need clarifying (Q10).
+- Puffed grain and legume snacks. Client list (2026-11-20, "millet based puff"): jowar, chickpea, quinoa.
+- Jowar is sorghum and is itself a millet. The separate "millet puffs" product was dropped on 2026-11-20.
 - Puffs are sold plain as an ingredient or snack base, or seasoned as a finished snack. Possible uses include snack mixes, cereals and bars, but confirm what the client supplies.
 
 ## Freeze-dried fruits
@@ -25,9 +25,9 @@ See `freeze-drying.md`.
 
 | Category | Item | Options confirmed by the client |
 |---|---|---|
-| Makhana | Raw makhana | Sizes 4, 5, 6 |
-| Makhana | Roasted / flavoured makhana | Customisable flavours |
-| Puffs | Millet, jowar, quinoa, chickpea | The profile adds plain and flavoured for jowar |
+| Makhana | Raw makhana | Sizes 4, 5, 6, 7 sutta |
+| Makhana | Roasted / flavoured makhana | 8 flavours, customisable |
+| Puffs | Jowar, chickpea, quinoa (2026-11-20) | 4, 4 and 5 flavours; no jar packing |
 | Freeze-dried fruits | Black jamun, strawberry slices, banana slices, mango cubes, pineapple slices (2026-11-12) | Photos for all but strawberry; apple not in the latest list (Q24) |
 
 ## Sources

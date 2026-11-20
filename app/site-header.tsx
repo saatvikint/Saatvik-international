@@ -83,6 +83,7 @@ function NavLinks({ onClick }: { onClick?: MouseEventHandler<HTMLAnchorElement> 
   return (
     <>
       <Link href="/corporate" onClick={onClick}>Corporate &amp; Bulk</Link>
+      <Link href="/export-query" onClick={onClick}>Export Query</Link>
       <Link href="/faq" onClick={onClick}>FAQ</Link>
       <Link href="/contact" onClick={onClick}>Contact</Link>
     </>
@@ -101,7 +102,6 @@ const companyLinks = [
   { href: '/our-story', label: 'About Us' },
   { href: '/certifications', label: 'Certifications' },
   { href: '/testimonials', label: 'Testimonials' },
-  { href: '/export-query', label: 'Export Query' },
 ];
 
 type MenuId = 'products' | 'services' | 'company';
@@ -190,13 +190,14 @@ export function SiteHeader() {
             </button>
             {dropdown({ id: 'services', label: 'Services', links: serviceLinks })}
             <Link href="/corporate">Corporate &amp; Bulk</Link>
+            <Link href="/export-query">Export Query</Link>
             {dropdown({ id: 'company', label: 'Company', links: companyLinks })}
             <Link href="/faq">FAQ</Link>
             <Link href="/contact">Contact</Link>
           </nav>
           <div className="header-actions">
             <PanelButton className="icon-button" panel="search" aria-label="Search products"><Icon name="search-icon" /></PanelButton>
-            <Link href="/export-query" className="header-enquiry-btn" aria-label="Trade & Distributorship Enquiry">
+            <Link href="/contact" className="header-enquiry-btn">
               <Icon name="chat" />
               <span>Get a Quote</span>
             </Link>

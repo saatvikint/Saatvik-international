@@ -32,13 +32,8 @@ export const featuredSlides: readonly HeroSlide[] = [
     description: 'Roasted and flavoured makhana for wholesale, private label and export enquiries.',
     href: '/products/flavoured-makhana',
     seal: ['ROASTED', 'MAKHANA'],
-    image: {
-      src: '/assets/products/hero/roasted-makhana-v2.png',
-      width: 1254,
-      height: 1254,
-      alt: 'Illustrative visual of seasoned roasted makhana arranged in a creative floating product composition',
-      illustrative: true,
-    },
+    // Client 2026-11-20: show makhana in a bowl like the other slides, more realistic.
+    image: bowl('flavoured-makhana', 'seasoned roasted makhana'),
   },
   {
     id: 'freeze-dried-black-jamun',
@@ -66,9 +61,9 @@ export const featuredSlides: readonly HeroSlide[] = [
     id: 'puffs',
     theme: 'coral',
     label: 'Roasted Puffs',
-    tag: 'MILLET · JOWAR · QUINOA · CHICKPEA',
+    tag: 'JOWAR · CHICKPEA · QUINOA',
     title: ['Roasted', 'Puffs.'],
-    description: 'Millet, jowar, quinoa and chickpea puffs for bulk supply and private label.',
+    description: 'Millet-based jowar, chickpea and quinoa puffs in 11 flavours, for bulk supply and private label.',
     href: '/catalog#category-puffs',
     seal: ['ROASTED', 'PUFFS'],
     image: bowl('jowar-puffs', 'roasted puffs'),

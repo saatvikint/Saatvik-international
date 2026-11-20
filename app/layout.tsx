@@ -9,7 +9,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(APP_CONFIG.siteUrl),
   title: APP_CONFIG.pageTitle(),
   description: APP_CONFIG.description,
-  icons: { icon: APP_CONFIG.logo.src },
+  // Leaf mark from the real logo on a cream tile, visible on dark and light tabs (client 2026-11-20).
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export const viewport: Viewport = { themeColor: APP_CONFIG.themeColor };

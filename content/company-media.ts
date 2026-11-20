@@ -21,8 +21,15 @@ export interface SiteVideo {
   embed?: boolean;
 }
 
-/** Confirmed by the client on 2026-11-16 (Our Story copy). */
-export const founder: Founder | null = { name: 'Sahil Jain', role: 'Founder' };
+/**
+ * Confirmed by the client on 2026-11-16 (Our Story copy). Portrait supplied 2026-11-20 (black suit, beige backdrop).
+ * The About page shows the photo only when the file exists in /public, so a missing file never shows a broken image.
+ */
+export const founder: Founder | null = {
+  name: 'Sahil Jain',
+  role: 'Founder',
+  photo: { src: '/assets/about/founder-sahil-jain.jpg', width: 1086, height: 1448 },
+};
 
 /** Manufacturing videos supplied by the client on 2026-11-16 (originals: IMG_4966, IMG_4967), re-encoded for web. */
 export const manufacturingVideos: SiteVideo[] = [

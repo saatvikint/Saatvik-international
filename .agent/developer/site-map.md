@@ -26,7 +26,6 @@ The fuller structure below is the long-term plan.
 /products/makhana/flavoured-makhana Product (roasted and flavoured)
 /products/puffs                     Category
 /products/puffs/jowar-puffs         Product
-/products/puffs/millet-puffs        Product (Q10)
 /products/puffs/quinoa-puffs        Product
 /products/puffs/chickpea-puffs      Product
 /products/freeze-dried-fruits       Category, includes process explainer

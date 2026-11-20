@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 import { categoryOf, products } from '@/content/catalogue';
 import { gradeSizeLabel, makhanaGradeNote } from '@/content/makhana-grades';
-import { freezeDryingSteps, packingFormats, packingPromises, productDetail, themeFor, type ProductTheme } from '@/content/product-details';
+import { freezeDryingIntro, freezeDryingSteps, packingPromises, productDetail, themeFor, type ProductTheme } from '@/content/product-details';
 import { Icon } from '../../visuals';
 import { ProductCard } from '../../lineup';
 import { ProductEnquiry, type ProductOption } from './product-enquiry';
@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: Params) {
   ].slice(0, 4);
   const options: ProductOption[] = [];
   if (detail.grades) options.push({ id: 'grade', label: 'Grade', initial: '5-sutta', items: detail.grades.map(grade => ({ id: grade.id, label: `${grade.sutta} Sutta · ${grade.grade} (${gradeSizeLabel(grade)})`, short: `${grade.sutta} Sutta` })) });
-  if (detail.flavours) options.push({ id: 'flavour', label: 'Flavour', items: detail.flavours.map(flavour => ({ id: flavour.id, label: flavour.name, short: flavour.name, colour: flavour.colour })) });
+  if (detail.flavours) options.push({ id: 'flavour', label: 'Flavour', items: detail.flavours.map(flavour => ({ id: flavour.id, label: flavour.name, short: flavour.name, colour: flavour.colour, note: flavour.taste })) });
 
   return (
     <main id="main" className={`pdp-page pdp-${product.category}`} style={themeStyle(themeFor(product.id))}>
@@ -88,7 +88,7 @@ export default async function ProductPage({ params }: Params) {
               {detail.description.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
             </div>
 
-            <ProductEnquiry product={product} options={options} />
+            <ProductEnquiry product={product} options={options} packing={detail.packing} />
 
             <div className="pdp-accordions">
               {detail.grades && (
@@ -106,14 +106,21 @@ export default async function ProductPage({ params }: Params) {
                 <details className="pdp-accordion" open>
                   <summary>Flavours <span className="pdp-accordion-icon" aria-hidden="true"><Icon name="chevron-down" /></span></summary>
                   <ul className="pdp-flavours">
-                    {detail.flavours.map(flavour => <li key={flavour.id}><span style={{ background: flavour.colour }} aria-hidden="true" />{flavour.name}</li>)}
+                    {detail.flavours.map(flavour => (
+                      <li key={flavour.id}>
+                        <span className="pdp-flavour-dot" style={{ background: flavour.colour }} aria-hidden="true" />
+                        <strong>{flavour.name}</strong>
+                        <p>{flavour.taste}</p>
+                      </li>
+                    ))}
                   </ul>
-                  <p>Taste profiles, seasoning and makhana quality are customised to your requirements.</p>
+                  {detail.flavourNote && <p>{detail.flavourNote}</p>}
                 </details>
               )}
               {detail.freezeDried && (
-                <details className="pdp-accordion">
+                <details className="pdp-accordion" open>
                   <summary>How freeze-drying works <span className="pdp-accordion-icon" aria-hidden="true"><Icon name="chevron-down" /></span></summary>
+                  <p>{freezeDryingIntro}</p>
                   <ol className="pdp-steps">
                     {freezeDryingSteps.map(step => <li key={step.title}><strong>{step.title}</strong> {step.text}</li>)}
                   </ol>
@@ -122,7 +129,7 @@ export default async function ProductPage({ params }: Params) {
               <details className="pdp-accordion">
                 <summary>Packing <span className="pdp-accordion-icon" aria-hidden="true"><Icon name="chevron-down" /></span></summary>
                 <ul className="pdp-ticks">{packingPromises.map(item => <li key={item}><Icon name="check" /> {item}</li>)}</ul>
-                <p>Formats: {packingFormats.join(', ')}. Pack sizes are confirmed for each enquiry.</p>
+                <p>Formats: {detail.packing.join(', ')}. Pack sizes are confirmed for each enquiry.</p>
               </details>
               <details className="pdp-accordion">
                 <summary>Ordering <span className="pdp-accordion-icon" aria-hidden="true"><Icon name="chevron-down" /></span></summary>

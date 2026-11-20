@@ -6,6 +6,22 @@ import { ProductPhoto, categories, categoryOf, products, type Category, type Cat
 import { useShop } from './shop';
 import { Icon } from './visuals';
 import { StickerHeading } from './sticker-heading';
+import { freezeDryingIntro, freezeDryingSteps } from '@/content/product-details';
+
+// Short explainer shown with the freeze-dried products (client 2026-11-20).
+function FreezeDryingNote() {
+  return (
+    <aside className="freeze-note" aria-labelledby="freeze-note-title">
+      <h2 id="freeze-note-title" className="freeze-note-title">What is freeze-drying?</h2>
+      <p className="freeze-note-intro">{freezeDryingIntro}</p>
+      <ol className="freeze-note-steps">
+        {freezeDryingSteps.map((step, index) => (
+          <li key={step.title}><span className="freeze-note-num" aria-hidden="true">{index + 1}</span><strong>{step.title}</strong><span>{step.text}</span></li>
+        ))}
+      </ol>
+    </aside>
+  );
+}
 
 type Filter = 'all' | CategoryId;
 
@@ -28,11 +44,13 @@ const cardTheme: Record<CategoryId, string> = {
   'freeze-dried-fruits': 'theme-orange',
 };
 
-function CategoryArch({ category }: { category: Category }) {
+// Big bowl visual (client 2026-11-20: "maximise the size of the products, should look exciting").
+function CategoryVisual({ category }: { category: Category }) {
   return (
-    <span className="category-arch" aria-hidden="true">
+    <span className="category-visual" aria-hidden="true">
+      <span className="category-burst" />
       {category.image ? (
-        <img className={category.image.illustrative ? 'is-illustrative' : undefined} src={category.image.src} width={category.image.width} height={category.image.height} alt="" loading="lazy" decoding="async" />
+        <img src={category.image.src} width={category.image.width} height={category.image.height} alt="" loading="lazy" decoding="async" />
       ) : (
         <span className="category-arch-placeholder">Photo<br />coming soon</span>
       )}
@@ -45,16 +63,19 @@ export function CategoryGrid() {
     <div className="category-cards">
       {categories.map(category => {
         const [first, ...rest] = category.name.split(' ');
+        const count = products.filter(product => product.category === category.id).length;
         return (
           <Link key={category.id} className={`category-tile ${tileTheme[category.id]}`} href={`/catalog#category-${category.id}`}>
             <span className="category-tile-copy">
+              <span className="category-tile-count">{count} {count === 1 ? 'product' : 'products'}</span>
               <span className="category-tile-title">{first}{rest.length > 0 && <><br />{rest.join(' ')}</>}</span>
               <span className="category-tile-tagline">
-                {category.tagline.map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}
+                {category.tagline.map(line => <span key={line}>{line}</span>)}
                 <span className="sr-only">: view products</span>
               </span>
             </span>
-            <CategoryArch category={category} />
+            <span className="category-tile-cta" aria-hidden="true">View range <Icon name="arrow" /></span>
+            <CategoryVisual category={category} />
           </Link>
         );
       })}
@@ -150,6 +171,7 @@ export function Lineup({ collection = false }: { collection?: boolean }) {
           </div>
         </header>
       )}
+      {filter === 'freeze-dried-fruits' && <FreezeDryingNote />}
       <div id="product-grid" className="product-grid">
         {products.map(product => <ProductCard key={product.id} product={product} hidden={!shown.includes(product)} />)}
       </div>

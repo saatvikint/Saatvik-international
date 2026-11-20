@@ -31,7 +31,7 @@ const faqItems: FaqItem[] = [
     id: 'what',
     question: 'What products can I enquire about?',
     answer: (
-      <p><strong>Makhana</strong>: raw in 4, 5, 6 and 7 sutta grades, and flavoured makhana in eight flavours. <strong>Puffs</strong>: millet, jowar, quinoa and chickpea. <strong>Freeze-dried fruits</strong>: black jamun, strawberry, banana, mango and pineapple.</p>
+      <p><strong>Makhana</strong>: raw in 4, 5, 6 and 7 sutta grades, and flavoured makhana in eight flavours. <strong>Puffs</strong>: millet-based jowar, chickpea and quinoa puffs, in 11 flavours. <strong>Freeze-dried fruits</strong>: black jamun, strawberry, banana, mango and pineapple.</p>
     ),
     cta: { label: 'See the range', href: '/catalog' },
   },
@@ -56,7 +56,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <p>Prices and minimum quantities depend on the <strong>product and volume</strong>, so we quote for each enquiry. Add the products you need to one enquiry and we will reply with a quotation.</p>
     ),
-    cta: { label: 'Request a quote', href: '#enquiry' },
+    cta: { label: 'Request a quote', href: '/contact' },
   },
   {
     id: 'export',

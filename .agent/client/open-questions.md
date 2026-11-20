@@ -32,14 +32,15 @@ Move each answer into `facts.md` with its date, then delete the question here.
 | Q30 | The "creative and fun" video for the home FAQ: will the client supply it, or should we produce one? | Slot is built; the photo shows until a video exists |
 | Q32 | Packing: formats confirmed 2026-11-16. Which pack sizes (e.g. 100 g, 250 g, 1 kg, 5 kg) can we list per format? | Section says sizes are confirmed per enquiry |
 | Q33 | "Same format as Nutromode website": please share the exact link. nutromode.com / .in do not resolve | Testimonials keep the current slider until we can see the reference |
-
+| Q34 | Please confirm or correct the one-line taste note we wrote for each makhana and puff flavour (`content/flavours.ts`) | The notes are our copy, not the client's; they describe taste only |
+| Q35 | New puff images ("image change for puffs, I have sent"): not received yet. Which image goes with jowar, chickpea and quinoa? | Puff cards and pages still use illustrative bowls |
+| Q36 | Real photos for the Services and Corporate & Bulk slots (private-label range, corporate pantry, HORECA, gifting, bulk cartons, five pack formats). AI-generated stand-ins were added 2026-11-20 and run untagged (exception noted in facts.md). Several show namkeen, sev and chips, which are not Saatvik products | Replace with real photos, or regenerate showing only makhana, puffs and freeze-dried fruit |
 ## Product content
 
 | # | Question | Why it matters |
 |---|---|---|
 | Q7 | Your profile lists "Healthy Snacks" as a category, but your product notes list Makhana, Puffs and Freeze-Dried Fruits. Are those three the full menu? Is "Healthy Snacks" only the overall description? | Sets the main navigation |
 | Q9 | Which flavours can we list as examples? Is there a minimum order for a custom flavour? | "All flavours" is hard to sell without examples |
-| Q10 | "Millet puffs" and "jowar puffs" are listed separately, but jowar is a millet. Which millet is the first one (ragi, bajra, mixed)? Are all puffs available plain and flavoured? | Avoids a confusing catalogue |
 | Q11 | Which fruits are regularly available, beyond the five named? Whole, sliced or powder? | "Etc" cannot go in a product list |
 | Q12 | MOQ and pack sizes per product? Bulk and retail-ready? May we publish them, or should they be "on request"? | Pre-qualifies leads |
 | Q13 | Do you have specification sheets, shelf-life data or lab reports? | Buyers request these early. They could become downloads |

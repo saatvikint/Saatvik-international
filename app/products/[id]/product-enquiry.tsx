@@ -5,7 +5,7 @@ import { useId, useState } from 'react';
 import { useShop } from '../../shop';
 import { Icon } from '../../visuals';
 import type { Product } from '@/content/catalogue';
-import { enquiryTypes, packingFormats } from '@/content/product-details';
+import { enquiryTypes } from '@/content/product-details';
 
 export interface OptionItem {
   id: string;
@@ -14,6 +14,8 @@ export interface OptionItem {
   short: string;
   /** Dot colour shown in the select (flavours). */
   colour?: string;
+  /** Short description shown under the select for the chosen item (flavour taste note). */
+  note?: string;
 }
 
 export interface ProductOption {
@@ -26,13 +28,15 @@ export interface ProductOption {
 interface Props {
   product: Product;
   options: ProductOption[];
+  /** Packing formats offered for this product's category. */
+  packing: string[];
 }
 
 /**
  * Right-hand enquiry panel (team reference: option selects, purchase-type radio cards, main CTA).
  * Adapted for enquiry: no price or cart. Choices travel to the quote form as URL parameters.
  */
-export function ProductEnquiry({ product, options }: Props) {
+export function ProductEnquiry({ product, options, packing: packingFormats }: Props) {
   const { addToList, cart } = useShop();
   const [added, setAdded] = useState(false);
   const inList = cart[product.id] ?? 0;
@@ -46,20 +50,28 @@ export function ProductEnquiry({ product, options }: Props) {
   const chosen = options.map(option => option.items.find(item => item.id === choices[option.id]));
   const typeLabel = enquiryTypes.find(item => item.id === type)?.label ?? '';
   const details = [...chosen.map(item => item?.short), packing, typeLabel].filter(Boolean).join(' · ');
-  const quoteHref = `/export-query?${new URLSearchParams({ product: product.id, details })}#enquiry`;
+  // Client 2026-11-20: product quotes go to Contact Us; the form pre-fills the product and choices.
+  const quoteHref = `/contact?${new URLSearchParams({ product: product.id, details })}#contact-form`;
   const hasGrade = options.some(option => option.id === 'grade');
 
   return (
     <div className="pdp-enquiry">
       {options.map((option, index) => (
-        <label key={option.id} className="pdp-select">
-          <span className="pdp-select-label">{option.label}</span>
-          <span className="pdp-select-dot" aria-hidden="true" style={chosen[index]?.colour ? { background: chosen[index]?.colour } : undefined} />
-          <select value={choices[option.id]} onChange={event => setChoices(current => ({ ...current, [option.id]: event.target.value }))}>
-            {option.items.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
-          </select>
-          <Icon name="chevron-down" className="icon pdp-select-chevron" />
-        </label>
+        <div key={option.id} className="pdp-select-group">
+          <label className="pdp-select">
+            <span className="pdp-select-label">{option.label}</span>
+            <span className="pdp-select-dot" aria-hidden="true" style={chosen[index]?.colour ? { background: chosen[index]?.colour } : undefined} />
+            <select
+              value={choices[option.id]}
+              aria-describedby={chosen[index]?.note ? `${id}-${option.id}-note` : undefined}
+              onChange={event => setChoices(current => ({ ...current, [option.id]: event.target.value }))}
+            >
+              {option.items.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+            <Icon name="chevron-down" className="icon pdp-select-chevron" />
+          </label>
+          {chosen[index]?.note && <p id={`${id}-${option.id}-note`} className="pdp-select-note" aria-live="polite">{chosen[index]?.note}</p>}
+        </div>
       ))}
       <label className="pdp-select">
         <span className="pdp-select-label">Packing</span>

@@ -1,8 +1,10 @@
 // Product-page content (team reference 2026-11-16: one detail page per product).
 // Facts only from .agent/client/: no prices, MOQs, nutrition or shelf-life numbers.
-import { categoryOf, type Product } from './catalogue';
+import { categoryOf, type CategoryId, type Product } from './catalogue';
+import type { Flavour } from './flavours';
 import { makhanaGrades } from './makhana-grades';
 import { makhanaFlavourIntro, makhanaFlavours } from './makhana-flavours';
+import { puffRanges } from './puffs';
 
 export interface GalleryImage {
   src: string;
@@ -16,6 +18,9 @@ export interface GalleryImage {
 
 /** Packing formats and promises supplied by the client on 2026-11-16. */
 export const packingFormats = ['Pouches', 'Stand-up pouches', 'Pillow pouches', 'Jars', 'Bulk aluminium pouches'] as const;
+/** Formats offered per category. Client 2026-11-20: no jars for puffs. */
+export const packingFormatsFor = (category: CategoryId): string[] =>
+  category === 'puffs' ? packingFormats.filter(format => format !== 'Jars') : [...packingFormats];
 export const packingPromises = ['All food-grade packing', 'Nitrogen-flushed', 'Better shelf life across product categories'] as const;
 
 export const enquiryTypes = [
@@ -24,12 +29,13 @@ export const enquiryTypes = [
   { id: 'corporate', label: 'Corporate & gifting', detail: 'Pantry, vending and gift packs' },
 ] as const;
 
+/** Freeze-drying explanation: client text 2026-11-20 (.agent/client/2026-11-20-product-changes.md), lightly edited. */
+export const freezeDryingIntro =
+  'Freeze-drying is a food preservation process in which moisture is removed from a product while maintaining its shape, flavour, colour and nutritional value.';
 export const freezeDryingSteps = [
-  { title: 'Prepare', text: 'Ripe fruit is selected, washed and cut.' },
-  { title: 'Freeze', text: 'The fruit is frozen solid, locking water in place as ice.' },
-  { title: 'Primary drying', text: 'Under vacuum and gentle heat, the ice turns straight into vapour (sublimation).' },
-  { title: 'Secondary drying', text: 'Remaining bound moisture is removed.' },
-  { title: 'Pack', text: 'The dry fruit is sealed quickly in food-grade, nitrogen-flushed packing.' },
+  { title: 'Freeze', text: 'The product is frozen.' },
+  { title: 'Sublimation', text: 'The frozen product is placed in a vacuum chamber, where ice turns directly into water vapour.' },
+  { title: 'Final drying', text: 'Remaining moisture is removed to achieve a very low moisture content.' },
 ] as const;
 
 const piece = (file: string, alt: string): GalleryImage => ({ src: `/assets/decor/single-${file}.webp`, width: 420, height: 420, alt, fit: 'contain' });
@@ -40,7 +46,6 @@ const closeUps: Record<string, GalleryImage> = {
   'raw-makhana': piece('raw-makhana', 'Close-up of a single raw makhana'),
   'flavoured-makhana': piece('flavoured-makhana', 'Close-up of a single flavoured makhana'),
   'jowar-puffs': piece('puff-disc', 'Close-up of a single round puff'),
-  'millet-puffs': piece('puff-curl', 'Close-up of a single curl puff'),
   'quinoa-puffs': piece('puff-cube', 'Close-up of a single cube puff'),
   'chickpea-puffs': piece('puff-curl', 'Close-up of a single curl puff'),
   'freeze-dried-black-jamun': piece('black-jamun', 'Close-up of a freeze-dried black jamun piece'),
@@ -57,7 +62,6 @@ const photos: Record<string, GalleryImage> = {
   'freeze-dried-mango-cubes': photo('/assets/products/freeze-dried-mango-cubes.webp', 'Freeze-dried mango cubes'),
   'freeze-dried-pineapple-slices': photo('/assets/products/freeze-dried-pineapple-slices.webp', 'Freeze-dried pineapple slices'),
   'jowar-puffs': photo('/assets/products/puffs-round-assorted.webp', 'Assorted round puffs from the puffs range', 'From our puffs range'),
-  'millet-puffs': photo('/assets/products/puffs-curls.webp', 'Curl puffs from the puffs range', 'From our puffs range'),
   'quinoa-puffs': photo('/assets/products/puffs-cubes.webp', 'Cube puffs from the puffs range', 'From our puffs range'),
   'chickpea-puffs': photo('/assets/products/puffs-curls.webp', 'Curl puffs from the puffs range', 'From our puffs range'),
   'raw-makhana': photo('/assets/about/lifestyle-makhana.webp', 'A bowl of makhana on a table', 'Makhana, ready to snack'),
@@ -75,7 +79,6 @@ export const productThemes: Record<string, ProductTheme> = {
   'raw-makhana': { bg: '#f6ecd6', tile: '#d9bf8c', title: '#5c3519', onTile: '#3b2210' },
   'flavoured-makhana': { bg: '#ffe2d6', tile: '#e4512c', title: '#7e1f0f', onTile: '#fff6e8' },
   'jowar-puffs': { bg: '#d5ebe5', tile: '#176b5f', title: '#0d453d', onTile: '#fff6e8' },
-  'millet-puffs': { bg: '#fbe8c4', tile: '#d48a1e', title: '#5e3205', onTile: '#2e1802' },
   'quinoa-puffs': { bg: '#e6f0d2', tile: '#6b8e2e', title: '#2f4410', onTile: '#fff6e8' },
   'chickpea-puffs': { bg: '#fde6cf', tile: '#b5562a', title: '#62250c', onTile: '#fff6e8' },
   'freeze-dried-black-jamun': { bg: '#efdff3', tile: '#5b2a6e', title: '#45195a', onTile: '#fff6e8' },
@@ -95,13 +98,16 @@ export interface ProductDetail {
   closeUp?: GalleryImage;
   photo?: GalleryImage;
   grades?: typeof makhanaGrades;
-  flavours?: typeof makhanaFlavours;
+  flavours?: Flavour[];
+  /** Line under the flavour list. */
+  flavourNote?: string;
+  packing: string[];
   freezeDried: boolean;
 }
 
 export function productDetail(product: Product): ProductDetail {
   const category = categoryOf(product);
-  const base = { closeUp: closeUps[product.id], photo: photos[product.id] };
+  const base = { closeUp: closeUps[product.id], photo: photos[product.id], packing: packingFormatsFor(product.category) };
   if (product.id === 'raw-makhana') {
     return {
       ...base,
@@ -122,19 +128,23 @@ export function productDetail(product: Product): ProductDetail {
       description: [makhanaFlavourIntro],
       badges: [`${makhanaFlavours.length} flavours`, 'No palm oil', 'Nitrogen flushed'],
       flavours: makhanaFlavours,
+      flavourNote: 'Taste profiles, seasoning and makhana quality are customised to your requirements.',
       freezeDried: false,
     };
   }
   if (product.category === 'puffs') {
-    const grain = product.name.replace(/ (Roasted )?Puffs$/, '').toLowerCase();
+    const range = puffRanges[product.id];
+    const flavours = range?.flavours ?? [];
     return {
       ...base,
-      subtitle: `Puffs · ${product.mood}`,
+      subtitle: `Millet-based puffs · ${flavours.length} flavours`,
       description: [
-        `Roasted ${grain} puffs, light and crunchy, for bulk supply, private label, vending and corporate packs.`,
-        'Available plain or flavoured; flavours and pack formats are confirmed for each enquiry.',
+        range?.description ?? `${product.name}, light and crunchy.`,
+        'For bulk supply, private label, vending and corporate packs. Pack formats are confirmed for each enquiry.',
       ],
-      badges: ['Roasted puffs', 'No palm oil', 'Nitrogen flushed'],
+      badges: [`${flavours.length} flavours`, 'No palm oil', 'Nitrogen flushed'],
+      flavours,
+      flavourNote: 'Flavours and seasoning can be customised to your requirements.',
       freezeDried: false,
     };
   }

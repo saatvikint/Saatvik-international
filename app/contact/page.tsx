@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 import { SOCIAL_CONFIG } from '@/config/SOCIAL_CONFIG';
 import { Icon } from '../visuals';
-import { StickerHeading } from '../sticker-heading';
+import { PageHero } from '../page-hero';
 import { ContactForm } from './contact-form';
 
 export const metadata: Metadata = {
@@ -15,10 +15,11 @@ export default function ContactPage() {
   return (
     <main id="main" className="content-page contact-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">Contact Us</span></nav>
-      <header className="content-page-header">
-        <StickerHeading as="h1" id="contact-title" kicker="Talk to our sourcing desk" rows={[[{ text: 'Contact', tone: 'lime' }], [{ text: 'Us', tone: 'red' }]]} />
-        <p>Tell us what your business needs. We handle product sourcing, wholesale supply, private-labelling, corporate supply and export enquiries.</p>
-      </header>
+      <PageHero id="contact-title" tone="lime" kicker="Talk to our sourcing desk"
+        rows={[[{ text: 'Contact', tone: 'lime' }], [{ text: 'Us', tone: 'red' }]]}
+        intro={<p>Tell us what your business needs. We handle product sourcing, wholesale supply, private-labelling, corporate supply and export enquiries.</p>}
+        actions={<><a className="button primary" href="#contact-form">Send a message <Icon name="arrow" /></a><a className="button yellow" href={SOCIAL_CONFIG.whatsappHref()} target="_blank" rel="noreferrer"><Icon name="whatsapp" /> WhatsApp us</a></>}
+        facts={[{ icon: 'phone', label: APP_CONFIG.phone.display }, { icon: 'mail', label: APP_CONFIG.email }, { icon: 'building', label: `${APP_CONFIG.address.city}, ${APP_CONFIG.address.country}` }]} />
 
       <section className="contact-layout" aria-labelledby="contact-title">
         <div className="contact-direct-grid">
@@ -27,7 +28,7 @@ export default function ContactPage() {
           <article className="contact-direct-card tone-lime"><Icon name="building" /><p className="eyebrow">PUNE OFFICE</p><address>{APP_CONFIG.address.line1}, {APP_CONFIG.address.line2}, {APP_CONFIG.address.street}, {APP_CONFIG.address.city}-{APP_CONFIG.address.postalCode}, {APP_CONFIG.address.country}</address></article>
           <Link className="contact-export-card" href="/export-query"><span><p className="eyebrow">INTERNATIONAL BUYERS</p><h2>Have an export requirement?</h2></span><Icon name="arrow" /></Link>
         </div>
-        <div className="contact-form-wrap"><p className="eyebrow">SEND A MESSAGE</p><h2>Start the conversation.</h2><ContactForm /></div>
+        <div className="contact-form-wrap" id="contact-form"><p className="eyebrow">SEND A MESSAGE</p><h2>Start the conversation.</h2><ContactForm /></div>
       </section>
     </main>
   );

@@ -1,9 +1,12 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { APP_CONFIG } from '@/config/APP_CONFIG';
 import { Icon } from '../visuals';
 import { StickerHeading } from '../sticker-heading';
 import { CompactAboutArt } from '../compact-about-art';
+import { StoryVideos } from './story-videos';
 import { founder, manufacturingVideos, showDraftSlots } from '@/content/company-media';
 
 // About Us / Our Story. Copy supplied verbatim by the client on 2026-11-16 (.agent/client/2026-11-16-our-story.md).
@@ -22,6 +25,7 @@ const values = [
 ] as const;
 
 export default function OurStoryPage() {
+  const founderPhoto = founder?.photo && existsSync(join(process.cwd(), 'public', founder.photo.src)) ? founder.photo : undefined;
   return (
     <main id="main" className="content-page story-page shell">
       <nav className="breadcrumbs" aria-label="Breadcrumb">
@@ -44,17 +48,22 @@ export default function OurStoryPage() {
       </section>
 
       {founder && (
-        <section className="founder-card" aria-labelledby="founder-title">
-          <div className="founder-photo" aria-hidden={!founder.photo}>
-            {founder.photo
-              ? <img src={founder.photo.src} width={founder.photo.width} height={founder.photo.height} alt={founder.name} loading="lazy" decoding="async" />
+        <section className="founder-card is-portrait" aria-labelledby="founder-title">
+          <div className="founder-photo" aria-hidden={!founderPhoto}>
+            {founderPhoto
+              ? <img src={founderPhoto.src} width={founderPhoto.width} height={founderPhoto.height} alt={`${founder.name}, ${founder.role} of ${APP_CONFIG.name}`} loading="lazy" decoding="async" />
               : <span>{founder.name.split(' ').map(part => part[0]).join('')}</span>}
           </div>
-          <div>
+          <div className="founder-copy">
             <p className="eyebrow">MEET THE FOUNDER</p>
             <h2 id="founder-title">{founder.name}</h2>
-            <p className="founder-role">{founder.role}</p>
+            <p className="founder-role">{founder.role}, {APP_CONFIG.name}</p>
+            <ul className="founder-facts">
+              <li><strong>4+ years</strong><span>in the healthy snacking industry</span></li>
+              <li><strong>3 categories</strong><span>makhana, puffs and freeze-dried fruits</span></li>
+            </ul>
             {founder.message && <p className="founder-message">“{founder.message}”</p>}
+            <Link className="button primary" href="/contact">Talk to our team <Icon name="arrow" /></Link>
           </div>
         </section>
       )}
@@ -86,21 +95,16 @@ export default function OurStoryPage() {
             <p className="eyebrow">FROM SOURCE TO PACK</p>
             <h2 id="story-videos-title">How our snacks are made.</h2>
           </header>
-          <div className="story-video-grid">
-            {manufacturingVideos.length > 0 ? manufacturingVideos.map(video => (
-              <figure key={video.id} className="story-video">
-                {video.embed
-                  ? <iframe src={video.src} title={video.title} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen />
-                  : <video src={video.src} poster={video.poster} controls playsInline preload="metadata" />}
-                <figcaption>{video.title}</figcaption>
-              </figure>
-            )) : ['Makhana processing', 'Puff making', 'Packing line'].map(title => (
-              <figure key={title} className="story-video is-draft-slot">
-                <div className="story-video-placeholder"><Icon name="play-circle" /><span>Video awaiting client</span></div>
-                <figcaption>{title}</figcaption>
-              </figure>
-            ))}
-          </div>
+          {manufacturingVideos.length > 0 ? <StoryVideos videos={manufacturingVideos} /> : (
+            <div className="story-video-grid">
+              {['Makhana processing', 'Puff making', 'Packing line'].map(title => (
+                <figure key={title} className="story-video is-draft-slot">
+                  <div className="story-video-placeholder"><Icon name="play-circle" /><span>Video awaiting client</span></div>
+                  <figcaption>{title}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
         </section>
       )}
 

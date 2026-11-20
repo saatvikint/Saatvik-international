@@ -122,7 +122,6 @@ export function Footer() {
                 <Link href="/services">Services</Link>
                 <Link href="/faq">FAQ</Link>
                 <Link href="/certifications">Certifications</Link>
-                <Link href="/#privacy">Privacy</Link>
                 <Link href="/contact">Contact</Link>
               </div>
 

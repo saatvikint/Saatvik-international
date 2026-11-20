@@ -18,7 +18,7 @@ Only what the client supplied. Source: business card ([assets/brand/saatvik-busi
 | Field | Value |
 |---|---|
 | Phone | +91 9370012306 |
-| Email | saatvikinternational9@gmail.com |
+| Email | info@saatvikinternational.com (2026-11-20; card shows saatvikinternational9@gmail.com) |
 | Website on card | www.saatvikinternational.com (**does not exist yet**, see Q1) |
 | Address | Office no-104, The Grid Business Hub, Near Chordiya Corner, Gangadham-Shatrunjay Road, Pune-411046 |
 
@@ -58,6 +58,29 @@ The client confirmed that Saatvik International holds: GST, MSME / Udyam, IEC, A
 - **Look:** light beige instead of white across the site; more makhana and puff elements; sticky header.
 - **Raw makhana grades:** 4 sutta (standard/economy, 12.7–15.8 mm), 5 sutta (premium retail, 15.8–19 mm), 6 sutta (jumbo/premium, 19–22.2 mm), with a comparison table. Verbatim: [2026-11-16-makhana-grades.md](2026-11-16-makhana-grades.md). Answers Q8.
 - **Manufacturing videos** (2026-11-16): two clips of makhana roasting, used on About Us (`public/assets/videos/`). Answers Q29.
+
+## Product changes 2026-11-20
+
+Verbatim: [2026-11-20-puff-flavours.md](2026-11-20-puff-flavours.md), [2026-11-20-product-changes.md](2026-11-20-product-changes.md).
+
+- **Puffs are three millet-based products:** Jowar, Chickpea, Quinoa. The separate "Millet Roasted Puffs" product is removed (answers Q10).
+- **Puff flavours:** Jowar: masala, cheese, cream & onion, pani puri. Chickpea: lime sriracha, cheese, peri peri, tomato. Quinoa: dahi puri chaat, chaat, zesty spicy, cream & onion, cheese garlic.
+- **Puff packing:** no jars. Pouches, stand-up pouches, pillow pouches and bulk aluminium pouches only.
+- **Freeze-drying explanation** for the freeze-dried products, including "maintaining its shape, flavour, colour and nutritional value" (client's own claim).
+- **Strawberry visual** should look a little fresher (illustrative image recoloured, still not a client photo).
+
+## Site feedback 2026-11-20
+
+Verbatim: [2026-11-20-site-feedback.md](2026-11-20-site-feedback.md).
+
+- **Email:** info@saatvikinternational.com everywhere (`APP_CONFIG.email`).
+- **All packaging is nitrogen flushed.**
+- **Navigation:** Export Query is a top-level link beside Corporate & Bulk; every "Get a quote" button goes to Contact Us.
+- **Founder portrait** supplied (black suit, beige backdrop); keep black.
+- **Private-label mock-up** packs show a generic "Your Brand Name" label, not the Saatvik logo (changed later on 2026-11-20).
+- **Product quote requests** ("Request a quote for this product") go to Contact Us, pre-filled with the product and choices.
+- **Service and packaging images:** the 10 AI-generated images in `content/services.ts` run without an "Illustrative image" tag. This is a deliberate exception to rule 8, made by Zahid (MaximiseTeck) on 2026-11-20. Replace them with real photos when the client sends them (Q36).
+- **Testimonials:** accepted as is (production shows "Buyer stories are being prepared" until real quotes arrive, Q25).
 
 ## Not confirmed
 

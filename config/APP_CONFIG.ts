@@ -47,7 +47,8 @@ class AppConfig {
   // Contact
   readonly contactPerson = 'Sahil Jain';
   readonly phone: PhoneNumber = { e164: '+919370012306', display: '+91 93700 12306' };
-  readonly email = 'saatvikinternational9@gmail.com';
+  /** Business email, client 2026-11-20 (replaces the Gmail address on the card). */
+  readonly email = 'info@saatvikinternational.com';
   readonly address: PostalAddress = {
     line1: 'Office no-104, The Grid Business Hub',
     line2: 'Near Chordiya Corner',
