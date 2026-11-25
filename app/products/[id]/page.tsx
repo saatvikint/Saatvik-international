@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: Params) {
   ].slice(0, 4);
   const options: ProductOption[] = [];
   if (detail.grades) options.push({ id: 'grade', label: 'Grade', initial: '5-sutta', items: detail.grades.map(grade => ({ id: grade.id, label: `${grade.sutta} Sutta · ${grade.grade} (${gradeSizeLabel(grade)})`, short: `${grade.sutta} Sutta` })) });
-  if (detail.flavours) options.push({ id: 'flavour', label: 'Flavour', items: detail.flavours.map(flavour => ({ id: flavour.id, label: flavour.name, short: flavour.name, colour: flavour.colour, note: flavour.taste })) });
+  if (detail.flavours) options.push({ id: 'flavour', label: 'Flavour', items: detail.flavours.map(flavour => ({ id: flavour.id, label: flavour.name, short: flavour.name, colour: flavour.colour, icon: flavour.icon, note: flavour.taste })) });
 
   return (
     <main id="main" className={`pdp-page pdp-${product.category}`} style={themeStyle(themeFor(product.id))}>
@@ -107,8 +107,10 @@ export default async function ProductPage({ params }: Params) {
                   <summary>Flavours <span className="pdp-accordion-icon" aria-hidden="true"><Icon name="chevron-down" /></span></summary>
                   <ul className="pdp-flavours">
                     {detail.flavours.map(flavour => (
-                      <li key={flavour.id}>
-                        <span className="pdp-flavour-dot" style={{ background: flavour.colour }} aria-hidden="true" />
+                      <li key={flavour.id} className={flavour.icon ? 'has-icon' : undefined}>
+                        {flavour.icon
+                          ? <img className="pdp-flavour-icon" src={flavour.icon} width={192} height={192} alt="" loading="lazy" decoding="async" />
+                          : <span className="pdp-flavour-dot" style={{ background: flavour.colour }} aria-hidden="true" />}
                         <strong>{flavour.name}</strong>
                         <p>{flavour.taste}</p>
                       </li>

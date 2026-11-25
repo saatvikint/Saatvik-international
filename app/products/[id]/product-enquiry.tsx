@@ -14,6 +14,8 @@ export interface OptionItem {
   short: string;
   /** Dot colour shown in the select (flavours). */
   colour?: string;
+  /** Flavour icon shown in place of the dot when there is one. */
+  icon?: string;
   /** Short description shown under the select for the chosen item (flavour taste note). */
   note?: string;
 }
@@ -60,7 +62,9 @@ export function ProductEnquiry({ product, options, packing: packingFormats }: Pr
         <div key={option.id} className="pdp-select-group">
           <label className="pdp-select">
             <span className="pdp-select-label">{option.label}</span>
-            <span className="pdp-select-dot" aria-hidden="true" style={chosen[index]?.colour ? { background: chosen[index]?.colour } : undefined} />
+            {chosen[index]?.icon
+              ? <img className="pdp-select-icon" src={chosen[index]?.icon} width={192} height={192} alt="" aria-hidden="true" />
+              : <span className="pdp-select-dot" aria-hidden="true" style={chosen[index]?.colour ? { background: chosen[index]?.colour } : undefined} />}
             <select
               value={choices[option.id]}
               aria-describedby={chosen[index]?.note ? `${id}-${option.id}-note` : undefined}

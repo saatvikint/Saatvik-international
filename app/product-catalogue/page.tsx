@@ -258,8 +258,10 @@ export default function ProductCataloguePage() {
                   <h3 className="pc-h3">Flavours</h3>
                   <ul className="pc-flavours">
                     {detail.flavours.map(flavour => (
-                      <li key={flavour.id}>
-                        <span className="pc-flavour-dot" style={{ background: flavour.colour }} aria-hidden="true" />
+                      <li key={flavour.id} className={flavour.icon ? 'has-icon' : undefined}>
+                        {flavour.icon
+                          ? <img className="pc-flavour-icon" src={flavour.icon} width={192} height={192} alt="" />
+                          : <span className="pc-flavour-dot" style={{ background: flavour.colour }} aria-hidden="true" />}
                         <strong>{flavour.name}</strong>
                         <p>{flavour.taste}</p>
                       </li>

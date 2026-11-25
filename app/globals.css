@@ -5296,3 +5296,12 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
 .why-badge.is-blue{background:#3330af;color:#b8defa}
 .why-badge:nth-child(1){rotate:-2deg}.why-badge:nth-child(2){rotate:1.5deg}.why-badge:nth-child(3){rotate:-1deg}
 @media(prefers-reduced-motion:reduce){.why-badge{rotate:none}}
+
+/* Flavour cards with illustrated icons (client artwork 2026-11-25); dot remains the fallback. */
+.pdp-flavours li.has-icon{grid-template-columns:64px minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:14px;align-items:start}
+.pdp-flavours li.has-icon .pdp-flavour-icon{grid-row:span 2;align-self:center;width:64px;height:64px;object-fit:contain}
+.pdp-flavours li.has-icon strong{align-self:end}
+.pdp-flavours li.has-icon p{grid-column:2}
+.pc-flavours li.has-icon{grid-template-columns:36px minmax(0,1fr);align-items:center}
+.pc-flavour-icon{grid-row:span 2;width:36px;height:36px;object-fit:contain}
+.pdp-select-icon{flex:none;width:34px;height:34px;margin:-6px 0;object-fit:contain}
