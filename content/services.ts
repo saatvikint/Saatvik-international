@@ -8,12 +8,13 @@ import type { SlotImage } from '@/app/image-slot';
 
 export const privateLabel = {
   intro:
-    'Launch your own snack brand without building a factory. We help businesses launch their own snack brands by providing product sourcing, manufacturing coordination, customised packaging and private-label supply.',
+    'Launch your own snack brand without building a factory. We help businesses launch their own snack brands by providing farm-sourced products, customised packaging, private-label supply and logistic support across India and for export.',
   offers: [
-    { icon: 'leaf', title: 'Product sourcing', text: 'Makhana in 4 to 7 sutta grades, roasted and flavoured makhana, millet-based puffs and freeze-dried fruits.' },
-    { icon: 'handshake', title: 'Manufacturing coordination', text: 'We coordinate roasting, seasoning and packing with our manufacturing partners, so you deal with one supplier.' },
+    // Client 2026-11-25: raw material sourced from farmers; manufacturing coordination removed; logistic support added.
+    { icon: 'leaf', title: 'Product sourcing', text: 'For all our products, the raw material is sourced from farmers, fresh and of the topmost quality.' },
     { icon: 'sparkle', title: 'Flavour & seasoning', text: 'Choose from 15 flavours across makhana and puffs, or brief us on the taste profile you want.' },
     { icon: 'package-check', title: 'Customised packaging', text: 'Your brand on pouches, stand-up pouches, pillow pouches, jars or bulk packs. All food grade and nitrogen flushed.' },
+    { icon: 'truck', title: 'Logistic support', text: 'Pan-India delivery and exports, so your private-label stock reaches you wherever you sell.' },
   ],
   steps: [
     { title: 'Share your brief', text: 'Tell us the product, flavour, pack format, quantity and target market.' },

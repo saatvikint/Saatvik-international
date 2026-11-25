@@ -10,7 +10,7 @@ export function HomeAbout() {
     <section className="home-about-section shell" id="story" aria-labelledby="home-about-title">
       <div className="home-about-copy">
         <StickerHeading id="home-about-title" size="md" align="start" rays={false}
-          kicker="Pune · B2B · Wholesale · Export"
+          kicker="Corporate · B2B · Wholesale · Export"
           rows={[[{ text: 'About', tone: 'pink' }, { text: 'Us', tone: 'purple' }]]} />
         <p className="home-about-lead">{APP_CONFIG.tagline}.</p>
         <div className="home-about-body">

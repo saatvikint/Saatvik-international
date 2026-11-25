@@ -48,9 +48,9 @@ export function WhySaatvik() {
           rows={[[{ text: 'Why', tone: 'yellow' }, { text: 'Choose', tone: 'pink' }], [{ text: 'Us', tone: 'lime' }]]} />
       </header>
       <p className="why-badges" aria-label="Product promises">
-        <span className="why-badge is-hero"><Icon name="leaf" strokeWidth={2} /> No palm oil</span>
-        <span className="why-badge"><Icon name="check" strokeWidth={2} /> Clean label</span>
-        <span className="why-badge"><Icon name="check" strokeWidth={2} /> Quality checked</span>
+        <span className="why-badge is-teal"><Icon name="leaf" strokeWidth={2} /> No palm oil</span>
+        <span className="why-badge is-purple"><Icon name="plant" strokeWidth={2} /> Clean label</span>
+        <span className="why-badge is-blue"><Icon name="quality-check" strokeWidth={2} /> Quality checked</span>
       </p>
       <ul className="why-grid">
         {reasons.map(reason => (

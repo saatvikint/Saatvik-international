@@ -86,3 +86,10 @@ Verbatim: [2026-11-20-site-feedback.md](2026-11-20-site-feedback.md).
 ## Not confirmed
 
 No certificate or licence numbers/copies other than GST, MOQ, capacity, export history, client name or founding date have been supplied. See `open-questions.md`.
+
+## Client feedback 2026-11-25
+
+- **Product sourcing:** for all products, raw material is sourced from farmers, fresh and of the topmost quality.
+- **Manufacturing coordination:** remove (not offered as a service line).
+- **Logistic support:** Pan-India delivery and exports.
+- Private-label 3D mock-up: add a pillow pouch (third pack).

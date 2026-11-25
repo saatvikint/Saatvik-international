@@ -1,4 +1,5 @@
 import { saveEnquiry } from '../../../lib/enquiry-store';
+import { cell, sendToSheet, sheetConfigured } from '../../../lib/enquiry-sheet';
 
 export const runtime = 'nodejs';
 
@@ -66,7 +67,31 @@ export async function POST(request: Request) {
       message: `[CORPORATE ENQUIRY - ${quantity} jars for ${occasion}] ${message || 'Requesting corporate quotation and sample kit.'}`,
     };
 
-    saveEnquiry(id, details, corporatePayload);
+    // Google Sheet first (the client's inbox), local SQLite as a backup. Fail only if both fail.
+    const sheetOk = await sendToSheet({
+      id: cell(id, 40),
+      form: cell(occasion, 120) || 'Enquiry',
+      name: cell(name, 100),
+      company: cell(company, 150),
+      email: cell(email, 150),
+      phone: cell(phone, 30),
+      location: cell(city, 100),
+      products: corporatePayload.selectedProducts.join(', ').slice(0, 500),
+      volume: cell(quantity, 120),
+      message: cell(message, 1000),
+      page: cell(request.headers.get('Referer'), 300),
+    });
+    let storeOk = false;
+    try {
+      saveEnquiry(id, details, corporatePayload);
+      storeOk = true;
+    } catch (error) {
+      console.error('Enquiry backup store failed:', error);
+    }
+    if (!sheetOk && !storeOk) {
+      return json({ error: 'Your enquiry could not be sent right now. Please call or email us.' }, 503);
+    }
+    if (sheetConfigured() && !sheetOk) console.error(`Enquiry ${id} saved locally only: the Google Sheet did not accept it.`);
 
     return json({ success: true, id, company: company.trim() }, 201);
   } catch (error) {

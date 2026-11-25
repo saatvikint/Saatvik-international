@@ -1,6 +1,7 @@
 import { saveEnquiry } from '../../../lib/enquiry-store';
 import type { EnquiryDetails } from '../../../lib/enquiry-store';
-import { productIds } from '../../../content/catalogue';
+import { productIds, products } from '../../../content/catalogue';
+import { cell, sendToSheet, sheetConfigured } from '../../../lib/enquiry-sheet';
 
 export const runtime = 'nodejs';
 
@@ -56,10 +57,29 @@ export async function POST(request: Request) {
     return json({ error: 'Please check your enquiry quantities.' }, 400);
   }
 
+  // Google Sheet first (the client's inbox), local SQLite as a backup. Fail only if both fail.
+  const productList = items.map(([id, quantity]) => `${products.find(product => product.id === id)?.name ?? id} × ${quantity}`).join(', ');
+  const sheetOk = await sendToSheet({
+    id: data.id,
+    form: 'Enquiry list',
+    name: details.name,
+    company: cell(data.company, 150),
+    email: details.email,
+    phone: details.phone,
+    location: details.city,
+    products: productList.slice(0, 500),
+    volume: '',
+    message: details.message,
+    page: cell(request.headers.get('Referer'), 300),
+  });
+  let storeOk = false;
   try {
     saveEnquiry(data.id, details, data.items);
-    return json({ id: data.id }, 201);
-  } catch {
-    return json({ error: 'Your enquiry could not be saved right now. Please try again.' }, 503);
+    storeOk = true;
+  } catch (error) {
+    console.error('Enquiry backup store failed:', error);
   }
+  if (!sheetOk && !storeOk) return json({ error: 'Your enquiry could not be saved right now. Please try again.' }, 503);
+  if (sheetConfigured() && !sheetOk) console.error(`Enquiry ${data.id} saved locally only: the Google Sheet did not accept it.`);
+  return json({ id: data.id }, 201);
 }

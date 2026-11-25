@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { PackScene } from './pack-scene';
 
-// 360° private-label mock-up: a jar and stand-up pouch with a generic "Your Brand Name" label (client 2026-11-20).
+// 360° private-label mock-up: a jar, a stand-up pouch and a pillow pouch with a generic "Your Brand Name" label (client 2026-11-20).
 // three.js loads only near the viewport and renders only while on screen; drag to spin.
 // Reduced motion: no auto-rotation, dragging still works. No WebGL: a labelled still placeholder.
 
@@ -65,8 +65,8 @@ export function PackShowcase() {
   return (
     <figure className={`pack-showcase is-${mode}`}>
       <div ref={stage} className="pack-showcase-stage" role="img"
-        aria-label="3D mock-up of a jar of roasted makhana and a stand-up pouch of jowar puffs, labelled 'Your Brand Name', rotating" />
-      {mode === 'fallback' && <div className="pack-showcase-fallback">Jar and pouch mock-up</div>}
+        aria-label="3D mock-up of a jar of roasted makhana, a stand-up pouch of jowar puffs and a pillow pouch of peri peri makhana, labelled 'Your Brand Name', rotating" />
+      {mode === 'fallback' && <div className="pack-showcase-fallback">Jar, stand-up pouch and pillow pouch mock-up</div>}
       <figcaption>
         <span className="pack-showcase-hint" aria-hidden="true">↔ Drag to rotate</span>
         <span>Illustrative mock-up. Your brand, flavour and pack format are agreed per enquiry.</span>

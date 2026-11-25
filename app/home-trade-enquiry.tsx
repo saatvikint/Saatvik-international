@@ -61,9 +61,9 @@ export function HomeTradeEnquiry() {
           phone,
           city: city || 'Not specified',
           quantity: volume,
-          occasion: `Trade Enquiry - ${product}`,
+          occasion: 'Trade enquiry',
           customBranding: false,
-          message: `[B2B TRADE ENQUIRY for ${product}] Company: ${company || 'N/A'}. Volume: ${volume}. City: ${city}. Notes: ${message}`,
+          message,
           flavours: [product],
         }),
       });

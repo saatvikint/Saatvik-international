@@ -1,4 +1,4 @@
-// 3D private-label mock-up (three.js): a PET jar and a stand-up pouch carrying a generic "Your Brand Name"
+// 3D private-label mock-up (three.js): a PET jar, a stand-up pouch and a pillow pouch (added 2026-11-25) carrying a generic "Your Brand Name"
 // mark (client 2026-11-20: show the buyer's brand, not the Saatvik logo), turning slowly through 360°.
 // Drag to spin. Loaded on demand by ./pack-showcase.tsx; never imported on the server.
 //
@@ -19,6 +19,8 @@ const INK = '#461025';
 const GREEN = '#1c3d2b';
 const GOLD = '#a8862f';
 const CREAM = '#fcf4e6';
+const PLUM = '#5a1f3c';
+const PERI = '#e0412b';
 
 
 function text(ctx: CanvasRenderingContext2D, value: string, x: number, y: number, size: number, color: string, weight = 700, font = 'Outfit, Arial, sans-serif') {
@@ -144,6 +146,87 @@ function pouchFront(back = false): THREE.CanvasTexture {
   return texture;
 }
 
+/** Front/back of the pillow pouch: plum film, cream window panel, peri-peri makhana example. */
+function pillowFront(back = false): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1024;
+  canvas.height = 1300;
+  const ctx = canvas.getContext('2d')!;
+  const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, '#7a2b52');
+  gradient.addColorStop(1, PLUM);
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // crimp texture bands where the top and bottom seals sit
+  ctx.fillStyle = '#ffffff18';
+  for (let x = 0; x < canvas.width; x += 26) {
+    ctx.fillRect(x, 0, 12, 110);
+    ctx.fillRect(x, canvas.height - 110, 12, 110);
+  }
+  const cx = canvas.width / 2;
+  ctx.fillStyle = CREAM;
+  ctx.beginPath();
+  ctx.roundRect(110, 200, canvas.width - 220, 860, 70);
+  ctx.fill();
+  ctx.strokeStyle = GOLD;
+  ctx.lineWidth = 8;
+  ctx.stroke();
+  if (!back) {
+    brandMark(ctx, cx, 420, 1.1);
+    text(ctx, 'ROASTED MAKHANA', cx, 610, 70, PLUM, 800, 'Ubuntu, Arial, sans-serif');
+    pill(ctx, cx, 730, 440, 92, PERI);
+    text(ctx, 'PERI PERI', cx, 732, 52, CREAM, 800);
+    text(ctx, 'Nitrogen flushed', cx, 880, 40, GOLD, 700);
+    text(ctx, 'Pillow pouch', cx, 960, 36, INK, 600);
+  } else {
+    // back fin seal down the centre, with a soft shadow either side
+    ctx.fillStyle = '#00000022';
+    ctx.fillRect(cx - 58, 0, 116, canvas.height);
+    ctx.fillStyle = '#4a1832';
+    ctx.fillRect(cx - 40, 0, 80, canvas.height);
+    ctx.fillStyle = '#ffffff14';
+    for (let y = 0; y < canvas.height; y += 24) ctx.fillRect(cx - 40, y, 80, 10);
+    // panel content sits beside the seal
+    ctx.fillStyle = CREAM;
+    ctx.beginPath();
+    ctx.roundRect(110, 200, canvas.width - 220, 860, 70);
+    ctx.fill();
+    ctx.strokeStyle = GOLD;
+    ctx.stroke();
+    text(ctx, 'YOUR BRAND,', cx, 430, 74, PLUM, 800, 'Ubuntu, Arial, sans-serif');
+    text(ctx, 'OUR SUPPLY', cx, 520, 74, PLUM, 800, 'Ubuntu, Arial, sans-serif');
+    text(ctx, 'Pouch · Stand-up · Pillow · Jar', cx, 650, 36, INK, 600);
+    brandMark(ctx, cx, 880, 0.8);
+  }
+  text(ctx, 'FOOD-GRADE PACKING', cx, 1150, 44, CREAM, 800);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  return texture;
+}
+
+/** Pillow pouch face: flat crimp seals top and bottom, puffed in both directions in between. */
+function pillowFace(width: number, height: number, bulge: number): THREE.BufferGeometry {
+  const g = new THREE.PlaneGeometry(width, height, 40, 56);
+  const pos = g.getAttribute('position') as THREE.BufferAttribute;
+  const seal = 0.085; // share of the height taken by each crimp seal
+  for (let i = 0; i < pos.count; i++) {
+    const x = pos.getX(i);
+    const y = pos.getY(i);
+    const u = x / (width / 2); // -1..1
+    const v = (y + height / 2) / height; // 0..1
+    const inner = Math.min(1, Math.max(0, (v - seal) / (1 - 2 * seal)));
+    const onSeal = v < seal || v > 1 - seal;
+    const across = Math.cos((u * Math.PI) / 2) ** 0.8;
+    const along = Math.sin(inner * Math.PI) ** 0.55;
+    pos.setZ(i, onSeal ? 0 : bulge * across * along);
+    // the film pulls in slightly at the waist of the seals
+    pos.setX(i, x * (onSeal ? 1 : 1 - 0.04 * along));
+  }
+  g.computeVertexNormals();
+  return g;
+}
+
 /** A pillowed rectangle: a plane whose middle bulges outwards like a filled pouch. */
 function pouchFace(width: number, height: number, bulge: number, gusset: number): THREE.BufferGeometry {
   const g = new THREE.PlaneGeometry(width, height, 40, 56);
@@ -202,7 +285,7 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
 
   // ---------- jar ----------
   const jar = new THREE.Group();
-  jar.position.set(-1.4, -0.2, 0);
+  jar.position.set(-2.45, -0.2, 0);
   const jarR = 1.05, jarH = 2.9;
   const body = new THREE.Mesh(
     new THREE.CylinderGeometry(jarR, jarR, jarH, 64, 1, true),
@@ -237,7 +320,7 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
 
   // ---------- pouch ----------
   const pouch = new THREE.Group();
-  pouch.position.set(1.45, -0.05, 0);
+  pouch.position.set(2.45, -0.05, 0);
   const pw = 2.3, ph = 3.3;
   const frontMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.45, metalness: 0.05 });
   const backMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.45, metalness: 0.05 });
@@ -257,6 +340,30 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
   pouch.add(topSeal);
   turntable.add(pouch);
 
+  // ---------- pillow pouch (client 2026-11-25) ----------
+  const pillow = new THREE.Group();
+  pillow.position.set(0, -0.4, 0.55);
+  const lw = 2.0, lh = 2.7;
+  const pillowFrontMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.4, metalness: 0.08 });
+  const pillowBackMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.4, metalness: 0.08 });
+  const pillowFrontMesh = new THREE.Mesh(pillowFace(lw, lh, 0.42), pillowFrontMat);
+  const pillowBackMesh = new THREE.Mesh(pillowFace(lw, lh, 0.42), pillowBackMat);
+  pillowBackMesh.rotation.y = Math.PI;
+  pillow.add(pillowFrontMesh, pillowBackMesh);
+  // crimped top and bottom seals: thin ridged strips
+  const crimpMat = new THREE.MeshStandardMaterial({ color: PLUM, roughness: 0.55 });
+  for (const side of [-1, 1]) {
+    const crimp = new THREE.Mesh(new THREE.BoxGeometry(lw, lh * 0.085, 0.04, 24, 1, 1), crimpMat);
+    const cp = crimp.geometry.getAttribute('position') as THREE.BufferAttribute;
+    for (let i = 0; i < cp.count; i++) cp.setZ(i, cp.getZ(i) + Math.sin(cp.getX(i) * 40) * 0.012);
+    crimp.geometry.computeVertexNormals();
+    crimp.position.y = side * (lh / 2 - (lh * 0.085) / 2);
+    pillow.add(crimp);
+  }
+  // The back fin seal is painted on the back label (a flat strip floated off the curved film side-on).
+  pillow.rotation.z = -0.05;
+  turntable.add(pillow);
+
   // soft floor shadow
   const shadowCanvas = document.createElement('canvas');
   shadowCanvas.width = shadowCanvas.height = 128;
@@ -266,7 +373,7 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
   grad.addColorStop(1, 'rgba(70,16,37,0)');
   sctx.fillStyle = grad;
   sctx.fillRect(0, 0, 128, 128);
-  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(7.5, 2.2), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false }));
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(10, 3.2), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(shadowCanvas), transparent: true, depthWrite: false }));
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.y = -1.95;
   scene.add(shadow);
@@ -279,7 +386,12 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
     const jarTex = jarLabel();
     const frontTex = pouchFront();
     const backTex = pouchFront(true);
-    textures.push(jarTex, frontTex, backTex);
+    const pillowFrontTex = pillowFront();
+    const pillowBackTex = pillowFront(true);
+    textures.push(jarTex, frontTex, backTex, pillowFrontTex, pillowBackTex);
+    pillowFrontMat.map = pillowFrontTex;
+    pillowBackMat.map = pillowBackTex;
+    pillowFrontMat.needsUpdate = pillowBackMat.needsUpdate = true;
     labelMat.map = jarTex;
     // Cylinder UV seam faces -z by default; offset so the front panel (u = 0.5) faces the camera.
     jarTex.wrapS = THREE.RepeatWrapping;
@@ -299,7 +411,7 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     // keep both packs in frame on narrow screens
-    camera.position.z = w / h < 0.9 ? 12 : w / h < 1.2 ? 9.6 : 9;
+    camera.position.z = w / h < 0.9 ? 19 : w / h < 1.2 ? 15.5 : w / h < 1.5 ? 13 : 11.6;
     camera.updateProjectionMatrix();
     render();
   }
@@ -312,6 +424,7 @@ export function createPackScene(container: HTMLElement, options: Options): PackS
     // each pack also turns on its own axis so both show front and back
     jar.rotation.y = angle * 0.6;
     pouch.rotation.y = -angle * 0.4;
+    pillow.rotation.y = angle * 0.5;
     renderer.render(scene, camera);
   }
 

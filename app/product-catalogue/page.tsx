@@ -72,6 +72,9 @@ function imageCopies() {
   return { use, manifest: () => JSON.stringify([...list.values()]) };
 }
 
+/** Plain card colour behind product bowls (client 2026-11-25), same as the website product cards (--surface). */
+const PLAIN_TILE = '#fdf6ea';
+
 const LOGO_SMALL = '/assets/catalogue/saatvik-logo-560.png';
 const logoSrc = () => (existsSync(join(process.cwd(), 'public', LOGO_SMALL)) ? LOGO_SMALL : APP_CONFIG.logo.src);
 
@@ -218,7 +221,7 @@ export default function ProductCataloguePage() {
               <div className="pc-product-top">
                 <div className="pc-product-visuals">
                   <figure className="pc-product-tile">
-                    {product.image && <img src={images.use(product.image.src, 640, theme.tile)} width={product.image.width} height={product.image.height} alt={product.image.alt} />}
+                    {product.image && <img src={images.use(product.image.src, 640, PLAIN_TILE)} width={product.image.width} height={product.image.height} alt={product.image.alt} />}
                   </figure>
                   {photo && (
                     <figure className="pc-product-photo">

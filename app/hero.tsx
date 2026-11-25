@@ -76,6 +76,36 @@ export function FlavourHero() {
 
   return (
     <section className={switching ? 'hero is-switching' : 'hero'} data-flavour={slide.theme} onFocus={pauseForFocus} onBlur={pauseForFocus} aria-label="Featured products" aria-roledescription="carousel">
+        {/* White hand-drawn outline around the product (client reference 2026-11-25): traces the image's
+            own shape, offsets it, and breaks the line with noise so it reads as a sketched doodle. */}
+        <svg className="hero-doodle-defs" width="0" height="0" aria-hidden="true" focusable="false">
+          <filter id="hero-doodle-outline" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="soft" />
+            <feComponentTransfer in="soft" result="solid"><feFuncA type="discrete" tableValues="0 0 1 1 1" /></feComponentTransfer>
+            <feMorphology in="solid" operator="dilate" radius="17" result="outer" />
+            <feMorphology in="solid" operator="dilate" radius="12.5" result="inner" />
+            <feComposite in="outer" in2="inner" operator="out" result="ring" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.016" numOctaves="1" seed="7" result="noise" />
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  14 0 0 0 -6.4" result="gaps" />
+            <feComposite in="ring" in2="gaps" operator="in" result="broken" />
+            <feFlood floodColor="#ffffff" />
+            <feComposite in2="broken" operator="in" result="line" />
+            <feMerge><feMergeNode in="line" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <filter id="hero-doodle-outline-sm" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="soft" />
+            <feComponentTransfer in="soft" result="solid"><feFuncA type="discrete" tableValues="0 0 1 1 1" /></feComponentTransfer>
+            <feMorphology in="solid" operator="dilate" radius="9.5" result="outer" />
+            <feMorphology in="solid" operator="dilate" radius="7" result="inner" />
+            <feComposite in="outer" in2="inner" operator="out" result="ring" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="1" seed="7" result="noise" />
+            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  14 0 0 0 -6.4" result="gaps" />
+            <feComposite in="ring" in2="gaps" operator="in" result="broken" />
+            <feFlood floodColor="#ffffff" />
+            <feComposite in2="broken" operator="in" result="line" />
+            <feMerge><feMergeNode in="line" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+        </svg>
         <svg className="hero-wave" viewBox="0 0 1440 580" preserveAspectRatio="none" aria-hidden="true"><path d="M0 485C105 495 152 570 280 550c119-19 140-76 253-88 127-13 149 18 219-67C849 277 904 81 1040 64c111-14 149 67 249 24 59-26 99-68 151-80v572H0Z"/></svg>
         <div className="shell hero-inner">
           <div className="hero-copy">

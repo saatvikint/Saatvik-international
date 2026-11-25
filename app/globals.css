@@ -5275,3 +5275,24 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
   .pc-page:last-child{break-after:auto}
   .pc-page,.pc-page *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
+
+/* Plain background behind product bowls everywhere, matching the product card (client 2026-11-25).
+   Product colours stay on the page/container around the image, not behind the bowl. */
+.pdp-main{background:var(--surface);border:3px solid var(--ink);box-shadow:0 7px 0 var(--ink)}
+.pdp-main img{filter:drop-shadow(0 16px 14px #26081730)}
+.pc-product-tile{background:var(--surface)}
+.mega-card-media{background:var(--surface);border:2px solid var(--ink)}
+
+/* Hero: white sketched outline around every banner product (client reference 2026-11-25) */
+.hero-doodle-defs{position:absolute;width:0;height:0;overflow:hidden}
+.hero-photo.is-illustrative{filter:url(#hero-doodle-outline) drop-shadow(12px 19px 13px #371c3060)}
+@media(max-width:760px){.hero-photo.is-illustrative{filter:url(#hero-doodle-outline-sm) drop-shadow(8px 12px 9px #371c3060)}}
+
+/* Why Choose Us promise badges: all three filled, each its own colour (client 2026-11-25).
+   Contrast: yellow on teal 4.67, pink on purple 6.6, sky on blue 6.8. */
+.why-badge.is-teal,.why-badge.is-purple,.why-badge.is-blue{border-color:var(--ink);box-shadow:0 4px 0 var(--ink)}
+.why-badge.is-teal{background:#176b5f;color:#f7dd54}
+.why-badge.is-purple{background:#4f227c;color:#ffaaf1}
+.why-badge.is-blue{background:#3330af;color:#b8defa}
+.why-badge:nth-child(1){rotate:-2deg}.why-badge:nth-child(2){rotate:1.5deg}.why-badge:nth-child(3){rotate:-1deg}
+@media(prefers-reduced-motion:reduce){.why-badge{rotate:none}}
