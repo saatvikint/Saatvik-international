@@ -108,7 +108,7 @@ function FaqMedia() {
   }, []);
 
   if (!faqVideo) {
-    return <img className="is-illustrative" src="/assets/faq/model-holding-makhana.webp" width={900} height={1004} alt="Illustrative visual of a model holding a bowl of flavoured makhana, with the face outside the frame" loading="lazy" decoding="async" />;
+    return <img className="is-illustrative" src="/assets/faq/got-questions-makhana.webp" width={1100} height={1100} alt="A hand picking flavoured makhana from a bowl" loading="lazy" decoding="async" />;
   }
 
   function toggle() {

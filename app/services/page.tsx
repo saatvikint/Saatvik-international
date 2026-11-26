@@ -69,7 +69,7 @@ export default function ServicesPage() {
             <header className="pl-process-head">
               <StickerHeading size="md" align="start" rays={false} kicker="How private labelling works"
                 rows={[[{ text: 'Brief', tone: 'yellow' }, { text: 'to', tone: 'pink', small: true }], [{ text: 'Shelf', tone: 'lime' }]]} />
-              <ImageSlot image={privateLabel.image} className="pl-range-photo" ratio="16 / 10" />
+              <ImageSlot image={privateLabel.image} className="pl-range-photo" ratio="4 / 3" />
             </header>
             <ol className="pl-steps">
               {privateLabel.steps.map((step, index) => (

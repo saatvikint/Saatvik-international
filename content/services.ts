@@ -24,8 +24,8 @@ export const privateLabel = {
   ],
   forWho: ['Food brands & startups', 'Private-label brand owners', 'Supermarkets & retail chains', 'Grocery & FMCG businesses', 'Exporters & importers'],
   image: {
-    src: '/assets/services/private-label-range.jpg',
-    alt: 'Private-label snack packs with a sample brand',
+    src: '/assets/services/private-label-pouches.jpg',
+    alt: 'Stand-up pouches of makhana, puffs and freeze-dried fruit on colourful blocks',
     label: 'Private-label pack range',
   } satisfies SlotImage,
 };
