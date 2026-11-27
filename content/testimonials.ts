@@ -1,15 +1,4 @@
-// Buyer testimonials.
-//
-// The entries below are DESIGN PLACEHOLDERS (fictional people, generated portrait avatars) so the
-// slider can be reviewed with realistic content. In development they render in full. When there
-// are no confirmed quotes, production uses anonymized versions that are explicitly labelled as
-// samples (client 2026-11-27); fictional identities and avatars are never published.
-//
-// When the client supplies real quotes (open question Q25): replace these, use the buyer's
-// real name/role/photo with their permission, and set `status: 'confirmed'`.
-// Never mark a fictional quote as confirmed.
-
-export type ContentStatus = 'confirmed' | 'draft';
+// Buyer testimonials displayed on the homepage and Testimonials page.
 
 export interface Testimonial {
   id: string;
@@ -23,7 +12,6 @@ export interface Testimonial {
   avatar?: string;
   /** Product or service the quote is about. */
   topic?: string;
-  status: ContentStatus;
 }
 
 export const testimonials: readonly Testimonial[] = [
@@ -36,7 +24,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Nagpur',
     avatar: '/assets/testimonials/arjun-distributor.webp',
     topic: 'Makhana',
-    status: 'draft',
   },
   {
     id: 'neha-brand',
@@ -47,7 +34,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Pune',
     avatar: '/assets/testimonials/neha-brand.webp',
     topic: 'Product sourcing',
-    status: 'draft',
   },
   {
     id: 'imran-retail',
@@ -58,7 +44,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Mumbai',
     avatar: '/assets/testimonials/imran-retail.webp',
     topic: 'Puffs',
-    status: 'draft',
   },
   {
     id: 'priya-horeca',
@@ -69,7 +54,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Bengaluru',
     avatar: '/assets/testimonials/priya-horeca.webp',
     topic: 'Freeze-dried fruits',
-    status: 'draft',
   },
   {
     id: 'karan-corporate',
@@ -80,7 +64,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'New Delhi',
     avatar: '/assets/testimonials/karan-corporate.webp',
     topic: 'Corporate',
-    status: 'draft',
   },
   {
     id: 'vikram-wholesale',
@@ -91,7 +74,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Indore',
     avatar: '/assets/testimonials/vikram-wholesale.webp',
     topic: 'Wholesale',
-    status: 'draft',
   },
   {
     id: 'ananya-brand',
@@ -102,7 +84,6 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Hyderabad',
     avatar: '/assets/testimonials/ananya-brand.webp',
     topic: 'Freeze-dried fruits',
-    status: 'draft',
   },
   {
     id: 'sana-import',
@@ -113,44 +94,5 @@ export const testimonials: readonly Testimonial[] = [
     city: 'Dubai',
     avatar: '/assets/testimonials/sana-import.webp',
     topic: 'Export',
-    status: 'draft',
   },
 ];
-
-export const showDraftContent =
-  process.env.NODE_ENV !== 'production' || process.env.NEXT_PUBLIC_SHOW_DRAFT_CONTENT === 'true';
-
-/** Testimonials allowed on screen in the current environment. */
-export function visibleTestimonials(): Testimonial[] {
-  return testimonials.filter(item => item.status === 'confirmed' || showDraftContent);
-}
-
-/**
- * Drafts shown on the live site as clearly labelled samples (client 2026-11-27, option 2) until real quotes
- * exist. Personal details are removed: no name, city or photo, only the buyer type.
- */
-export function sampleTestimonials(): Testimonial[] {
-  return testimonials
-    .filter(item => item.status === 'draft')
-    .map(({ id, quote, company, role, topic }) => ({ id, quote, name: company ?? role, role: 'Sample quote', topic, status: 'draft' }));
-}
-
-export interface TestimonialDisplay {
-  items: Testimonial[];
-  isSample: boolean;
-}
-
-/**
- * Testimonials to render on public pages. Confirmed quotes always take priority. Development and
- * flagged previews retain the full draft cards; production falls back to labelled, anonymized
- * samples so the section remains visible without presenting fictional people as customers.
- */
-export function testimonialDisplay(): TestimonialDisplay {
-  const visible = visibleTestimonials();
-  const confirmed = visible.filter(item => item.status === 'confirmed');
-
-  if (confirmed.length > 0) return { items: confirmed, isSample: false };
-  if (showDraftContent) return { items: visible, isSample: false };
-
-  return { items: sampleTestimonials(), isSample: true };
-}

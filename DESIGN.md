@@ -277,7 +277,7 @@ Yellow folder bar (1.6px ink-black border, radius 8.5) with a tab, plus icon rot
 Two columns: left (max 450px) with an "About / Saatvik" sticker heading, a purple lead line and 18px body; right a large photo (radius 32, aspect 1.04). Copy only from the client's company profile.
 
 ### Testimonials
-Centred "Kind / Words" sticker heading above a horizontal **scroll-snap slider**: 3 cards per view on desktop, 2 on tablet, and 86% width on phones so the next card peeks in. Cards cycle pink, sky, lime and yellow, with the stat-card curve (16/72/16/16), a large display quote mark, the quote in the display face (19 to 22px), and an attribution row with a 56px circular avatar, uppercase name, role, company · city, and a topic chip. Controls: an "n / total" counter and round prev/next buttons that use the shared hover. No autoplay. Content comes from `content/testimonials.ts`; the current entries are fictional design placeholders (`draft`) that never render in production.
+Centred "Kind / Words" sticker heading above a horizontal **scroll-snap slider**: 3 cards per view on desktop, 2 on tablet, and 86% width on phones so the next card peeks in. Cards cycle pink, sky, lime and yellow, with the stat-card curve (16/72/16/16), a large display quote mark, the quote in the display face (19 to 22px), and an attribution row with a 56px circular avatar, uppercase name, role, company · city, and a topic chip. Controls: an "n / total" counter and round prev/next buttons that use the shared hover. No autoplay. Both testimonial sliders use the same entries from `content/testimonials.ts` in every environment.
 
 ### Forms
 Pill or rounded inputs on surface, 2px ink border, labels above, required marked with *. Submit uses the primary or yellow button style. Errors in plain text near the field.
@@ -316,7 +316,6 @@ Grid columns that hold text use `minmax(0, 1fr)`, never a bare `1fr`, so a long 
 Stack columns rather than shrink text: two-column layouts become one column with the image after the copy (about) or above the list (FAQ). Keep display sizes fluid with `clamp()`; never let a sticker word wrap.
 
 ## Known Gaps
-- **No real testimonials yet:** the section is hidden in production until the client supplies quotes (Q25).
 - **Two palettes coexist:** the Paper festival palette (new sections) and the template's wine/cta-yellow styles (primary buttons, footer, the trade form, corporate and FAQ pages). Converge on the festival palette as those sections are redesigned.
 - `.agent/developer/design-system.md` describes an earlier green/gold direction that was not adopted. This file supersedes it.
 - No semantic (success/error) colours, no dark mode.

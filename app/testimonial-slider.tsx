@@ -12,7 +12,7 @@ export interface SliderCard {
 }
 
 /** Buyer testimonials in the card slider. */
-export function TestimonialSlider({ items }: { items: Testimonial[] }) {
+export function TestimonialSlider({ items }: { items: readonly Testimonial[] }) {
   const cards = items.map(item => ({
     id: item.id,
     content: (
