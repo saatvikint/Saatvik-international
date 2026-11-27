@@ -1,9 +1,9 @@
 // Buyer testimonials.
 //
 // The entries below are DESIGN PLACEHOLDERS (fictional people, generated portrait avatars) so the
-// slider can be reviewed with realistic content. They are `draft`, so they render only in
-// development or when NEXT_PUBLIC_SHOW_DRAFT_CONTENT=true (design-review previews).
-// Production builds show `confirmed` entries only and hide the section when there are none.
+// slider can be reviewed with realistic content. In development they render in full. When there
+// are no confirmed quotes, production uses anonymized versions that are explicitly labelled as
+// samples (client 2026-11-27); fictional identities and avatars are never published.
 //
 // When the client supplies real quotes (open question Q25): replace these, use the buyer's
 // real name/role/photo with their permission, and set `status: 'confirmed'`.
@@ -133,4 +133,24 @@ export function sampleTestimonials(): Testimonial[] {
   return testimonials
     .filter(item => item.status === 'draft')
     .map(({ id, quote, company, role, topic }) => ({ id, quote, name: company ?? role, role: 'Sample quote', topic, status: 'draft' }));
+}
+
+export interface TestimonialDisplay {
+  items: Testimonial[];
+  isSample: boolean;
+}
+
+/**
+ * Testimonials to render on public pages. Confirmed quotes always take priority. Development and
+ * flagged previews retain the full draft cards; production falls back to labelled, anonymized
+ * samples so the section remains visible without presenting fictional people as customers.
+ */
+export function testimonialDisplay(): TestimonialDisplay {
+  const visible = visibleTestimonials();
+  const confirmed = visible.filter(item => item.status === 'confirmed');
+
+  if (confirmed.length > 0) return { items: confirmed, isSample: false };
+  if (showDraftContent) return { items: visible, isSample: false };
+
+  return { items: sampleTestimonials(), isSample: true };
 }

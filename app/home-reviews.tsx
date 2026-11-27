@@ -1,4 +1,4 @@
-import { sampleTestimonials, showDraftContent, visibleTestimonials } from '@/content/testimonials';
+import { testimonialDisplay } from '@/content/testimonials';
 import { StickerHeading } from './sticker-heading';
 import { TestimonialSlider } from './testimonial-slider';
 
@@ -6,9 +6,7 @@ import { TestimonialSlider } from './testimonial-slider';
 // Real (confirmed) quotes show as they are. Until there are some, the live site shows the drafts as
 // clearly labelled samples without names, cities or photos (client 2026-11-27).
 export function HomeReviews() {
-  const confirmed = visibleTestimonials().filter(item => item.status === 'confirmed');
-  const isSample = confirmed.length === 0 && !showDraftContent;
-  const items = isSample ? sampleTestimonials() : visibleTestimonials();
+  const { items, isSample } = testimonialDisplay();
   if (items.length === 0) return null;
 
   return (
@@ -17,7 +15,7 @@ export function HomeReviews() {
         <StickerHeading id="reviews-title" kicker={isSample ? 'What buyers look for in a supplier' : 'From the businesses we supply'}
           rows={[[{ text: 'Kind', tone: 'lime' }], [{ text: 'Words', tone: 'red' }]]} />
       </header>
-      
+      {isSample && <p className="testimonial-sample-note">Sample testimonials, shown for illustration only. They are not reviews from named customers.</p>}
       <TestimonialSlider items={items} />
     </section>
   );
