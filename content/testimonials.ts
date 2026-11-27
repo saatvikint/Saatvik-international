@@ -124,3 +124,13 @@ export const showDraftContent =
 export function visibleTestimonials(): Testimonial[] {
   return testimonials.filter(item => item.status === 'confirmed' || showDraftContent);
 }
+
+/**
+ * Drafts shown on the live site as clearly labelled samples (client 2026-11-27, option 2) until real quotes
+ * exist. Personal details are removed: no name, city or photo, only the buyer type.
+ */
+export function sampleTestimonials(): Testimonial[] {
+  return testimonials
+    .filter(item => item.status === 'draft')
+    .map(({ id, quote, company, role, topic }) => ({ id, quote, name: company ?? role, role: 'Sample quote', topic, status: 'draft' }));
+}

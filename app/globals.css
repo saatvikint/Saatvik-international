@@ -5307,16 +5307,6 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
 .pdp-select-icon{flex:none;width:34px;height:34px;margin:-6px 0;object-fit:contain}
 .pl-range-photo img{object-position:50% 30%}
 
-/* "Who we supply" cards: same slider and tones as testimonials, factual content (no quotes). */
-.buyer-card{display:flex;flex-direction:column;gap:12px;height:100%}
-.buyer-card-icon{display:grid;place-items:center;width:58px;height:58px;border:2.5px solid currentColor;border-radius:50%;background:#ffffff8c}
-.buyer-card-icon .icon{width:28px;height:28px}
-.buyer-card-title{margin:4px 0 0;font-family:var(--display);font-weight:800;font-size:clamp(22px,2vw,28px);line-height:1.1;text-transform:uppercase}
-.buyer-card-text{margin:0;font-size:16px;line-height:1.5}
-.buyer-card-points{display:grid;gap:6px;margin:0 0 6px;padding:0;list-style:none;font-weight:700;font-size:15px}
-.buyer-card-points li{display:flex;gap:8px;align-items:baseline}
-.buyer-card-points li::before{content:"\2713";flex:none}
-.buyer-card .testimonial-topic{align-self:flex-start;margin-top:auto}
 
 /* Sticker headings in the food palette of the category cards (client 2026-11-27):
    saffron, tomato, berry, chocolate and turmeric. Tone names kept so every heading updates at once. */
@@ -5333,3 +5323,6 @@ html{scroll-padding-top:calc(var(--header-h) + 12px)}
 .sticker-word.tone-purple{background:#4b1650;color:#ffb347}
 .sticker-word.tone-red{background:#e8441f;color:#fff6e8}
 .sticker-word.tone-pink{background:#b0186a;color:#ffd9ec}
+
+/* Label for sample testimonials on the live site (until real quotes are confirmed). */
+.testimonial-sample-note{max-width:640px;margin:calc(var(--heading-gap) * -0.6) auto 24px;padding:8px 16px;border:2px dashed #4a1606;border-radius:999px;font-size:14px;font-weight:700;line-height:1.4;text-align:center;color:#4a1606}
